@@ -146,7 +146,7 @@ const Candidates = () => {
         throw new Error('No authentication token found. Please login again.');
       }
       
-      const response = await fetch(`http://localhost:8080/api/hr/candidates/${candidateId}/admin-remark`, {
+      const response = await fetch(`https://crmapi.zerlak.com/api/hr/candidates/${candidateId}/admin-remark`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
