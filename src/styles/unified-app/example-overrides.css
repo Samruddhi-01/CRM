@@ -1,0 +1,449 @@
+/**
+ * Example Theme Overrides
+ * Copy and customize this file to create your own theme
+ * 
+ * Usage:
+ * 1. Copy this file to your project (e.g., custom-theme.css)
+ * 2. Modify the CSS variables
+ * 3. Import after design-tokens.css but before other unified-app files
+ * 
+ * @import './unified-app/design-tokens.css';
+ * @import './custom-theme.css';  <-- Your overrides
+ * @import './unified-app/app-shell.css';
+ */
+
+/* ========================================
+   EXAMPLE 1: Purple Theme
+   ======================================== */
+
+/*
+:root {
+  --app-primary-gradient-start: #6B46C1;
+  --app-primary-gradient-end: #8B5CF6;
+  --app-navy: #5B21B6;
+  --app-accent: #A78BFA;
+  --app-success: #10B981;
+  --app-danger: #EF4444;
+}
+*/
+
+/* ========================================
+   EXAMPLE 2: Dark Theme
+   ======================================== */
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-surface: #1A1D29;
+    --app-panel: #0F1419;
+    --app-muted-border: #2D3142;
+    --app-table-stripe: #1F2230;
+    --app-text-primary: #E4E6EB;
+    --app-text-muted: #9CA3AF;
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    background: #232735;
+    border-color: #2D3142;
+    color: #E4E6EB;
+  }
+  
+  .app-ui .data-table tbody tr {
+    background: #1A1D29;
+  }
+  
+  .app-ui .data-table tbody tr:nth-child(even) {
+    background: #1F2230;
+  }
+}
+*/
+
+/* ========================================
+   EXAMPLE 3: Green/Nature Theme
+   ======================================== */
+
+/*
+:root {
+  --app-primary-gradient-start: #065F46;
+  --app-primary-gradient-end: #059669;
+  --app-navy: #064E3B;
+  --app-accent: #10B981;
+  --app-surface: #F0FDF4;
+  --app-panel: #ECFDF5;
+  --app-muted-border: #D1FAE5;
+}
+*/
+
+/* ========================================
+   EXAMPLE 4: Orange/Warm Theme
+   ======================================== */
+
+/*
+:root {
+  --app-primary-gradient-start: #C2410C;
+  --app-primary-gradient-end: #EA580C;
+  --app-navy: #9A3412;
+  --app-accent: #F97316;
+  --app-success: #84CC16;
+  --app-danger: #DC2626;
+}
+*/
+
+/* ========================================
+   EXAMPLE 5: Minimal/Neutral Theme
+   ======================================== */
+
+/*
+:root {
+  --app-primary-gradient-start: #1F2937;
+  --app-primary-gradient-end: #374151;
+  --app-navy: #111827;
+  --app-accent: #6B7280;
+  --app-surface: #FFFFFF;
+  --app-panel: #F9FAFB;
+  --app-muted-border: #E5E7EB;
+  --app-table-stripe: #F3F4F6;
+}
+*/
+
+/* ========================================
+   EXAMPLE 6: Custom Spacing (Compact)
+   ======================================== */
+
+/*
+:root {
+  --app-space-xs: 4px;
+  --app-space-sm: 8px;
+  --app-space-md: 12px;
+  --app-space-lg: 18px;
+  --app-space-xl: 24px;
+  
+  --app-input-height: 40px;
+  --app-button-height: 40px;
+}
+*/
+
+/* ========================================
+   EXAMPLE 7: Custom Fonts
+   ======================================== */
+
+/*
+:root {
+  --app-font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --app-font-h1: 32px;
+  --app-font-h2: 26px;
+  --app-font-h3: 22px;
+  --app-font-button: 15px;
+  --app-font-table: 13px;
+}
+*/
+
+/* ========================================
+   EXAMPLE 8: Larger Sidebar
+   ======================================== */
+
+/*
+:root {
+  --app-sidebar-width: 300px;
+  --app-sidebar-collapsed-width: 80px;
+}
+*/
+
+/* ========================================
+   EXAMPLE 9: Softer Shadows
+   ======================================== */
+
+/*
+:root {
+  --app-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --app-shadow-elevated: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --app-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+*/
+
+/* ========================================
+   EXAMPLE 10: Rounded Corners
+   ======================================== */
+
+/*
+:root {
+  --app-radius-sm: 8px;
+  --app-radius-md: 16px;
+  --app-radius-lg: 24px;
+}
+
+.app-ui .page-header {
+  border-radius: 0 0 var(--app-radius-lg) var(--app-radius-lg);
+}
+
+.app-ui .filter-card,
+.app-ui .table-card {
+  border-radius: var(--app-radius-md);
+}
+*/
+
+/* ========================================
+   EXAMPLE 11: Component-Specific Overrides
+   ======================================== */
+
+/*
+.app-ui .page-header {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  padding: var(--app-space-2xl);
+}
+
+.app-ui .data-table thead {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+}
+
+.app-ui .btn-accent {
+  background: #8B5CF6;
+}
+
+.app-ui .btn-accent:hover {
+  background: #7C3AED;
+}
+
+.app-ui .sidebar-nav-item.active::before {
+  background: #FCD34D;
+  width: 6px;
+}
+*/
+
+/* ========================================
+   EXAMPLE 12: Custom Status Badge Colors
+   ======================================== */
+
+/*
+.app-ui .status-badge.active {
+  background: linear-gradient(135deg, #D1FAE5 0%, #6EE7B7 100%);
+  color: #065F46;
+  border: none;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.app-ui .status-badge.inactive {
+  background: linear-gradient(135deg, #FEE2E2 0%, #FCA5A5 100%);
+  color: #991B1B;
+  border: none;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.app-ui .status-badge.pending {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 100%);
+  color: #78350F;
+  border: none;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+}
+*/
+
+/* ========================================
+   EXAMPLE 13: Glassmorphism Effect
+   ======================================== */
+
+/*
+.app-ui .filter-card,
+.app-ui .table-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.app-ui .page-header {
+  background: linear-gradient(
+    135deg,
+    rgba(18, 54, 105, 0.9) 0%,
+    rgba(26, 74, 138, 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+*/
+
+/* ========================================
+   EXAMPLE 14: High Contrast Accessibility Theme
+   ======================================== */
+
+/*
+@media (prefers-contrast: high) {
+  :root {
+    --app-primary-gradient-start: #000000;
+    --app-primary-gradient-end: #000000;
+    --app-muted-border: #000000;
+    --app-text-muted: #000000;
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    border: 3px solid #000000;
+  }
+  
+  .app-ui .btn {
+    border: 3px solid #000000;
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    border: 2px solid #000000;
+  }
+}
+*/
+
+/* ========================================
+   EXAMPLE 15: Custom Hover Effects
+   ======================================== */
+
+/*
+.app-ui .data-table tbody tr:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(47, 128, 237, 0.05) 0%,
+    rgba(47, 128, 237, 0.1) 100%
+  );
+  transform: translateX(4px);
+  border-left: 4px solid var(--app-accent);
+}
+
+.app-ui .btn:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.app-ui .sidebar-nav-item:hover {
+  transform: translateX(4px);
+  border-left: 3px solid rgba(255, 255, 255, 0.5);
+}
+*/
+
+/* ========================================
+   EXAMPLE 16: Animated Gradients
+   ======================================== */
+
+/*
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.app-ui .page-header {
+  background: linear-gradient(
+    -45deg,
+    #123669,
+    #1A4A8A,
+    #2F80ED,
+    #123669
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+*/
+
+/* ========================================
+   EXAMPLE 17: Custom Focus Styles
+   ======================================== */
+
+/*
+:root {
+  --app-shadow-focus: 0 0 0 4px rgba(47, 128, 237, 0.3),
+                      0 0 0 8px rgba(47, 128, 237, 0.1);
+}
+
+.app-ui *:focus-visible {
+  outline: none;
+  box-shadow: var(--app-shadow-focus);
+  border-radius: var(--app-radius-sm);
+}
+*/
+
+/* ========================================
+   EXAMPLE 18: Print Optimization
+   ======================================== */
+
+/*
+@media print {
+  :root {
+    --app-shadow-soft: none;
+    --app-shadow-elevated: none;
+  }
+  
+  .app-ui .page-header {
+    background: none;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+  
+  .app-ui .data-table thead {
+    background: none;
+    color: #000000;
+    border-bottom: 3px solid #000000;
+  }
+  
+  .app-ui .status-badge {
+    border: 2px solid currentColor;
+  }
+}
+*/
+
+/* ========================================
+   EXAMPLE 19: Seasonal Theme (Holiday)
+   ======================================== */
+
+/*
+:root {
+  --app-primary-gradient-start: #DC2626;
+  --app-primary-gradient-end: #059669;
+  --app-accent: #FCD34D;
+  --app-success: #10B981;
+  --app-danger: #DC2626;
+}
+
+.app-ui .page-header {
+  background: linear-gradient(
+    135deg,
+    #DC2626 0%,
+    #EF4444 25%,
+    #10B981 75%,
+    #059669 100%
+  );
+}
+
+.app-ui .btn-primary-cta {
+  background: #FCD34D;
+  color: #1F2937;
+}
+*/
+
+/* ========================================
+   EXAMPLE 20: Compact Mobile Layout
+   ======================================== */
+
+/*
+@media (max-width: 767px) {
+  .app-ui .page-header {
+    padding: var(--app-space-sm);
+    min-height: 80px;
+  }
+  
+  .app-ui .filter-card {
+    padding: var(--app-space-sm);
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .app-ui .btn {
+    height: 36px;
+    font-size: 14px;
+  }
+}
+*/

@@ -1,0 +1,447 @@
+/**
+ * ============================================================================
+ * UNIFIED UI COMPATIBILITY LAYER
+ * ============================================================================
+ * 
+ * Legacy class mappings for existing pages to adopt unified design system
+ * 
+ * Purpose:
+ * - Map old page-specific class names to unified-app classes
+ * - Provide backward compatibility during migration
+ * - Minimize breaking changes to existing HTML/JSX
+ * 
+ * Dependencies: 
+ * - design-tokens.css
+ * - app-shell.css
+ * - app-filters.css
+ * - app-tables.css
+ * 
+ * Usage:
+ * Import this file AFTER all unified-app CSS files to provide compatibility
+ * mappings for legacy class names used in Candidates, Openings, History, etc.
+ */
+
+/* ============================================================================
+   LEGACY CLASS MAPPINGS - CANDIDATES PAGE
+   ============================================================================ */
+
+/* Page Container - already using unified structure via .app-ui */
+
+/* Header Mappings */
+.candidate-header {
+  /* Maps to .page-header from app-shell.css */
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%);
+  padding: 12px 18px;
+  border-radius: var(--app-radius-sm);
+  margin-bottom: var(--app-space-md);
+}
+
+.candidate-header-left h1 {
+  font-size: 15px;
+  font-weight: var(--app-font-medium);
+  color: var(--app-text-on-primary);
+  margin: 0;
+}
+
+/* Filter Card Mappings */
+.candidate-filter-card {
+  /* Maps to .filter-card from app-filters.css */
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  padding: 12px 18px;
+  margin-bottom: var(--app-space-md);
+}
+
+.candidate-filter-form {
+  /* Maps to .filter-grid from app-filters.css */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.candidate-filter-input,
+.candidate-filter-select {
+  /* Maps to .form-input and .form-select from app-filters.css */
+  padding: 8px 12px;
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  font-size: 14px;
+  height: 36px;
+}
+
+.candidate-filter-input:focus,
+.candidate-filter-select:focus {
+  outline: none;
+  border-color: var(--app-accent);
+  box-shadow: var(--app-shadow-focus);
+}
+
+.candidate-filter-btn-primary {
+  /* Maps to .btn-primary from app-filters.css */
+  background: var(--app-navy);
+  color: var(--app-text-on-primary);
+  padding: 8px 16px;
+  border-radius: var(--app-radius-sm);
+  font-size: 14px;
+  font-weight: var(--app-font-medium);
+  border: none;
+  cursor: pointer;
+  transition: var(--app-transition-fast);
+}
+
+.candidate-filter-btn-primary:hover {
+  background: #0A1F3D;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 43, 87, 0.25);
+}
+
+.candidate-filter-btn-secondary {
+  /* Maps to .btn-secondary from app-filters.css */
+  background: var(--app-surface);
+  color: var(--app-text-primary);
+  border: 1px solid var(--app-muted-border);
+  padding: 8px 16px;
+  border-radius: var(--app-radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Table Mappings */
+.candidates-table-card {
+  /* Maps to .table-card from app-tables.css */
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  box-shadow: var(--app-shadow-soft);
+  overflow: hidden;
+}
+
+.candidate-table-wrapper {
+  /* Maps to .table-wrapper from app-tables.css */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.candidate-table {
+  /* Maps to .data-table from app-tables.css */
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.candidate-table thead {
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%);
+  position: sticky;
+  top: 0;
+  z-index: var(--app-z-sticky);
+}
+
+.candidate-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-on-primary);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.candidate-table tbody tr {
+  border-bottom: 1px solid var(--app-muted-border);
+  transition: var(--app-transition-fast);
+}
+
+.candidate-table tbody tr:nth-child(even) {
+  background: var(--app-table-stripe);
+}
+
+.candidate-table tbody tr:hover {
+  background: #EBF3FF;
+  box-shadow: inset 0 0 0 1px rgba(47, 128, 237, 0.15);
+}
+
+.candidate-table td {
+  padding: 8px 12px;
+  color: var(--app-text-primary);
+  font-size: 13px;
+}
+
+/* ============================================================================
+   LEGACY CLASS MAPPINGS - JOB OPENINGS PAGE
+   ============================================================================ */
+
+/* .openings-page-container already uses unified structure */
+
+.openings-header {
+  /* Maps to .page-header */
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%);
+  padding: 12px 18px;
+  border-radius: var(--app-radius-sm);
+  margin-bottom: var(--app-space-md);
+}
+
+.openings-header-content h1 {
+  font-size: 14px;
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-on-primary);
+  margin: 0;
+}
+
+.openings-add-btn {
+  /* Maps to .btn-primary-cta */
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: var(--app-font-semibold);
+  background: var(--app-text-on-primary);
+  color: var(--app-navy);
+  border: none;
+  border-radius: var(--app-radius-sm);
+  cursor: pointer;
+  transition: var(--app-transition-fast);
+}
+
+.openings-filters-card {
+  /* Maps to .filter-card */
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  padding: 12px 18px;
+  margin-bottom: var(--app-space-md);
+}
+
+.openings-filters-grid {
+  /* Maps to .filter-grid */
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr auto auto;
+  gap: 12px;
+}
+
+.openings-search-input,
+.openings-filter-select {
+  /* Maps to .form-input, .form-select */
+  padding: 8px 12px;
+  border: 2px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  font-size: 13px;
+  background: var(--app-surface);
+  height: 36px;
+}
+
+.openings-search-btn {
+  /* Maps to .btn-accent */
+  padding: 8px 16px;
+  font-size: 13px;
+  background: var(--app-navy);
+  color: var(--app-text-on-primary);
+  border: none;
+  border-radius: var(--app-radius-sm);
+  cursor: pointer;
+}
+
+.openings-clear-btn {
+  /* Maps to .btn-secondary */
+  padding: 8px 16px;
+  font-size: 13px;
+  background: var(--app-table-stripe);
+  color: var(--app-text-muted);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  cursor: pointer;
+}
+
+.openings-table-card {
+  /* Maps to .table-card */
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  overflow: hidden;
+}
+
+.openings-table {
+  /* Maps to .data-table */
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.openings-table thead {
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%);
+}
+
+.openings-table thead tr th {
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-on-primary);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.openings-table tbody tr {
+  border-bottom: 1px solid var(--app-muted-border);
+}
+
+.openings-table tbody tr:nth-child(even) {
+  background: var(--app-table-stripe);
+}
+
+.openings-table tbody tr:hover {
+  background: #EBF3FF !important;
+}
+
+.openings-table tbody tr td {
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--app-text-primary);
+}
+
+/* Status Badges */
+.opening-status-badge {
+  /* Maps to .status-badge */
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: var(--app-font-semibold);
+  border-radius: var(--app-radius-sm);
+  text-transform: uppercase;
+}
+
+.opening-status-badge.status-active {
+  background: var(--app-success);
+  color: #FFFFFF;
+}
+
+.opening-status-badge.status-closed {
+  background: var(--app-danger);
+  color: #FFFFFF;
+}
+
+.opening-status-badge.status-on_hold {
+  background: var(--app-warning);
+  color: #FFFFFF;
+}
+
+/* ============================================================================
+   LEGACY CLASS MAPPINGS - HISTORY PAGE
+   ============================================================================ */
+
+/* Already uses .main-wrapper .content .app-ui structure */
+
+/* ============================================================================
+   LEGACY CLASS MAPPINGS - HR MANAGEMENT PAGE
+   ============================================================================ */
+
+/* Already migrated to .main-wrapper .content .app-ui structure */
+
+/* ============================================================================
+   RESPONSIVE OVERRIDES FOR LEGACY CLASSES
+   ============================================================================ */
+
+@media (max-width: 1023px) {
+  .candidate-filter-form,
+  .openings-filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .candidate-filter-form,
+  .openings-filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .candidate-header,
+  .openings-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+  
+  .candidate-filter-btn-primary,
+  .candidate-filter-btn-secondary,
+  .openings-search-btn,
+  .openings-clear-btn {
+    width: 100%;
+  }
+}
+
+/* ============================================================================
+   UTILITY: QUICK MIGRATION HELPERS
+   ============================================================================ */
+
+/* Use these classes to quickly adopt unified styles without HTML changes */
+
+.legacy-to-unified-header {
+  /* Apply unified page-header styles to legacy headers */
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%) !important;
+  color: var(--app-text-on-primary) !important;
+  border-radius: var(--app-radius-md) !important;
+  padding: 16px 24px !important;
+}
+
+.legacy-to-unified-filter {
+  /* Apply unified filter-card styles to legacy filters */
+  background: var(--app-surface) !important;
+  border: 1px solid var(--app-muted-border) !important;
+  border-radius: var(--app-radius-md) !important;
+  padding: 20px !important;
+}
+
+.legacy-to-unified-table {
+  /* Apply unified table styles to legacy tables */
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+.legacy-to-unified-table thead {
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%) !important;
+}
+
+.legacy-to-unified-table th {
+  color: var(--app-text-on-primary) !important;
+  padding: 12px 14px !important;
+  font-weight: var(--app-font-bold) !important;
+}
+
+.legacy-to-unified-table tbody tr:nth-child(even) {
+  background: var(--app-table-stripe) !important;
+}
+
+.legacy-to-unified-table tbody tr:hover {
+  background: #EBF3FF !important;
+}
+
+/* ============================================================================
+   NOTES FOR DEVELOPERS
+   ============================================================================ */
+
+/*
+ * MIGRATION PATH:
+ * 
+ * 1. Import unified-app CSS files in this order:
+ *    - design-tokens.css
+ *    - app-shell.css
+ *    - app-filters.css
+ *    - app-tables.css
+ *    - app-responsive.css
+ *    - unified-ui-compat.css (this file)
+ * 
+ * 2. Add .app-ui class to root container
+ * 
+ * 3. Replace legacy classes gradually:
+ *    - .candidate-header → .page-header
+ *    - .candidate-filter-card → .filter-card
+ *    - .candidate-table → .data-table
+ *    - etc.
+ * 
+ * 4. Test at all breakpoints (desktop, tablet, mobile)
+ * 
+ * 5. Once migrated, remove legacy imports and this compat file
+ * 
+ * COMPATIBILITY GUARANTEE:
+ * - Visual parity with Candidates & Job Openings pages
+ * - No functional changes required
+ * - Gradual migration supported
+ */

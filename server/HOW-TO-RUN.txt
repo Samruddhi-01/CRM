@@ -1,0 +1,204 @@
+================================================================================
+HOW TO RUN THE PRIVATE APP BACKEND - STEP BY STEP GUIDE
+================================================================================
+
+OPTION 1: QUICK START (RECOMMENDED - No MySQL needed)
+================================================================================
+
+Step 1: Open Command Prompt
+   - Press Windows Key + R
+   - Type: cmd
+   - Press Enter
+
+Step 2: Navigate to the project folder and run
+   Copy and paste this command:
+
+   cd /d E:\Startica\private-app\private-app\server && start.bat
+
+   OR simply double-click this file:
+   E:\Startica\private-app\private-app\server\start.bat
+
+Step 3: Wait for the application to start
+   You'll see messages like:
+   - "Building the application..."
+   - "Starting the application on port 8080..."
+   - "Started PrivateAppApplication in X.XXX seconds"
+   - "✅ Initialized users:"
+
+Step 4: Application is ready!
+   Open your browser and go to:
+   - Application: http://localhost:8080
+   - H2 Database Console: http://localhost:8080/h2-console
+
+================================================================================
+OPTION 2: MANUAL MAVEN COMMANDS
+================================================================================
+
+If you prefer to run Maven commands manually:
+
+Step 1: Open Command Prompt and navigate to project folder:
+   cd /d E:\Startica\private-app\private-app\server
+
+Step 2: Build the project:
+   mvn clean package -DskipTests
+
+Step 3: Run the application (choose one):
+
+   Method A - Using Maven:
+   mvn spring-boot:run
+
+   Method B - Using Java JAR:
+   java -jar target\private-app-backend-0.0.1-SNAPSHOT.jar
+
+================================================================================
+OPTION 3: RUN FROM INTELLIJ IDEA
+================================================================================
+
+Step 1: Open the project in IntelliJ IDEA
+   - File → Open → Select: E:\Startica\private-app\private-app\server
+
+Step 2: Find the main class
+   - Navigate to: src/main/java/com/startica/privateapp/PrivateAppApplication.java
+
+Step 3: Run the application
+   - Right-click on PrivateAppApplication.java
+   - Select "Run 'PrivateAppApplication'"
+
+   OR click the green play button next to the main() method
+
+Step 4: Check the console
+   - Wait for: "Started PrivateAppApplication in X.XXX seconds"
+
+================================================================================
+WHAT TO EXPECT WHEN RUNNING
+================================================================================
+
+Console Output:
+   ========================================
+   Starting Private App Backend Server
+   (Using H2 In-Memory Database)
+   ========================================
+
+   Checking Maven installation...
+   Apache Maven 3.x.x
+
+   Building the application...
+   [INFO] BUILD SUCCESS
+
+   Starting the application on port 8080...
+   ...
+   Started PrivateAppApplication in 5.234 seconds
+   Tomcat started on port(s): 8080 (http)
+
+   ✅ Initialized users:
+      Admin: admin@startica.com / admin123
+      HR: hr@startica.com / hr123
+
+Success Indicators:
+   ✓ "Started PrivateAppApplication" appears in console
+   ✓ "Tomcat started on port(s): 8080" appears
+   ✓ No red error messages
+   ✓ Application keeps running (doesn't exit)
+
+================================================================================
+ACCESSING THE APPLICATION
+================================================================================
+
+Once running, you can access:
+
+1. Main Application Endpoint:
+   http://localhost:8080
+
+2. H2 Database Console:
+   URL: http://localhost:8080/h2-console
+   Connection Details:
+   - JDBC URL: jdbc:h2:mem:privateappdb
+   - Username: sa
+   - Password: (leave blank)
+
+3. Test Users (for authentication):
+   - Admin: admin@startica.com / admin123
+   - HR: hr@startica.com / hr123
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problem: "mvn is not recognized as an internal or external command"
+Solution: Maven is not installed or not in PATH
+   1. Download Maven from: https://maven.apache.org/download.cgi
+   2. Install and add to PATH
+   3. Restart Command Prompt and try again
+
+Problem: "Port 8080 already in use"
+Solution: Another application is using port 8080
+   1. Stop the application using port 8080, OR
+   2. Change port in application.properties:
+      server.port=8081
+
+Problem: "Failed to configure a DataSource"
+Solution: Database configuration issue
+   - The application is configured for H2 (no setup needed)
+   - Check application.properties has H2 settings
+
+Problem: Build fails with compilation errors
+Solution: Check Java version
+   - This project requires Java 21
+   - Run: java -version
+   - Download Java 21 if needed from: https://adoptium.net/
+
+Problem: Application starts but immediately stops
+Solution: Check for errors in the console output
+   - Look for red text or EXCEPTION messages
+   - Copy and paste the error to get help
+
+================================================================================
+STOPPING THE APPLICATION
+================================================================================
+
+Method 1: In Command Prompt
+   - Press Ctrl + C
+   - Confirm with 'Y' if prompted
+
+Method 2: In IntelliJ IDEA
+   - Click the red stop button in the Run panel
+
+Method 3: Force stop
+   - Find the Java process in Task Manager
+   - End the process
+
+================================================================================
+NEXT STEPS AFTER RUNNING
+================================================================================
+
+1. Verify the application is running:
+   - Open browser: http://localhost:8080
+   - Should see some response (not "connection refused")
+
+2. Access H2 Console to view database:
+   - Go to: http://localhost:8080/h2-console
+   - Login and run: SELECT * FROM users;
+   - Should see 2 users (Admin and HR)
+
+3. Test the API endpoints:
+   - Use Postman, curl, or your browser
+   - Authentication endpoints should be available
+
+4. Check logs:
+   - All SQL queries are logged (spring.jpa.show-sql=true)
+   - Debug level logging enabled for com.startica package
+
+================================================================================
+READY TO RUN!
+================================================================================
+
+The simplest way to start:
+→ Double-click: E:\Startica\private-app\private-app\server\start.bat
+
+Or run this command:
+→ cd /d E:\Startica\private-app\private-app\server && start.bat
+
+The application will be accessible at http://localhost:8080
+
+================================================================================
+

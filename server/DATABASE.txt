@@ -1,0 +1,118 @@
+================================================================================
+PRIVATE APP DATABASE (privateappdb) - Documentation
+================================================================================
+
+DATABASE NAME: privateappdb
+
+CURRENT CONFIGURATION:
+- Database Type: H2 In-Memory Database
+- JDBC URL: jdbc:h2:mem:privateappdb
+- Username: sa
+- Password: (blank)
+- Auto-create: YES
+- Hibernate DDL: update (auto-creates tables)
+
+--------------------------------------------------------------------------------
+DATABASE SCHEMA
+--------------------------------------------------------------------------------
+
+TABLE: users
+------------
+Columns:
+  - id (BIGINT, PRIMARY KEY, AUTO_INCREMENT)
+  - email (VARCHAR, NOT NULL, UNIQUE)
+  - password (VARCHAR, NOT NULL) - stored as bcrypt hash
+  - name (VARCHAR, NOT NULL)
+  - role (VARCHAR, NOT NULL) - ENUM: 'ADMIN' or 'HR'
+
+Constraints:
+  - Primary Key: id
+  - Unique Constraint: email
+  - Check: role IN ('ADMIN', 'HR')
+
+--------------------------------------------------------------------------------
+INITIAL DATA (Auto-created on startup)
+--------------------------------------------------------------------------------
+
+User 1 - Admin:
+  Email: admin@startica.com
+  Password: admin123 (plain text, stored as bcrypt hash)
+  Name: Admin User
+  Role: ADMIN
+
+User 2 - HR:
+  Email: hr@startica.com
+  Password: hr123 (plain text, stored as bcrypt hash)
+  Name: HR User
+  Role: HR
+
+--------------------------------------------------------------------------------
+HOW TO ACCESS THE DATABASE
+--------------------------------------------------------------------------------
+
+Option 1: H2 Console (Web Interface)
+  1. Start the application (run start.bat)
+  2. Open browser: http://localhost:8080/h2-console
+  3. Enter connection details:
+     - JDBC URL: jdbc:h2:mem:privateappdb
+     - Username: sa
+     - Password: (leave blank)
+  4. Click "Connect"
+
+Option 2: MySQL Configuration (Alternative)
+  To use MySQL instead of H2, update application.properties:
+
+  spring.datasource.url=jdbc:mysql://localhost:3306/privateappdb?createDatabaseIfNotExist=true
+  spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+  spring.datasource.username=root
+  spring.datasource.password=root
+  spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+
+--------------------------------------------------------------------------------
+SAMPLE SQL QUERIES
+--------------------------------------------------------------------------------
+
+-- View all users
+SELECT * FROM users;
+
+-- Find user by email
+SELECT * FROM users WHERE email = 'admin@startica.com';
+
+-- Count users by role
+SELECT role, COUNT(*) as count FROM users GROUP BY role;
+
+-- Add a new user (password must be bcrypt hashed)
+INSERT INTO users (email, password, name, role)
+VALUES ('user@startica.com', '$2a$10$...bcrypt_hash...', 'New User', 'HR');
+
+-- Update user role
+UPDATE users SET role = 'ADMIN' WHERE email = 'hr@startica.com';
+
+-- Delete a user
+DELETE FROM users WHERE email = 'user@startica.com';
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+
+1. H2 In-Memory Database:
+   - Data is NOT persisted after application stops
+   - Database is recreated each time you start the application
+   - Perfect for development and testing
+
+2. Password Security:
+   - Passwords are hashed using BCrypt algorithm
+   - Never store plain text passwords in production
+   - Password encoder is configured in SecurityConfig.java
+
+3. Role-Based Access:
+   - ADMIN: Full system access
+   - HR: Limited access (define permissions in SecurityConfig)
+
+4. To persist data permanently:
+   - Switch to MySQL (see Option 2 above)
+   - Or use H2 file-based database:
+     spring.datasource.url=jdbc:h2:file:./data/privateappdb
+
+================================================================================
+

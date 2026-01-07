@@ -1,0 +1,574 @@
+/**
+ * Responsive Overrides & Media Queries
+ * Breakpoint-specific adjustments for all app components
+ * 
+ * Dependencies: All other unified-app CSS files
+ * 
+ * Breakpoints:
+ * - Desktop XL: >= 1400px
+ * - Desktop:    1200px - 1399px
+ * - Laptop:     1024px - 1199px
+ * - Tablet:     768px - 1023px
+ * - Mobile:     <= 767px
+ * - Small:      <= 400px
+ */
+
+/* ========================================
+   DESKTOP XL (>= 1400px)
+   ======================================== */
+
+@media (min-width: 1400px) {
+  .app-ui .app-content {
+    padding: 0 var(--app-space-xl) var(--app-space-xl);
+  }
+  
+  .app-ui .page-header {
+    margin: 0 var(--app-space-xl) var(--app-space-xl);
+    padding: var(--app-space-xl);
+  }
+  
+  .app-ui .filter-card,
+  .app-ui .table-card {
+    padding: var(--app-space-xl);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--app-space-lg);
+  }
+}
+
+/* ========================================
+   DESKTOP (1200px - 1399px)
+   ======================================== */
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .app-ui .page-header {
+    padding: var(--app-space-lg);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--app-space-md);
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    padding: var(--app-space-md);
+  }
+}
+
+/* ========================================
+   LAPTOP (1024px - 1199px)
+   ======================================== */
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .app-ui .page-header-title {
+    font-size: var(--app-font-h2);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--app-space-md);
+  }
+  
+  .app-ui .col-3,
+  .app-ui .col-4 {
+    grid-column: span 2;
+  }
+  
+  .app-ui .data-table {
+    font-size: 13px;
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    padding: var(--app-space-sm) var(--app-space-md);
+  }
+  
+  /* Optionally collapse sidebar by default */
+  .app-ui .app-shell {
+    grid-template-columns: var(--app-sidebar-collapsed-width) 1fr;
+  }
+  
+  .app-ui .app-sidebar {
+    width: var(--app-sidebar-collapsed-width);
+  }
+  
+  .app-ui .sidebar-brand,
+  .app-ui .sidebar-nav-label {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ========================================
+   TABLET (768px - 1023px)
+   ======================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-ui .page-header {
+    padding: var(--app-space-md) var(--app-space-lg);
+    min-height: 64px;
+  }
+  
+  .app-ui .page-header-title {
+    font-size: 20px;
+  }
+  
+  .app-ui .btn-primary-cta {
+    font-size: var(--app-font-label);
+    padding: 0 var(--app-space-md);
+  }
+  
+  .app-ui .filter-card {
+    padding: var(--app-space-md);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .app-ui .col-1,
+  .app-ui .col-2,
+  .app-ui .col-3,
+  .app-ui .col-4 {
+    grid-column: span 1;
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    height: var(--app-input-height-tablet);
+    font-size: var(--app-font-label);
+  }
+  
+  .app-ui .btn {
+    height: var(--app-input-height-tablet);
+    font-size: var(--app-font-label);
+  }
+  
+  .app-ui .table-header {
+    padding: var(--app-space-md);
+  }
+  
+  .app-ui .table-title {
+    font-size: 18px;
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    padding: var(--app-space-sm) var(--app-space-md);
+    font-size: 13px;
+  }
+  
+  /* Hide less important columns */
+  .app-ui .hide-on-tablet {
+    display: none;
+  }
+}
+
+/* ========================================
+   MOBILE (<= 767px)
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* Reset sidebar to drawer mode */
+  .app-ui .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "content";
+  }
+  
+  .app-ui .app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--app-sidebar-width);
+    transform: translateX(-100%);
+    transition: transform var(--app-sidebar-transition);
+    z-index: var(--app-z-drawer);
+  }
+  
+  .app-ui.drawer-open .app-sidebar {
+    transform: translateX(0);
+  }
+  
+  /* Header adjustments */
+  .app-ui .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: var(--app-header-height-mobile);
+    margin: 0 var(--app-space-md) var(--app-space-md);
+    padding: var(--app-space-md);
+    border-radius: 0 0 var(--app-radius-md) var(--app-radius-md);
+  }
+  
+  .app-ui .page-header-title {
+    font-size: var(--app-font-h1-sm);
+    text-align: center;
+    margin-bottom: var(--app-space-sm);
+  }
+  
+  .app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .app-ui .btn-primary-cta {
+    width: 100%;
+    height: var(--app-button-height-mobile);
+  }
+  
+  /* Content adjustments */
+  .app-ui .app-content {
+    padding: 0 var(--app-content-gutter-mobile) var(--app-content-gutter-mobile);
+  }
+  
+  /* Filter card */
+  .app-ui .filter-card {
+    padding: var(--app-space-md);
+    margin-bottom: var(--app-space-md);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: 1fr;
+    gap: var(--app-space-md);
+  }
+  
+  .app-ui .col-1,
+  .app-ui .col-2,
+  .app-ui .col-3,
+  .app-ui .col-4 {
+    grid-column: span 1;
+  }
+  
+  /* Form inputs */
+  .app-ui .form-input,
+  .app-ui .form-select,
+  .app-ui .form-textarea {
+    height: var(--app-input-height-mobile);
+  }
+  
+  .app-ui .form-label {
+    font-size: 13px;
+  }
+  
+  /* Buttons */
+  .app-ui .btn {
+    width: 100%;
+    height: var(--app-input-height-mobile);
+    font-size: var(--app-font-label);
+  }
+  
+  .app-ui .filter-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .app-ui .filter-actions .btn {
+    width: 100%;
+  }
+  
+  /* Table card */
+  .app-ui .table-header {
+    padding: var(--app-space-md);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .app-ui .table-title {
+    font-size: 18px;
+    margin-bottom: var(--app-space-sm);
+  }
+  
+  .app-ui .table-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  
+  .app-ui .table-actions .btn {
+    flex: 1;
+  }
+  
+  /* Pagination */
+  .app-ui .table-pagination {
+    padding: var(--app-space-md);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--app-space-md);
+  }
+  
+  .app-ui .pagination-info {
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  .app-ui .pagination-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Hide columns */
+  .app-ui .hide-on-mobile {
+    display: none;
+  }
+  
+  /* Mobile menu button (add if needed) */
+  .app-ui .mobile-menu-btn {
+    position: fixed;
+    bottom: var(--app-space-lg);
+    right: var(--app-space-lg);
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--app-navy);
+    color: var(--app-text-on-primary);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(15, 43, 87, 0.3);
+    cursor: pointer;
+    z-index: calc(var(--app-z-drawer) - 1);
+    transition: all var(--app-transition-fast);
+  }
+  
+  .app-ui .mobile-menu-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(15, 43, 87, 0.4);
+  }
+  
+  .app-ui .mobile-menu-btn:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ========================================
+   SMALL MOBILE (<= 400px)
+   ======================================== */
+
+@media (max-width: 400px) {
+  .app-ui .page-header {
+    margin: 0 var(--app-space-sm) var(--app-space-sm);
+    padding: var(--app-space-sm);
+  }
+  
+  .app-ui .page-header-title {
+    font-size: 18px;
+  }
+  
+  .app-ui .btn-primary-cta {
+    font-size: 14px;
+    padding: 0 var(--app-space-md);
+  }
+  
+  .app-ui .filter-card {
+    padding: var(--app-space-sm);
+  }
+  
+  .app-ui .filter-grid {
+    gap: var(--app-space-sm);
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    font-size: 14px;
+  }
+  
+  .app-ui .btn {
+    font-size: 14px;
+  }
+  
+  .app-ui .table-card {
+    border-radius: var(--app-radius-sm);
+  }
+  
+  .app-ui .table-header {
+    padding: var(--app-space-sm);
+  }
+  
+  .app-ui .table-title {
+    font-size: 16px;
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    padding: var(--app-space-xs) var(--app-space-sm);
+    font-size: 12px;
+  }
+  
+  .app-ui .table-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .app-ui .pagination-btn {
+    min-width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+  
+  .app-ui .mobile-menu-btn {
+    width: 48px;
+    height: 48px;
+    bottom: var(--app-space-md);
+    right: var(--app-space-md);
+  }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION (Mobile)
+   ======================================== */
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .app-ui .page-header {
+    min-height: 60px;
+    padding: var(--app-space-sm) var(--app-space-md);
+  }
+  
+  .app-ui .page-header-title {
+    font-size: 18px;
+  }
+  
+  .app-ui .filter-card {
+    padding: var(--app-space-sm) var(--app-space-md);
+  }
+  
+  .app-ui .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .app-ui .app-sidebar,
+  .app-ui .sidebar-backdrop,
+  .app-ui .mobile-menu-btn,
+  .app-ui .page-header-actions,
+  .app-ui .filter-actions,
+  .app-ui .table-actions,
+  .app-ui .table-actions-cell,
+  .app-ui .table-pagination {
+    display: none !important;
+  }
+  
+  .app-ui .app-shell {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-ui .page-header {
+    background: none;
+    color: var(--app-text-primary);
+    border: 1px solid var(--app-muted-border);
+  }
+  
+  .app-ui .data-table {
+    border: 1px solid var(--app-muted-border);
+  }
+  
+  .app-ui .data-table thead {
+    background: none;
+    color: var(--app-text-primary);
+    border-bottom: 2px solid var(--app-text-primary);
+  }
+  
+  .app-ui .data-table tbody tr:hover {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .app-ui .page-header,
+  .app-ui .app-sidebar {
+    background: #000000;
+    color: #FFFFFF;
+  }
+  
+  .app-ui .data-table thead {
+    background: #000000;
+    border-bottom: 3px solid #FFFFFF;
+  }
+  
+  .app-ui .btn-primary,
+  .app-ui .btn-accent {
+    background: #000000;
+    border: 2px solid #FFFFFF;
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    border: 2px solid #000000;
+  }
+  
+  .app-ui .form-input:focus,
+  .app-ui .form-select:focus {
+    outline: 3px solid #000000;
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-ui *,
+  .app-ui *::before,
+  .app-ui *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .app-ui .app-sidebar,
+  .app-ui .sidebar-backdrop {
+    transition: none;
+  }
+}
+
+/* ========================================
+   DARK MODE (Optional - Commented Out)
+   ======================================== */
+
+/*
+@media (prefers-color-scheme: dark) {
+  .app-ui {
+    background: #0F1419;
+  }
+  
+  .app-ui .filter-card,
+  .app-ui .table-card {
+    background: #1A1D29;
+    border-color: #2D3142;
+  }
+  
+  .app-ui .form-input,
+  .app-ui .form-select {
+    background: #232735;
+    border-color: #2D3142;
+    color: #E4E6EB;
+  }
+  
+  .app-ui .data-table tbody tr {
+    background: #1A1D29;
+    border-color: #2D3142;
+  }
+  
+  .app-ui .data-table tbody tr:nth-child(even) {
+    background: #1F2230;
+  }
+  
+  .app-ui .data-table tbody tr:hover {
+    background: #252938;
+  }
+}
+*/

@@ -1,0 +1,297 @@
+/**
+ * Candidates Page - Unified App UI Integration Styles
+ * Bridges the unified app system with the candidates page structure
+ */
+
+/* Scoped wrapper for unified styles on Candidates page */
+.candidates-page.app-ui {
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* Page Header - Full width with margin */
+.candidates-page.app-ui .page-header {
+  margin: 20px 20px 0 20px;
+  padding: 16px 24px;
+  border-radius: 10px;
+}
+
+/* Filter Card - Full width with margin */
+.candidates-page.app-ui .filter-card {
+  margin: 20px;
+}
+
+/* Table Card - Full width with margin */
+.candidates-page.app-ui .candidates-table-card,
+.candidates-page.app-ui .table-card {
+  margin: 20px;
+}
+
+/* Responsive adjustments for existing layout */
+@media (max-width: 1023px) {
+  .candidates-page.app-ui .page-header {
+    margin: 16px 16px 0 16px;
+    padding: 14px 20px;
+  }
+  
+  .candidates-page.app-ui .filter-card,
+  .candidates-page.app-ui .candidates-table-card,
+  .candidates-page.app-ui .table-card {
+    margin: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .candidates-page.app-ui .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .candidates-page.app-ui .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .candidates-page.app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .candidates-page.app-ui .btn-primary-cta {
+    width: 100%;
+  }
+  
+  .candidates-page.app-ui .filter-card,
+  .candidates-page.app-ui .candidates-table-card,
+  .candidates-page.app-ui .table-card {
+    margin: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .candidates-page.app-ui .page-header {
+    margin: 8px 8px 0 8px;
+    padding: 12px;
+  }
+  
+  .candidates-page.app-ui .filter-card,
+  .candidates-page.app-ui .candidates-table-card,
+  .candidates-page.app-ui .table-card {
+    margin: 8px;
+  }
+}
+
+/* Ensure proper spacing for content wrapper */
+.candidates-page.app-ui {
+  padding-bottom: 24px;
+}
+
+/* Enhanced Action Buttons */
+.candidates-page .unified-action-buttons {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.candidates-page .unified-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px !important;
+  min-width: 36px;
+  max-width: 36px;
+  height: 36px;
+  padding: 0;
+  background: white;
+  border: 1.5px solid #E6EEF7;
+  border-radius: 6px;
+  color: #637381;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.candidates-page .unified-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.2);
+}
+
+.candidates-page .unified-action-btn.unified-btn-edit:hover {
+  background: #2F80ED;
+  border-color: #2F80ED;
+  color: white;
+}
+
+.candidates-page .unified-action-btn.unified-btn-view:hover {
+  background: #10B981;
+  border-color: #10B981;
+  color: white;
+}
+
+.candidates-page .unified-action-btn.unified-btn-delete:hover {
+  background: #E05050;
+  border-color: #E05050;
+  color: white;
+}
+
+.candidates-page .unified-action-btn:active {
+  transform: translateY(0);
+}
+
+.candidates-page .unified-action-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.25);
+}
+
+/* Actions column cell styling */
+.candidates-page .unified-table .cell-actions {
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  text-align: right;
+  padding-right: 16px;
+}
+
+/* Mobile Responsive Table Cards */
+@media (min-width: 768px) {
+  .candidates-page .table-mobile-cards {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Hide desktop table on mobile */
+  .candidates-page .unified-table-wrapper {
+    display: none;
+  }
+  
+  /* Show mobile cards */
+  .candidates-page .table-mobile-cards {
+    display: block;
+    padding: 16px;
+  }
+  
+  .candidates-page .table-mobile-card {
+    background: white;
+    border: 1px solid #E6EEF7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(6, 30, 69, 0.06);
+    transition: all 0.2s ease;
+  }
+  
+  .candidates-page .table-mobile-card:hover {
+    box-shadow: 0 4px 12px rgba(6, 30, 69, 0.12);
+    transform: translateY(-2px);
+  }
+  
+  .candidates-page .table-mobile-card:last-child {
+    margin-bottom: 0;
+  }
+  
+  .candidates-page .table-mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F3F4F6;
+  }
+  
+  .candidates-page .table-mobile-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .candidates-page .table-mobile-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #637381;
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+  
+  .candidates-page .table-mobile-value {
+    font-size: 14px;
+    color: #0F2130;
+    font-weight: 400;
+    text-align: right;
+    word-break: break-word;
+    flex: 1;
+  }
+  
+  .candidates-page .table-mobile-actions {
+    display: flex;
+    gap: 8px;
+    padding-top: 16px;
+    margin-top: 12px;
+    border-top: 1px solid #F3F4F6;
+    flex-wrap: wrap;
+  }
+  
+  .candidates-page .table-mobile-actions .btn {
+    flex: 1;
+    min-width: 80px;
+    font-size: 13px;
+    padding: 8px 12px;
+    height: 36px;
+  }
+  
+  /* WhatsApp button for mobile */
+  .candidates-page .table-mobile-actions .btn-whatsapp {
+    background: #EAFAF0;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    color: #25D366;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  
+  .candidates-page .table-mobile-actions .btn-whatsapp:hover {
+    background: #25D366;
+    border-color: #25D366;
+    color: white;
+  }
+  
+  .candidates-page .table-mobile-actions .btn-whatsapp:disabled {
+    background: #F3F4F6;
+    border-color: #E5E7EB;
+    color: #9CA3AF;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .candidates-page .table-mobile-actions .btn-whatsapp svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Mobile action buttons */
+  .candidates-page .unified-action-btn {
+    width: 40px !important;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+  }
+  
+  .candidates-page .unified-action-buttons {
+    gap: 12px;
+  }
+  
+  .candidates-page .unified-table .cell-actions {
+    width: auto;
+    min-width: auto;
+    max-width: none;
+  }
+}

@@ -1,0 +1,368 @@
+/**
+ * HR Candidate Remarks Page - Unified Styles & Typography
+ * Matches Job Openings visual hierarchy
+ */
+
+/* ============================================================================
+   PAGE HEADER TYPOGRAPHY
+   ============================================================================ */
+
+.hr-candidate-remarks-page.app-ui .page-header-title h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.hr-candidate-remarks-page.app-ui .page-header-title p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ============================================================================
+   FORM LABELS - SMALLER & PROFESSIONAL
+   ============================================================================ */
+
+.hr-candidate-remarks-page .form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.hr-candidate-remarks-page .form-input,
+.hr-candidate-remarks-page .form-select {
+  font-size: 0.875rem;
+}
+
+.hr-candidate-remarks-page .form-input::placeholder {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+/* ============================================================================
+   TABLE HEADER
+   ============================================================================ */
+
+.hr-candidate-remarks-page .table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 0;
+}
+
+.hr-candidate-remarks-page .table-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.hr-candidate-remarks-page .pagination-info {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* ============================================================================
+   INLINE EDITING - REMARK & STATUS
+   ============================================================================ */
+
+.hr-candidate-remarks-page .remark-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.hr-candidate-remarks-page .remark-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.hr-candidate-remarks-page .remark-textarea:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+.hr-candidate-remarks-page .remark-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.hr-candidate-remarks-page .save-btn,
+.hr-candidate-remarks-page .cancel-btn {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hr-candidate-remarks-page .save-btn {
+  background: #2f80ed;
+  color: white;
+}
+
+.hr-candidate-remarks-page .save-btn:hover:not(:disabled) {
+  background: #1e6fd6;
+}
+
+.hr-candidate-remarks-page .save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hr-candidate-remarks-page .cancel-btn {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.hr-candidate-remarks-page .cancel-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Remark cell display */
+.hr-candidate-remarks-page .remark-cell {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  min-height: 60px;
+  transition: all 0.2s ease;
+}
+
+.hr-candidate-remarks-page .remark-cell:hover {
+  background: #f8fafc;
+}
+
+.hr-candidate-remarks-page .remark-text {
+  font-size: 0.8125rem;
+  color: #1e293b;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Status inline editing */
+.hr-candidate-remarks-page .status-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.hr-candidate-remarks-page .status-select-inline {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+.hr-candidate-remarks-page .save-btn-mini,
+.hr-candidate-remarks-page .cancel-btn-mini {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.hr-candidate-remarks-page .save-btn-mini {
+  background: #10b981;
+  color: white;
+}
+
+.hr-candidate-remarks-page .save-btn-mini:hover:not(:disabled) {
+  background: #059669;
+}
+
+.hr-candidate-remarks-page .cancel-btn-mini {
+  background: #ef4444;
+  color: white;
+}
+
+.hr-candidate-remarks-page .cancel-btn-mini:hover {
+  background: #dc2626;
+}
+
+/* ============================================================================
+   APPLIED OPENINGS TAGS
+   ============================================================================ */
+
+.hr-candidate-remarks-page .applied-openings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.hr-candidate-remarks-page .opening-tag {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+/* ============================================================================
+   ACTION BUTTONS
+   ============================================================================ */
+
+.hr-candidate-remarks-page .action-btn {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.hr-candidate-remarks-page .action-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.hr-candidate-remarks-page .action-btn-edit {
+  border-color: #2f80ed;
+  color: #2f80ed;
+}
+
+.hr-candidate-remarks-page .action-btn-edit:hover {
+  background: #eff6ff;
+}
+
+/* ============================================================================
+   EMPTY & LOADING STATES
+   ============================================================================ */
+
+.hr-candidate-remarks-page .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.hr-candidate-remarks-page .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2f80ed;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hr-candidate-remarks-page .loading-state p {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.hr-candidate-remarks-page .empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.hr-candidate-remarks-page .empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 1rem 0 0.5rem;
+}
+
+.hr-candidate-remarks-page .empty-state p {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* ============================================================================
+   TEXT UTILITIES
+   ============================================================================ */
+
+.hr-candidate-remarks-page .text-muted {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.8125rem;
+}
+
+/* ============================================================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hr-candidate-remarks-page.app-ui .page-header-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hr-candidate-remarks-page.app-ui .page-header-title p {
+    font-size: 0.8125rem;
+  }
+  
+  .hr-candidate-remarks-page .table-title {
+    font-size: 0.9375rem;
+  }
+  
+  .hr-candidate-remarks-page .opening-tag {
+    font-size: 0.625rem;
+    padding: 0.1875rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hr-candidate-remarks-page.app-ui .page-header-title h1 {
+    font-size: 1.25rem;
+  }
+  
+  .hr-candidate-remarks-page.app-ui .page-header-title p {
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .form-label {
+    font-size: 0.6875rem;
+  }
+  
+  .hr-candidate-remarks-page .action-btn {
+    font-size: 0.6875rem;
+    padding: 0.3125rem 0.75rem;
+  }
+}

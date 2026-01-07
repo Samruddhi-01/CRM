@@ -1,0 +1,196 @@
+/**
+ * Design Tokens - Unified App UI System
+ * Single source of truth for colors, spacing, typography, and state variables
+ * 
+ * Usage: Import this first, before other unified app styles
+ */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+  
+  /* Primary Brand Colors */
+  --app-primary-gradient-start: #123669;
+  --app-primary-gradient-end: #1A4A8A;
+  --app-navy: #0F2B57;
+  --app-accent: #2F80ED;
+  
+  /* Surfaces & Borders */
+  --app-surface: #FFFFFF;
+  --app-panel: #FBFDFF;
+  --app-muted-border: #E6EEF7;
+  --app-table-stripe: #F7FAFC;
+  
+  /* Text Colors */
+  --app-text-primary: #0F2130;
+  --app-text-muted: #637381;
+  --app-text-on-primary: #FFFFFF;
+  
+  /* Semantic Colors */
+  --app-success: #2EA44F;
+  --app-danger: #E05050;
+  --app-warning: #F59E0B;
+  --app-info: #2F80ED;
+  
+  /* ========================================
+     SPACING SYSTEM
+     ======================================== */
+  
+  --app-space-xs: 6px;
+  --app-space-sm: 10px;
+  --app-space-md: 16px;
+  --app-space-lg: 24px;
+  --app-space-xl: 32px;
+  --app-space-2xl: 40px;
+  --app-space-3xl: 48px;
+  
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+  
+  --app-radius-sm: 6px;
+  --app-radius-md: 12px;
+  --app-radius-lg: 18px;
+  --app-radius-pill: 100px;
+  
+  /* ========================================
+     SHADOWS
+     ======================================== */
+  
+  --app-shadow-soft: 0 6px 18px rgba(6, 30, 69, 0.08);
+  --app-shadow-elevated: 0 12px 30px rgba(6, 30, 69, 0.12);
+  --app-shadow-focus: 0 0 0 3px rgba(47, 128, 237, 0.25);
+  --app-shadow-hover: 0 8px 24px rgba(6, 30, 69, 0.10);
+  
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  
+  --app-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  
+  /* Font Sizes */
+  --app-font-h1: 28px;
+  --app-font-h1-sm: 22px;
+  --app-font-h2: 24px;
+  --app-font-h3: 20px;
+  --app-font-label: 14px;
+  --app-font-input: 15px;
+  --app-font-button: 16px;
+  --app-font-table: 14px;
+  --app-font-caption: 13px;
+  
+  /* Font Weights */
+  --app-font-regular: 400;
+  --app-font-medium: 600;
+  --app-font-bold: 700;
+  
+  /* Line Heights */
+  --app-line-height-tight: 1.2;
+  --app-line-height-normal: 1.5;
+  --app-line-height-relaxed: 1.7;
+  
+  /* ========================================
+     LAYOUT DIMENSIONS
+     ======================================== */
+  
+  /* Sidebar */
+  --app-sidebar-width: 260px;
+  --app-sidebar-collapsed-width: 72px;
+  --app-sidebar-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Header */
+  --app-header-height: 72px;
+  --app-header-height-mobile: 120px;
+  
+  /* Content Gutters */
+  --app-content-gutter: var(--app-space-lg);
+  --app-content-gutter-mobile: var(--app-space-md);
+  
+  /* Interactive Targets */
+  --app-input-height: 48px;
+  --app-input-height-tablet: 44px;
+  --app-input-height-mobile: 40px;
+  --app-button-height: 48px;
+  --app-button-height-mobile: 44px;
+  
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+  
+  --app-z-base: 1;
+  --app-z-sticky: 10;
+  --app-z-header: 100;
+  --app-z-sidebar: 200;
+  --app-z-drawer-backdrop: 300;
+  --app-z-drawer: 400;
+  --app-z-modal: 500;
+  --app-z-toast: 600;
+  
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  
+  --app-transition-fast: 0.15s ease;
+  --app-transition-normal: 0.25s ease;
+  --app-transition-slow: 0.35s ease;
+  
+  /* ========================================
+     BREAKPOINTS (for reference in JS)
+     ======================================== */
+  
+  --app-breakpoint-mobile: 767px;
+  --app-breakpoint-tablet: 768px;
+  --app-breakpoint-laptop: 1024px;
+  --app-breakpoint-desktop: 1200px;
+  --app-breakpoint-xl: 1400px;
+}
+
+/* ========================================
+   SIDEBAR STATE MODIFIERS
+   Update these via JS when sidebar collapses
+   ======================================== */
+
+.app-ui.sidebar-collapsed {
+  --app-sidebar-width: var(--app-sidebar-collapsed-width);
+}
+
+/* ========================================
+   DARK MODE PREPARATION (Optional)
+   Uncomment to enable dark mode support
+   ======================================== */
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-surface: #1A1D29;
+    --app-panel: #232735;
+    --app-muted-border: #2D3142;
+    --app-table-stripe: #1F2230;
+    --app-text-primary: #E4E6EB;
+    --app-text-muted: #9CA3AF;
+  }
+}
+*/
+
+/* ========================================
+   ACCESSIBILITY UTILITIES
+   ======================================== */
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --app-muted-border: #333333;
+    --app-text-muted: #4B5563;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --app-transition-fast: 0.01ms;
+    --app-transition-normal: 0.01ms;
+    --app-transition-slow: 0.01ms;
+    --app-sidebar-transition: 0.01ms;
+  }
+}

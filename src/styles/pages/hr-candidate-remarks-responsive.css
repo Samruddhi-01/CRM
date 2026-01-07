@@ -1,0 +1,370 @@
+/**
+ * HR Candidate Remarks Page - Complete Responsive Styles
+ * Matches Job Openings responsive behavior exactly
+ */
+
+/* ============================================================================
+   BASE CONTAINER - RESPONSIVE WIDTH MANAGEMENT
+   ============================================================================ */
+
+.hr-candidate-remarks-page.app-ui {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   TABLE RESPONSIVE WRAPPER - ELLIPSIS TRUNCATION
+   ============================================================================ */
+
+.hr-candidate-remarks-page .unified-table-wrapper {
+  overflow-x: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table should always fit viewport - use ellipsis truncation */
+.hr-candidate-remarks-page .unified-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* ============================================================================
+   DESKTOP RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+/* Extra wide screens: below 1600px */
+@media (max-width: 1600px) {
+  .hr-candidate-remarks-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* Wide screens: below 1485px */
+@media (max-width: 1485px) {
+  .hr-candidate-remarks-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* Medium desktops: below 1300px */
+@media (max-width: 1300px) {
+  .hr-candidate-remarks-page.app-ui {
+    max-width: 100%;
+  }
+  
+  .hr-candidate-remarks-page .unified-table {
+    font-size: 0.65rem;
+  }
+  
+  .hr-candidate-remarks-page .unified-table th,
+  .hr-candidate-remarks-page .unified-table td {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+/* Large tablets: below 1200px */
+@media (max-width: 1200px) {
+  .hr-candidate-remarks-page .page-header {
+    padding: 14px 20px;
+  }
+  
+  .hr-candidate-remarks-page .unified-table {
+    font-size: 0.625rem;
+  }
+  
+  .hr-candidate-remarks-page .remark-textarea {
+    font-size: 0.75rem;
+    min-height: 60px;
+  }
+}
+
+/* Medium tablets: below 1000px */
+@media (max-width: 1000px) {
+  .hr-candidate-remarks-page .filter-card {
+    padding: 16px;
+  }
+  
+  .hr-candidate-remarks-page .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small tablets: below 900px */
+@media (max-width: 900px) {
+  .hr-candidate-remarks-page .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hr-candidate-remarks-page .table-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+}
+
+/* ============================================================================
+   MOBILE & TABLET: below 768px (CRITICAL RESPONSIVE SECTION)
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hr-candidate-remarks-page.app-ui {
+    padding: 0.25rem;
+  }
+  
+  .hr-candidate-remarks-page .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hr-candidate-remarks-page .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .hr-candidate-remarks-page .filter-card {
+    margin: 12px;
+    padding: 12px;
+  }
+  
+  .hr-candidate-remarks-page .table-card {
+    margin: 12px;
+  }
+  
+  .hr-candidate-remarks-page .filter-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .hr-candidate-remarks-page .filter-actions {
+    margin-top: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .btn-secondary {
+    width: 100%;
+  }
+  
+  /* Table adjustments - Enable horizontal scroll */
+  .hr-candidate-remarks-page .unified-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .hr-candidate-remarks-page .unified-table {
+    min-width: 900px;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .unified-table thead tr th,
+  .hr-candidate-remarks-page .unified-table tbody tr td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .unified-table thead tr th {
+    font-size: 0.625rem;
+  }
+  
+  /* Compact inline editing */
+  .hr-candidate-remarks-page .remark-textarea {
+    min-height: 60px;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .save-btn,
+  .hr-candidate-remarks-page .cancel-btn {
+    font-size: 0.75rem;
+    padding: 0.3125rem 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .action-btn {
+    font-size: 0.6875rem;
+    padding: 0.3125rem 0.75rem;
+  }
+  
+  /* Pagination adjustments */
+  .hr-candidate-remarks-page .pagination-wrapper-centered {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .hr-candidate-remarks-page .pagination-info {
+    text-align: center;
+  }
+  
+  .hr-candidate-remarks-page .pagination-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hr-candidate-remarks-page .pagination-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: 36px;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 600px (SMALLEST SCREENS)
+   ============================================================================ */
+
+@media (max-width: 600px) {
+  .hr-candidate-remarks-page.app-ui {
+    padding: 0.25rem;
+  }
+  
+  .hr-candidate-remarks-page .page-header {
+    margin: 8px;
+    padding: 12px;
+  }
+  
+  .hr-candidate-remarks-page .filter-card {
+    margin: 8px;
+    padding: 10px;
+  }
+  
+  .hr-candidate-remarks-page .table-card {
+    margin: 8px;
+  }
+  
+  .hr-candidate-remarks-page .unified-table {
+    min-width: 800px;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .unified-table thead tr th,
+  .hr-candidate-remarks-page .unified-table tbody tr td {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .unified-table thead tr th {
+    font-size: 0.6875rem;
+  }
+  
+  .hr-candidate-remarks-page .opening-tag {
+    font-size: 0.625rem;
+    padding: 0.1875rem 0.5rem;
+    max-width: 120px;
+  }
+  
+  .hr-candidate-remarks-page .table-header {
+    padding: 0.75rem;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 400px (EXTRA SMALL)
+   ============================================================================ */
+
+@media (max-width: 400px) {
+  .hr-candidate-remarks-page .page-header {
+    margin: 6px;
+    padding: 10px;
+  }
+  
+  .hr-candidate-remarks-page .filter-card,
+  .hr-candidate-remarks-page .table-card {
+    margin: 6px;
+  }
+  
+  .hr-candidate-remarks-page .pagination-btn {
+    min-width: 32px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-candidate-remarks-page .action-btn {
+    font-size: 0.625rem;
+    padding: 0.25rem 0.625rem;
+  }
+}
+
+/* ============================================================================
+   SIDEBAR COLLAPSE/EXPAND RESPONSIVE BEHAVIOR
+   ============================================================================ */
+
+/* When sidebar is expanded (default desktop) */
+.hr-candidate-remarks-page.app-ui {
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Content should resize when sidebar state changes */
+@media (min-width: 769px) {
+  /* Sidebar expanded */
+  body:not(.sidebar-collapsed) .hr-candidate-remarks-page.app-ui {
+    max-width: 100%;
+  }
+  
+  /* Sidebar collapsed */
+  body.sidebar-collapsed .hr-candidate-remarks-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* ============================================================================
+   FILTER GRID RESPONSIVE
+   ============================================================================ */
+
+.hr-candidate-remarks-page .filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .hr-candidate-remarks-page .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-candidate-remarks-page .filter-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ============================================================================
+   INLINE EDITING RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 1200px) {
+  .hr-candidate-remarks-page .remark-edit {
+    padding: 0.375rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-candidate-remarks-page .remark-actions {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  
+  .hr-candidate-remarks-page .save-btn,
+  .hr-candidate-remarks-page .cancel-btn {
+    width: 100%;
+  }
+  
+  .hr-candidate-remarks-page .status-edit {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .hr-candidate-remarks-page .status-select-inline {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+/* ============================================================================
+   ENSURE SMOOTH TRANSITIONS
+   ============================================================================ */
+
+.hr-candidate-remarks-page.app-ui,
+.hr-candidate-remarks-page .unified-table-section,
+.hr-candidate-remarks-page .table-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

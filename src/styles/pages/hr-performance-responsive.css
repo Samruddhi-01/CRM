@@ -1,0 +1,330 @@
+/**
+ * HR Performance Page - Complete Responsive Styles
+ * Matches Job Openings responsive behavior exactly
+ */
+
+/* ============================================================================
+   BASE CONTAINER - RESPONSIVE WIDTH MANAGEMENT
+   ============================================================================ */
+
+.hr-performance-page {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   TABLE RESPONSIVE WRAPPER - NO SCROLLBAR
+   ============================================================================ */
+
+.hr-performance-page .unified-table-wrapper {
+  overflow-x: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table should always fit viewport - no min-width, use ellipsis truncation */
+.hr-performance-page .unified-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* ============================================================================
+   DESKTOP RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+/* Extra wide screens: below 1600px */
+@media (max-width: 1600px) {
+  .hr-performance-page {
+    max-width: 100%;
+  }
+}
+
+/* Wide screens: below 1485px */
+@media (max-width: 1485px) {
+  .hr-performance-page {
+    max-width: 100%;
+  }
+}
+
+/* Medium desktops: below 1300px */
+@media (max-width: 1300px) {
+  .hr-performance-page {
+    max-width: 100%;
+  }
+  
+  .hr-performance-page .unified-table {
+    font-size: 0.65rem;
+  }
+  
+  .hr-performance-page .unified-table th,
+  .hr-performance-page .unified-table td {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+/* Large tablets: below 1200px */
+@media (max-width: 1200px) {
+  .hr-performance-page .page-header {
+    padding: 14px 20px;
+  }
+  
+  .hr-performance-page .unified-table {
+    font-size: 0.625rem;
+  }
+  
+  .hr-performance-page .candidates-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hr-performance-page .candidates-header-left,
+  .hr-performance-page .candidates-header-right {
+    width: 100%;
+  }
+}
+
+/* Medium tablets: below 1000px */
+@media (max-width: 1000px) {
+  .hr-performance-page .search-box {
+    width: 100%;
+  }
+  
+  .hr-performance-page .candidates-header-right {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Small tablets: below 900px */
+@media (max-width: 900px) {
+  .hr-performance-page .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hr-performance-page .table-header-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hr-performance-page .results-info,
+  .hr-performance-page .show-entries-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hr-performance-page .hr-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   MOBILE & TABLET: below 768px (CRITICAL RESPONSIVE SECTION)
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hr-performance-page {
+    padding: 0.25rem;
+  }
+  
+  .hr-performance-page .page-header {
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hr-performance-page .candidates-header {
+    padding: 12px;
+  }
+  
+  /* Table adjustments */
+  .hr-performance-page .unified-table {
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .unified-table thead tr th,
+  .hr-performance-page .unified-table tbody tr td {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .unified-table thead tr th {
+    font-size: 0.625rem;
+  }
+  
+  /* Hide desktop table, show mobile cards */
+  .hr-performance-page .unified-table-section {
+    display: none;
+  }
+  
+  .hr-performance-page .candidates-cards.mobile-only {
+    display: block;
+  }
+  
+  /* Pagination adjustments */
+  .hr-performance-page .pagination-wrapper-centered {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .hr-performance-page .pagination-info {
+    text-align: center;
+  }
+  
+  .hr-performance-page .pagination-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hr-performance-page .pagination-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: 36px;
+  }
+  
+  /* Table header section */
+  .hr-performance-page .table-header-section {
+    padding: 12px;
+  }
+  
+  .hr-performance-page .table-header-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hr-performance-page .results-info,
+  .hr-performance-page .show-entries-wrapper {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 600px (SMALLEST SCREENS)
+   ============================================================================ */
+
+@media (max-width: 600px) {
+  .hr-performance-page {
+    padding: 0.25rem;
+  }
+  
+  .hr-performance-page .page-header {
+    padding: 12px;
+  }
+  
+  .hr-performance-page .candidates-header {
+    padding: 10px;
+  }
+  
+  .hr-performance-page .unified-table {
+    min-width: 100%;
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .unified-table thead tr th,
+  .hr-performance-page .unified-table tbody tr td {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .unified-table thead tr th {
+    font-size: 0.6875rem;
+  }
+  
+  .hr-performance-page .table-header-section {
+    padding: 10px;
+  }
+  
+  .hr-performance-page .hr-overview-card {
+    padding: 12px;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 400px (EXTRA SMALL)
+   ============================================================================ */
+
+@media (max-width: 400px) {
+  .hr-performance-page .page-header {
+    padding: 10px;
+  }
+  
+  .hr-performance-page .pagination-btn {
+    min-width: 32px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .hr-overview-card {
+    padding: 10px;
+  }
+}
+
+/* ============================================================================
+   SIDEBAR COLLAPSE/EXPAND RESPONSIVE BEHAVIOR
+   ============================================================================ */
+
+/* When sidebar is expanded (default desktop) */
+.hr-performance-page {
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Content should resize when sidebar state changes */
+@media (min-width: 769px) {
+  /* Sidebar expanded */
+  body:not(.sidebar-collapsed) .hr-performance-page {
+    max-width: 100%;
+  }
+  
+  /* Sidebar collapsed */
+  body.sidebar-collapsed .hr-performance-page {
+    max-width: 100%;
+  }
+  
+  /* Desktop: Show table, hide cards */
+  .hr-performance-page .unified-table-section {
+    display: block;
+  }
+  
+  .hr-performance-page .candidates-cards.mobile-only {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   INLINE EDITING RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 1200px) {
+  .hr-performance-page .inline-remark-textarea {
+    min-width: 150px;
+  }
+  
+  .hr-performance-page .inline-status-select {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-performance-page .inline-remark-textarea {
+    min-width: 120px;
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .inline-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================================
+   ENSURE SMOOTH TRANSITIONS
+   ============================================================================ */
+
+.hr-performance-page,
+.hr-performance-page .unified-table-section,
+.hr-performance-page .hr-overview-section {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

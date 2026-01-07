@@ -1,0 +1,282 @@
+================================================================================
+MYSQL DATABASE SETUP FOR PRIVATE APP BACKEND
+================================================================================
+
+CURRENT CONFIGURATION:
+- Database Type: MySQL
+- Host: localhost
+- Port: 3306
+- Database Name: privateappdb (auto-created)
+- Username: root
+- Password: root
+
+================================================================================
+STEP 1: INSTALL MYSQL (if not already installed)
+================================================================================
+
+Download MySQL Community Server:
+   https://dev.mysql.com/downloads/mysql/
+
+Or use MySQL Installer:
+   https://dev.mysql.com/downloads/installer/
+
+Installation Steps:
+   1. Download MySQL Installer for Windows
+   2. Run the installer
+   3. Choose "Developer Default" or "Server only"
+   4. Set root password to: root
+   5. Keep default port: 3306
+   6. Complete the installation
+
+Alternative - Using XAMPP:
+   1. Download XAMPP: https://www.apachefriends.org/
+   2. Install XAMPP
+   3. Start MySQL from XAMPP Control Panel
+   4. Default credentials: root / (no password or root)
+
+================================================================================
+STEP 2: VERIFY MYSQL IS RUNNING
+================================================================================
+
+Method 1: Using Command Prompt
+   Open cmd and run:
+   mysql -u root -proot -e "SELECT VERSION();"
+
+   Expected output: MySQL version number
+
+Method 2: Using MySQL Workbench
+   1. Open MySQL Workbench
+   2. Connect to localhost
+   3. Should connect successfully
+
+Method 3: Check Windows Services
+   1. Press Windows Key + R
+   2. Type: services.msc
+   3. Look for "MySQL" or "MySQL80" service
+   4. Status should be "Running"
+
+Method 4: Use the check script
+   Double-click: E:\Startica\private-app\private-app\server\check-mysql.bat
+
+================================================================================
+STEP 3: CREATE DATABASE (OPTIONAL - Auto-created by app)
+================================================================================
+
+The application will automatically create the database, but you can do it manually:
+
+Using Command Line:
+   mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS privateappdb;"
+
+Using MySQL Workbench:
+   1. Open MySQL Workbench
+   2. Connect to localhost
+   3. Run SQL: CREATE DATABASE IF NOT EXISTS privateappdb;
+
+================================================================================
+STEP 4: RUN THE APPLICATION
+================================================================================
+
+Simply run:
+   E:\Startica\private-app\private-app\server\start.bat
+
+Or from Command Prompt:
+   cd /d E:\Startica\private-app\private-app\server
+   start.bat
+
+What happens:
+   1. Checks Maven installation
+   2. Checks MySQL connection (warns if not available)
+   3. Builds the application
+   4. Connects to MySQL
+   5. Creates 'privateappdb' database automatically
+   6. Creates 'users' table automatically
+   7. Inserts Admin and HR users
+   8. Starts server on port 8080
+
+================================================================================
+STEP 5: VERIFY DATABASE
+================================================================================
+
+Using MySQL Command Line:
+   mysql -u root -proot
+   USE privateappdb;
+   SHOW TABLES;
+   SELECT * FROM users;
+
+Using MySQL Workbench:
+   1. Connect to localhost
+   2. Select 'privateappdb' schema
+   3. Browse 'users' table
+   4. Should see 2 users (Admin and HR)
+
+Expected Data:
+   +----+------------------------+----------+------------+-------+
+   | id | email                  | password | name       | role  |
+   +----+------------------------+----------+------------+-------+
+   |  1 | admin@startica.com     | $2a$... | Admin User | ADMIN |
+   |  2 | hr@startica.com        | $2a$... | HR User    | HR    |
+   +----+------------------------+----------+------------+-------+
+
+================================================================================
+CONNECTION DETAILS
+================================================================================
+
+Spring Boot Application:
+   spring.datasource.url=jdbc:mysql://localhost:3306/privateappdb
+   spring.datasource.username=root
+   spring.datasource.password=root
+
+MySQL Direct Connection:
+   Host: localhost
+   Port: 3306
+   Database: privateappdb
+   Username: root
+   Password: root
+
+JDBC URL:
+   jdbc:mysql://localhost:3306/privateappdb?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+================================================================================
+CHANGING MYSQL CREDENTIALS
+================================================================================
+
+If your MySQL uses different credentials, edit:
+   E:\Startica\private-app\private-app\server\src\main\resources\application.properties
+
+Change these lines:
+   spring.datasource.username=YOUR_USERNAME
+   spring.datasource.password=YOUR_PASSWORD
+
+Common MySQL default passwords:
+   - root / root
+   - root / (empty password)
+   - root / password
+   - root / mysql
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Error: "Access denied for user 'root'@'localhost'"
+Solution:
+   1. Check MySQL password is 'root'
+   2. Or update application.properties with correct password
+   3. Reset MySQL root password if needed
+
+Error: "Communications link failure"
+Solution:
+   1. Check MySQL service is running
+   2. Check MySQL is on port 3306
+   3. Check firewall settings
+
+Error: "Unknown database 'privateappdb'"
+Solution:
+   - The app creates it automatically
+   - Check URL parameter: createDatabaseIfNotExist=true
+   - Or manually create: CREATE DATABASE privateappdb;
+
+Error: "The server time zone value 'XXX' is unrecognized"
+Solution:
+   - Already fixed in connection URL with serverTimezone=UTC
+   - Or configure MySQL timezone
+
+Error: "Public Key Retrieval is not allowed"
+Solution:
+   - Already fixed in connection URL with allowPublicKeyRetrieval=true
+
+================================================================================
+MYSQL COMMANDS CHEAT SHEET
+================================================================================
+
+Start MySQL Service (Windows):
+   net start MySQL80
+
+Stop MySQL Service (Windows):
+   net stop MySQL80
+
+Connect to MySQL:
+   mysql -u root -proot
+
+Show all databases:
+   SHOW DATABASES;
+
+Use privateappdb:
+   USE privateappdb;
+
+Show tables:
+   SHOW TABLES;
+
+View users:
+   SELECT * FROM users;
+
+Delete database (CAREFUL!):
+   DROP DATABASE privateappdb;
+
+Create database:
+   CREATE DATABASE privateappdb;
+
+================================================================================
+DATA PERSISTENCE
+================================================================================
+
+Unlike H2 in-memory database, MySQL persists data permanently:
+   ✓ Data survives application restart
+   ✓ Data survives computer restart
+   ✓ Database files stored in MySQL data directory
+
+MySQL Data Directory (default):
+   C:\ProgramData\MySQL\MySQL Server 8.0\Data\
+
+To reset data:
+   1. Stop the application
+   2. Run: DROP DATABASE privateappdb;
+   3. Restart the application (will recreate database and users)
+
+================================================================================
+SECURITY RECOMMENDATIONS FOR PRODUCTION
+================================================================================
+
+1. Change default password:
+   - Don't use 'root' / 'root' in production
+   - Use strong passwords
+
+2. Create dedicated database user:
+   CREATE USER 'privateapp'@'localhost' IDENTIFIED BY 'StrongPassword123!';
+   GRANT ALL PRIVILEGES ON privateappdb.* TO 'privateapp'@'localhost';
+   FLUSH PRIVILEGES;
+
+3. Update application.properties:
+   spring.datasource.username=privateapp
+   spring.datasource.password=StrongPassword123!
+
+4. Enable SSL:
+   Change useSSL=false to useSSL=true in production
+
+5. Use environment variables:
+   Don't hardcode passwords in application.properties
+   Use: ${DB_USERNAME} and ${DB_PASSWORD}
+
+================================================================================
+READY TO RUN WITH MYSQL!
+================================================================================
+
+Prerequisites:
+   ✓ MySQL installed and running
+   ✓ Root password is 'root' (or update application.properties)
+   ✓ MySQL listening on port 3306
+
+To start the application:
+   → Double-click: E:\Startica\private-app\private-app\server\start.bat
+
+Or run:
+   → cd /d E:\Startica\private-app\private-app\server && start.bat
+
+The application will:
+   1. Connect to MySQL
+   2. Create 'privateappdb' database
+   3. Create 'users' table
+   4. Insert Admin and HR users
+   5. Start on http://localhost:8080
+
+================================================================================
+

@@ -1,0 +1,465 @@
+/**
+ * HR Management Page - Complete Responsive Styles
+ * Matches Job Openings responsive behavior exactly
+ */
+
+/* ============================================================================
+   BASE CONTAINER - RESPONSIVE WIDTH MANAGEMENT
+   ============================================================================ */
+
+.hr-management-page.app-ui {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   BASE TABLE VISIBILITY - APPLIES AT ALL SCREEN SIZES
+   ============================================================================ */
+
+/* CRITICAL: Ensure unified table is ALWAYS visible */
+.hr-management-page .unified-table-section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: auto;
+  overflow: visible;
+}
+
+.hr-management-page .unified-table-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow-x: auto;
+}
+
+.hr-management-page .unified-table {
+  display: table !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.hr-management-page .unified-table thead {
+  display: table-header-group !important;
+  visibility: visible !important;
+}
+
+.hr-management-page .unified-table tbody {
+  display: table-row-group !important;
+  visibility: visible !important;
+}
+
+.hr-management-page .unified-table tr {
+  display: table-row !important;
+  visibility: visible !important;
+}
+
+.hr-management-page .unified-table th,
+.hr-management-page .unified-table td {
+  display: table-cell !important;
+  visibility: visible !important;
+}
+
+/* ============================================================================
+   DESKTOP RESPONSIVE BREAKPOINTS (Matching Job Openings)
+   ============================================================================ */
+
+/* Extra wide screens: below 1600px */
+@media (max-width: 1600px) {
+  .hr-management-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* Wide screens: below 1485px */
+@media (max-width: 1485px) {
+  .hr-management-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* Medium desktops: below 1300px */
+@media (max-width: 1300px) {
+  .hr-management-page.app-ui {
+    max-width: 100%;
+  }
+  
+  .hr-management-page .unified-table {
+    font-size: 0.65rem;
+  }
+  
+  .hr-management-page .unified-table th,
+  .hr-management-page .unified-table td {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+/* Large tablets: below 1200px */
+@media (max-width: 1200px) {
+  .hr-management-page.app-ui .page-header {
+    padding: 14px 20px;
+  }
+  
+  .hr-management-page .unified-table {
+    font-size: 0.625rem;
+  }
+}
+
+/* Medium tablets: below 1000px */
+@media (max-width: 1000px) {
+  .hr-management-page.app-ui .filter-card {
+    padding: 16px;
+  }
+  
+  .hr-management-page .unified-action-btn {
+    width: 32px !important;
+    min-width: 32px;
+    height: 32px;
+  }
+}
+
+/* Small tablets: below 900px */
+@media (max-width: 900px) {
+  .hr-management-page.app-ui .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hr-management-page.app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hr-management-page .table-header-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hr-management-page .results-info,
+  .hr-management-page .show-entries-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================================================
+   MOBILE & TABLET: below 768px (CRITICAL RESPONSIVE SECTION)
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hr-management-page.app-ui {
+    padding: 0.25rem;
+  }
+  
+  .hr-management-page.app-ui .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hr-management-page.app-ui .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .hr-management-page.app-ui .btn-primary-cta {
+    width: 100%;
+  }
+  
+  .hr-management-page.app-ui .filter-card {
+    margin: 12px;
+    padding: 12px;
+  }
+  
+  .hr-management-page.app-ui .table-card {
+    margin: 12px;
+  }
+  
+  /* Table adjustments - Enable horizontal scroll on mobile */
+  /* CRITICAL: Force unified table to be visible, override old CSS rules */
+  .hr-management-page .unified-table-section {
+    display: block !important;
+    overflow: visible !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table-wrapper {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table {
+    display: table !important;
+    min-width: 900px;
+    font-size: 0.75rem;
+    table-layout: fixed;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead,
+  .hr-management-page .unified-table tbody,
+  .hr-management-page .unified-table tr {
+    display: table-row-group;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead {
+    display: table-header-group;
+  }
+  
+  .hr-management-page .unified-table tr {
+    display: table-row;
+  }
+  
+  .hr-management-page .unified-table th,
+  .hr-management-page .unified-table td {
+    display: table-cell !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead tr th,
+  .hr-management-page .unified-table tbody tr td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-management-page .unified-table thead tr th {
+    font-size: 0.625rem;
+    white-space: nowrap;
+  }
+  
+  .hr-management-page .unified-action-buttons {
+    gap: 0.5rem;
+  }
+  
+  .hr-management-page .unified-action-btn {
+    width: 36px !important;
+    min-width: 36px;
+    height: 36px;
+  }
+  
+  /* Pagination adjustments */
+  .hr-management-page .pagination-wrapper-centered {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .hr-management-page .pagination-info {
+    text-align: center;
+  }
+  
+  .hr-management-page .pagination-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hr-management-page .pagination-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: 36px;
+  }
+  
+  /* Table header section */
+  .hr-management-page .table-header-section {
+    padding: 12px;
+  }
+  
+  .hr-management-page .table-header-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hr-management-page .results-info,
+  .hr-management-page .show-entries-wrapper {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 600px (SMALLEST SCREENS)
+   ============================================================================ */
+
+@media (max-width: 600px) {
+  .hr-management-page.app-ui {
+    padding: 0.25rem;
+  }
+  
+  .hr-management-page.app-ui .page-header {
+    margin: 8px;
+    padding: 12px;
+  }
+  
+  .hr-management-page.app-ui .filter-card {
+    margin: 8px;
+    padding: 10px;
+  }
+  
+  .hr-management-page.app-ui .table-card {
+    margin: 8px;
+  }
+  
+  /* Ensure table scrolls on small screens - FORCE VISIBILITY */
+  .hr-management-page .unified-table-section {
+    display: block !important;
+    overflow: visible !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table-wrapper {
+    display: block !important;
+    overflow-x: auto !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table {
+    display: table !important;
+    min-width: 800px;
+    font-size: 0.75rem;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead,
+  .hr-management-page .unified-table tbody {
+    display: table-row-group !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead {
+    display: table-header-group !important;
+  }
+  
+  .hr-management-page .unified-table tr {
+    display: table-row !important;
+  }
+  
+  .hr-management-page .unified-table th,
+  .hr-management-page .unified-table td {
+    display: table-cell !important;
+    visibility: visible !important;
+  }
+  
+  .hr-management-page .unified-table thead tr th,
+  .hr-management-page .unified-table tbody tr td {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.75rem;
+  }
+  
+  .hr-management-page .unified-table thead tr th {
+    font-size: 0.6875rem;
+    white-space: nowrap;
+  }
+  
+  .hr-management-page .unified-action-btn {
+    width: 32px !important;
+    min-width: 32px;
+    height: 32px;
+  }
+  
+  .hr-management-page .table-header-section {
+    padding: 10px;
+  }
+}
+
+/* ============================================================================
+   MOBILE: below 400px (EXTRA SMALL)
+   ============================================================================ */
+
+@media (max-width: 400px) {
+  .hr-management-page.app-ui .page-header {
+    margin: 6px;
+    padding: 10px;
+  }
+  
+  .hr-management-page.app-ui .filter-card,
+  .hr-management-page.app-ui .table-card {
+    margin: 6px;
+  }
+  
+  .hr-management-page .pagination-btn {
+    min-width: 32px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================================
+   SIDEBAR COLLAPSE/EXPAND RESPONSIVE BEHAVIOR
+   ============================================================================ */
+
+/* When sidebar is expanded (default desktop) */
+.hr-management-page.app-ui {
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Content should resize when sidebar state changes */
+@media (min-width: 769px) {
+  /* Sidebar expanded */
+  body:not(.sidebar-collapsed) .hr-management-page.app-ui {
+    max-width: 100%;
+  }
+  
+  /* Sidebar collapsed */
+  body.sidebar-collapsed .hr-management-page.app-ui {
+    max-width: 100%;
+  }
+}
+
+/* ============================================================================
+   TABLE RESPONSIVE WRAPPER - DESKTOP DEFAULT
+   ============================================================================ */
+
+/* Desktop: Use ellipsis truncation, no scroll */
+@media (min-width: 769px) {
+  .hr-management-page .unified-table-wrapper {
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .hr-management-page .unified-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+
+/* ============================================================================
+   FILTER GRID RESPONSIVE
+   ============================================================================ */
+
+.hr-management-page .filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .hr-management-page .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-management-page .filter-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ============================================================================
+   ENSURE SMOOTH TRANSITIONS
+   ============================================================================ */
+
+.hr-management-page.app-ui,
+.hr-management-page .unified-table-section,
+.hr-management-page .table-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

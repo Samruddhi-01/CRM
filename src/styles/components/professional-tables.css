@@ -1,0 +1,535 @@
+/* ============================================================================
+   PROFESSIONAL TABLE STYLES - UNIFIED DESIGN SYSTEM
+   Applied across all pages for consistent look and feel
+   ============================================================================ */
+
+/* ============================================================================
+   TABLE CONTAINER & LAYOUT
+   ============================================================================ */
+
+.professional-table-container {
+  background: #FFFFFF;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 0;
+}
+
+.professional-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================================================
+   TABLE STRUCTURE
+   ============================================================================ */
+
+.professional-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.688rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ============================================================================
+   TABLE HEADER
+   ============================================================================ */
+
+.professional-table thead {
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  box-shadow: 0 2px 4px rgba(13, 43, 102, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.professional-table th {
+  padding: 0.5rem 0.625rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.688rem;
+  color: #FFFFFF;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  border-bottom: 2px solid #0D2B66;
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+}
+
+.professional-table th.text-center {
+  text-align: center;
+}
+
+.professional-table th.text-right {
+  text-align: right;
+}
+
+/* ============================================================================
+   TABLE BODY
+   ============================================================================ */
+
+.professional-table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
+}
+
+.professional-table tbody tr:nth-child(even) {
+  background-color: #F8FAFC;
+}
+
+.professional-table tbody tr:hover {
+  background-color: #EFF6FF !important;
+  box-shadow: 0 2px 4px rgba(13, 43, 102, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+.professional-table td {
+  padding: 0.375rem 0.625rem;
+  color: #1E293B;
+  font-weight: 500;
+  font-size: 0.688rem;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.professional-table td.text-center {
+  text-align: center;
+}
+
+.professional-table td.text-right {
+  text-align: right;
+}
+
+/* ============================================================================
+   STATUS BADGES - UNIFIED DESIGN
+   ============================================================================ */
+
+.professional-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+/* Status Colors */
+.professional-status-badge.status-pending,
+.professional-status-badge.status-open {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+.professional-status-badge.status-contacted {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #93c5fd;
+}
+
+.professional-status-badge.status-interested {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+.professional-status-badge.status-offered {
+  background: #e0e7ff;
+  color: #4338ca;
+  border-color: #a5b4fc;
+}
+
+.professional-status-badge.status-hired,
+.professional-status-badge.status-active,
+.professional-status-badge.active {
+  background: #d1fae5;
+  color: #047857;
+  border-color: #34d399;
+}
+
+.professional-status-badge.status-not-interested,
+.professional-status-badge.status-rejected,
+.professional-status-badge.status-closed {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.professional-status-badge.status-tell-later,
+.professional-status-badge.status-scheduled {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border-color: #d8b4fe;
+}
+
+.professional-status-badge.status-default,
+.professional-status-badge.inactive {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.professional-status-badge.status-on-hold {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+/* ============================================================================
+   ACTION BUTTONS - UNIFIED DESIGN
+   ============================================================================ */
+
+.professional-action-buttons {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.professional-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.professional-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.professional-action-btn:active {
+  transform: translateY(0);
+}
+
+.professional-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* View/Details Button */
+.professional-action-btn.btn-view {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.professional-action-btn.btn-view:hover {
+  background-color: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* Edit Button */
+.professional-action-btn.btn-edit {
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+.professional-action-btn.btn-edit:hover {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+/* Delete Button */
+.professional-action-btn.btn-delete {
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.professional-action-btn.btn-delete:hover {
+  background-color: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+/* Download/Export Button */
+.professional-action-btn.btn-download {
+  border-color: #a5b4fc;
+  color: #4338ca;
+}
+
+.professional-action-btn.btn-download:hover {
+  background-color: #e0e7ff;
+  border-color: #6366f1;
+  color: #3730a3;
+}
+
+/* History/Log Button */
+.professional-action-btn.btn-history {
+  border-color: #d8b4fe;
+  color: #7c3aed;
+}
+
+.professional-action-btn.btn-history:hover {
+  background-color: #f3e8ff;
+  border-color: #a855f7;
+  color: #6b21a8;
+}
+
+/* Info Button */
+.professional-action-btn.btn-info {
+  border-color: #93c5fd;
+  color: #2563eb;
+}
+
+.professional-action-btn.btn-info:hover {
+  background-color: #dbeafe;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+/* ============================================================================
+   ICON STYLES - CONSISTENT ACROSS ALL TABLES
+   ============================================================================ */
+
+.professional-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+/* Common Icons as inline SVG backgrounds */
+.icon-eye {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+
+.icon-edit {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
+}
+
+.icon-trash {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/%3E%3C/svg%3E");
+}
+
+.icon-download {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234338ca' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E");
+}
+
+.icon-history {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E");
+}
+
+.icon-info {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
+}
+
+/* ============================================================================
+   TEXT FORMATTING
+   ============================================================================ */
+
+.professional-text-bold {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.professional-text-muted {
+  color: #64748b;
+  font-size: 0.625rem;
+}
+
+.professional-text-small {
+  font-size: 0.625rem;
+  color: #475569;
+}
+
+.professional-text-truncate {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================================
+   EMPTY STATE
+   ============================================================================ */
+
+.professional-empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #64748b;
+}
+
+.professional-empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.professional-empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.professional-empty-state p {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .professional-table th,
+  .professional-table td {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .professional-status-badge {
+    padding: 0.188rem 0.5rem;
+    font-size: 0.563rem;
+  }
+
+  .professional-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .professional-action-btn svg,
+  .professional-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .professional-action-buttons {
+    gap: 0.25rem;
+  }
+
+  /* Hide certain columns on mobile */
+  .professional-table th.hide-mobile,
+  .professional-table td.hide-mobile {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   LOADING STATE
+   ============================================================================ */
+
+.professional-table-loading {
+  position: relative;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.professional-table-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #0d2b66;
+  border-radius: 50%;
+  animation: professional-spin 0.8s linear infinite;
+}
+
+@keyframes professional-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   UTILITIES
+   ============================================================================ */
+
+.professional-table .name-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.professional-table .email-cell {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.professional-table .email-cell:hover {
+  text-decoration: underline;
+}
+
+.professional-table .phone-cell {
+  font-family: 'Courier New', monospace;
+  color: #475569;
+}
+
+.professional-table .date-cell {
+  color: #64748b;
+  font-size: 0.688rem;
+}
+
+.professional-table .count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.5rem;
+  background: #eff6ff;
+  color: #1e40af;
+  border-radius: 12px;
+  font-size: 0.688rem;
+  font-weight: 600;
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+@keyframes professional-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.professional-table tbody tr {
+  animation: professional-fadeIn 0.3s ease;
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .professional-action-buttons {
+    display: none !important;
+  }
+
+  .professional-table tbody tr:hover {
+    background-color: inherit !important;
+    box-shadow: none !important;
+  }
+
+  .professional-table {
+    font-size: 0.75rem;
+  }
+}

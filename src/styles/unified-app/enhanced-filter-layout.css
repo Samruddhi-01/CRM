@@ -1,0 +1,415 @@
+/**
+ * Enhanced Filter Layout - Matching Design Requirements
+ * Left sidebar filter with main content area
+ * Professional styling with proper fonts and spacing
+ */
+
+/* ========================================
+   MAIN FILTER LAYOUT CONTAINER
+   ======================================== */
+
+.app-ui .filter-layout-container {
+  display: flex;
+  gap: 20px;
+  min-height: calc(100vh - 120px);
+}
+
+/* Left Sidebar Filter */
+.app-ui .filter-sidebar {
+  width: 320px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px;
+  height: fit-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+/* Main Content Area */
+.app-ui .filter-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ========================================
+   SEARCH BAR SECTION
+   ======================================== */
+
+.app-ui .search-section {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.app-ui .search-bar-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.app-ui .search-keywords-input {
+  flex: 1;
+  height: 48px;
+  padding: 0 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1A202C;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.app-ui .search-keywords-input:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.app-ui .search-keywords-input::placeholder {
+  color: #64748B;
+  font-weight: 400;
+}
+
+.app-ui .search-btn {
+  height: 48px;
+  padding: 0 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #3B82F6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.app-ui .search-btn:hover {
+  background: #2563EB;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Sort Section */
+.app-ui .sort-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-ui .sort-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.app-ui .sort-dropdown {
+  height: 40px;
+  padding: 0 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A202C;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ========================================
+   FILTER SECTIONS IN SIDEBAR
+   ======================================== */
+
+.app-ui .filter-section {
+  margin-bottom: 24px;
+}
+
+.app-ui .filter-section-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A202C;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-ui .filter-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A202C;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.app-ui .filter-search-input:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.app-ui .filter-search-input::placeholder {
+  color: #64748B;
+  font-weight: 400;
+}
+
+/* Filter Options */
+.app-ui .filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-ui .filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.app-ui .filter-option:hover {
+  background-color: #F8FAFC;
+}
+
+.app-ui .filter-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #3B82F6;
+  cursor: pointer;
+}
+
+.app-ui .filter-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A202C;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ========================================
+   FILTERS APPLIED SECTION
+   ======================================== */
+
+.app-ui .filters-applied-section {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.app-ui .filters-applied-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A202C;
+  margin-bottom: 12px;
+}
+
+.app-ui .filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.app-ui .filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1A202C;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.app-ui .filter-tag:hover {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+}
+
+.app-ui .filter-tag-remove {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: #64748B;
+  transition: color 0.2s ease;
+}
+
+.app-ui .filter-tag-remove:hover {
+  color: #1A202C;
+}
+
+/* ========================================
+   INFO MESSAGE SECTION
+   ======================================== */
+
+.app-ui .filter-info-message {
+  background: #F0F9FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-ui .filter-info-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1E40AF;
+  flex: 1;
+}
+
+.app-ui .filter-dismiss-btn {
+  height: 36px;
+  padding: 0 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.app-ui .filter-dismiss-btn:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  color: #1A202C;
+}
+
+/* ========================================
+   CANDIDATE CARDS SECTION
+   ======================================== */
+
+.app-ui .candidates-section {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.app-ui .candidates-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.app-ui .candidates-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A202C;
+}
+
+.app-ui .candidates-count {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.app-ui .candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.app-ui .candidate-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.app-ui .candidate-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .app-ui .filter-layout-container {
+    flex-direction: column;
+  }
+  
+  .app-ui .filter-sidebar {
+    width: 100%;
+    height: auto;
+  }
+  
+  .app-ui .candidates-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .app-ui .filter-layout-container {
+    gap: 16px;
+  }
+  
+  .app-ui .filter-sidebar,
+  .app-ui .search-section,
+  .app-ui .filters-applied-section,
+  .app-ui .candidates-section {
+    padding: 16px;
+  }
+  
+  .app-ui .search-bar-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .app-ui .search-keywords-input,
+  .app-ui .search-btn {
+    width: 100%;
+  }
+  
+  .app-ui .candidates-grid {
+    grid-template-columns: 1fr;
+  }
+}

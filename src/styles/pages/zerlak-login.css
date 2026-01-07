@@ -1,0 +1,819 @@
+/* ============================================================================
+   ZERLAK LOGIN PAGE STYLES - UNIQUE DESIGN
+   Modern Pattern Background with Professional Elements
+   ============================================================================ */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Zerlak Technology Text Logo - Separate Navy Blue & Red */
+.zerlak-logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin: 15px 0;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(30, 58, 138, 0.1);
+}
+
+.zerlak-text {
+  color: #1E3A8A;
+}
+
+.technology-text {
+  color: #DC2626;
+}
+
+/* ============================================================================
+   CUSTOM SCROLLBAR - Blue & Red Theme
+   ============================================================================ */
+   
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(30, 58, 138, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1E3A8A 0%, #7C2D12 100%);
+  border-radius: 10px;
+  border: 2px solid #F8FAFC;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1E40AF 0%, #92400E 100%);
+  border-color: #F1F5F9;
+  box-shadow: 0 0 10px rgba(30, 58, 138, 0.25);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #1E3A8A 0%, #78350F 100%);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E3A8A #F8FAFC;
+}
+
+/* Main Container with Modern Dynamic Background */
+.zerlak-login-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0F172A 0%, #1E293B 25%, #334155 50%, #1E293B 75%, #0F172A 100%);
+  background-size: 300% 300%;
+  animation: dynamicGradient 15s ease infinite;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Floating Shapes */
+.zerlak-login-page::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(45deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  top: -150px;
+  left: -150px;
+  animation: morphShape1 20s ease-in-out infinite;
+  z-index: 1;
+  filter: blur(40px);
+}
+
+.login-page::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.12) 0%, rgba(59, 130, 246, 0.12) 100%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  bottom: -120px;
+  right: -120px;
+  animation: morphShape2 18s ease-in-out infinite;
+  z-index: 1;
+  filter: blur(35px);
+}
+
+/* Additional floating elements */
+.zerlak-login-page:nth-child(3)::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 10%;
+  animation: floatCircle 12s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes dynamicGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes morphShape1 {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% { 
+    transform: translate(100px, 50px) rotate(90deg) scale(1.1);
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  }
+  50% { 
+    transform: translate(50px, 100px) rotate(180deg) scale(0.9);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  75% { 
+    transform: translate(-50px, 50px) rotate(270deg) scale(1.05);
+    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+  }
+}
+
+@keyframes morphShape2 {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% { 
+    transform: translate(-80px, 80px) rotate(120deg) scale(1.2);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  66% { 
+    transform: translate(80px, -80px) rotate(240deg) scale(0.8);
+    border-radius: 80% 20% 20% 80% / 80% 80% 20% 20%;
+  }
+}
+
+@keyframes floatCircle {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-80px) scale(1.3);
+    opacity: 0.4;
+  }
+}
+
+/* Login Card - Enhanced Glassmorphism for Dark Background */
+.zerlak-login-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 28px;
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.3),
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem;
+  transition: all 0.4s ease;
+  animation: zerlakCardEntry 0.8s ease-out;
+}
+
+.login-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 35px 100px rgba(0, 0, 0, 0.4),
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes zerlakCardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Premium Border Elements */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1E3A8A 0%, #4C1D95 50%, #7C2D12 100%);
+  z-index: 1;
+}
+
+.login-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7C2D12 0%, #4C1D95 50%, #1E3A8A 100%);
+  z-index: 1;
+}
+
+/* Branding Section */
+.zerlak-login-branding {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  z-index: 2;
+}
+
+.zerlak-login-logo {
+  max-width: 80px;
+  height: auto;
+  margin: 0 auto 0.75rem;
+  display: block;
+  animation: zerlakLogoFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 16px rgba(30, 58, 138, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.zerlak-login-logo:hover {
+  transform: scale(1.08) rotate(8deg);
+}
+
+@keyframes zerlakLogoFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.zerlak-login-welcome {
+  font-size: 1.625rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 50%, #7C2D12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  letter-spacing: -0.02em;
+  animation: zerlakTitleIn 1s ease-out 0.3s both;
+}
+
+@keyframes zerlakTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.zerlak-login-subtitle {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #64748B;
+  text-align: center;
+  margin-bottom: 0;
+  max-width: 380px;
+  animation: zerlakSubtitleIn 1s ease-out 0.5s both;
+  font-weight: 400;
+}
+
+@keyframes zerlakSubtitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Section */
+.zerlak-login-form {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.zerlak-login-field {
+  margin-bottom: 1.25rem;
+  animation: zerlakFieldIn 0.8s ease-out both;
+}
+
+.zerlak-login-field:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.zerlak-login-field:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+@keyframes zerlakFieldIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.zerlak-login-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1E3A8A 0%, #7C2D12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.625rem;
+  text-align: left;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.zerlak-login-input-wrapper {
+  position: relative;
+}
+
+.zerlak-login-input {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  border: 2px solid #E2E8F0;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  color: #1E293B;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  position: relative;
+}
+
+.zerlak-login-input::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.zerlak-login-input:hover {
+  border-color: #1E3A8A;
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.12);
+}
+
+.zerlak-login-input:focus {
+  outline: none;
+  border-color: #1E3A8A;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 
+    0 0 0 4px rgba(30, 58, 138, 0.1),
+    0 10px 25px rgba(30, 58, 138, 0.15);
+  transform: translateY(-2px);
+}
+
+.zerlak-login-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(241, 245, 249, 0.8);
+  transform: none;
+}
+
+.zerlak-password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(124, 45, 18, 0.08) 100%);
+  border: 1px solid rgba(30, 58, 138, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #1E3A8A;
+  transition: all 0.3s ease;
+  padding: 0.625rem 0.875rem;
+  line-height: 1;
+}
+
+.zerlak-password-toggle:hover {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.15) 0%, rgba(124, 45, 18, 0.15) 100%);
+  border-color: #1E3A8A;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.zerlak-password-toggle:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.zerlak-password-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+.zerlak-field-error {
+  display: block;
+  color: #DC2626;
+  font-size: 0.8125rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
+  border-left: 3px solid #DC2626;
+  animation: zerlakErrorShake 0.6s ease;
+}
+
+@keyframes zerlakErrorShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* Actions Row */
+.zerlak-login-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.25rem;
+  animation: zerlakActionsIn 1s ease-out 0.8s both;
+}
+
+@keyframes zerlakActionsIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zerlak-forgot-link {
+  color: #1E3A8A;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.zerlak-forgot-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #1E3A8A 0%, #7C2D12 100%);
+  transition: width 0.3s ease;
+}
+
+.zerlak-forgot-link:hover {
+  color: #7C2D12;
+}
+
+.zerlak-forgot-link:hover::after {
+  width: 100%;
+}
+
+/* Login Button - Premium Design */
+.zerlak-login-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #1E3A8A 0%, #4C1D95 50%, #7C2D12 100%);
+  background-size: 200% 200%;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 
+    0 8px 24px rgba(30, 58, 138, 0.3),
+    0 4px 12px rgba(124, 45, 18, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: zerlakButtonIn 1s ease-out 0.9s both;
+}
+
+.zerlak-login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.zerlak-login-btn:hover::before {
+  left: 100%;
+}
+
+.zerlak-login-btn:hover:not(:disabled) {
+  background-position: 100% 0;
+  box-shadow: 
+    0 12px 36px rgba(30, 58, 138, 0.4),
+    0 6px 18px rgba(124, 45, 18, 0.3);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.zerlak-login-btn:active:not(:disabled) {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 
+    0 6px 20px rgba(30, 58, 138, 0.25),
+    0 3px 10px rgba(124, 45, 18, 0.15);
+}
+
+.zerlak-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  background-position: 0 0;
+}
+
+@keyframes zerlakButtonIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.zerlak-login-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-radius: 50%;
+  animation: zerlakSpin 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes zerlakSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN - Premium Adaptations
+   ============================================================================ */
+
+/* 1200px and below */
+@media (max-width: 1200px) {
+  .login-card {
+    max-width: 460px;
+    padding: 2.25rem;
+  }
+  
+  .login-welcome {
+    font-size: 1.75rem;
+  }
+}
+
+/* 900px and below */
+@media (max-width: 900px) {
+  .login-page {
+    padding: 1.5rem;
+  }
+  
+  .login-card {
+    max-width: 440px;
+    padding: 2rem;
+  }
+  
+  .login-logo {
+    max-width: 90px;
+  }
+  
+  .login-welcome {
+    font-size: 1.625rem;
+  }
+  
+  .login-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+/* 768px and below */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 1.25rem;
+  }
+  
+  /* Reduce floating element for tablets */
+  .login-page::after {
+    width: 250px;
+    height: 250px;
+    top: 15%;
+    right: 5%;
+  }
+  
+  .login-card {
+    max-width: 420px;
+    padding: 1.875rem;
+    backdrop-filter: blur(20px);
+  }
+  
+  .login-branding {
+    margin-bottom: 1.75rem;
+  }
+  
+  .login-logo {
+    max-width: 85px;
+  }
+  
+  .login-welcome {
+    font-size: 1.5rem;
+  }
+  
+  .login-subtitle {
+    font-size: 0.8125rem;
+  }
+  
+  .login-input {
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* 600px and below */
+@media (max-width: 600px) {
+  .login-page {
+    padding: 1rem;
+  }
+  
+  /* Further reduce floating element for mobile */
+  .login-page::after {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 0;
+    opacity: 0.8;
+  }
+  
+  /* Reduce pattern intensity */
+  .login-page::before {
+    opacity: 0.5;
+  }
+  
+  .login-card {
+    max-width: 100%;
+    padding: 1.75rem 1.5rem;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+  }
+  
+  .login-branding {
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-logo {
+    max-width: 80px;
+    margin-bottom: 0.625rem;
+  }
+  
+  .login-welcome {
+    font-size: 1.375rem;
+  }
+  
+  .login-subtitle {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  
+  .login-field {
+    margin-bottom: 1.125rem;
+  }
+  
+  .login-input {
+    padding: 0.875rem;
+    font-size: 0.875rem;
+  }
+  
+  .login-btn {
+    padding: 0.875rem;
+    min-height: 48px;
+  }
+  
+  .login-actions {
+    margin-bottom: 1.125rem;
+  }
+}
+
+/* 480px and below */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 0.75rem;
+  }
+  
+  /* Minimal floating element for small phones */
+  .login-page::after {
+    width: 150px;
+    height: 150px;
+    top: 5%;
+    right: -10%;
+    opacity: 0.6;
+  }
+  
+  /* Simplify pattern on small screens */
+  .login-page::before {
+    opacity: 0.3;
+    background-size: 40px 40px;
+  }
+  
+  .login-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+  
+  .login-logo {
+    max-width: 70px;
+  }
+  
+  .login-welcome {
+    font-size: 1.25rem;
+  }
+  
+  .login-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .login-input {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .login-btn {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    min-height: 44px;
+  }
+  
+  /* Reduce hover effects on small screens */
+  .login-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .login-btn:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.01);
+  }
+}

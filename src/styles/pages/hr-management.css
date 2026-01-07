@@ -1,0 +1,1913 @@
+/* ============================================================================
+   HR MANAGEMENT PAGE STYLES - CLEAN PROFESSIONAL DESIGN
+   Matching Candidates and Job Openings pages structure
+   ============================================================================ */
+
+@import '../components/pagination.css';
+
+/* Page Wrapper - Clean Layout */
+.hr-management-page {
+  max-width: 100%;
+  margin: 0;
+  width: 100%;
+  padding: 0.25rem;
+  min-height: 100vh;
+  background: #F8FAFC;
+}
+
+/* Container - Card Layout */
+.hr-management-container {
+  max-width: 100%;
+
+  margin-left: 0px;
+  padding: 0;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+
+/* Header - Inside Card */
+.hr-management-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: none;
+  gap: 1rem;
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hr-management-header-content h1 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.hr-management-header-content p {
+  font-size: 0.75rem;
+  color: #E0E7FF;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Table Card - Simple Professional */
+.hr-table-card {
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.hr-table-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #E2E8F0;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hr-table-header-left {
+  flex: 1;
+  min-width: 150px;
+}
+
+.hr-table-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-wrap: nowrap;
+}
+
+.hr-table-title {
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #0D2B66;
+  margin: 0;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  min-width: 220px;
+  width: auto;
+  max-width: 300px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-box:focus-within {
+  border-color: #0D2B66;
+  box-shadow: 0 0 0 3px rgba(13, 43, 102, 0.15);
+}
+
+.search-box svg {
+  color: #0D2B66;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #1E293B;
+  font-size: 0.813rem;
+  width: 100%;
+  padding: 0;
+  font-weight: 500;
+}
+
+.search-input::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-controls label {
+  font-size: 0.813rem;
+  color: #0D2B66;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.items-per-page-select {
+  border: 2px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.813rem;
+  color: #1E293B;
+  background: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  min-width: 70px;
+}
+
+.items-per-page-select:hover {
+  border-color: #0D2B66;
+  background: #F8FAFC;
+}
+
+.items-per-page-select:focus {
+  border-color: #0D2B66;
+  box-shadow: 0 0 0 4px rgba(13, 43, 102, 0.15);
+}
+
+/* Table - Simple Professional Design */
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  
+  width: 100%;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.table-professional {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 1200px;
+  table-layout: auto;
+}
+
+.table-professional thead {
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  box-shadow: 0 2px 4px rgba(13, 43, 102, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-professional th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid #0D2B66;
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+}
+
+.table-professional tbody tr {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.table-professional tbody tr:nth-child(even) {
+  background-color: #E0F2FE;
+}
+
+.table-professional tbody tr:hover {
+  background-color: #DBEAFE !important;
+  box-shadow: 0 2px 6px rgba(13, 43, 102, 0.12);
+  transform: translateX(2px);
+}
+
+.table-professional td {
+  padding: 1rem 1.25rem;
+  color: #334155;
+  vertical-align: middle;
+  position: relative;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.table-name-cell {
+  font-weight: 600;
+  color: #1E293B;
+}
+
+/* Action Buttons */
+.table-actions {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+/* Badges - Simple Professional Design */
+.badge-base {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.badge-active {
+  background: #D1FAE5;
+  color: var(--brand-blue-dark);
+}
+
+.badge-inactive {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.badge-warning {
+  background: #FFEDD5;
+  color: #D97706;
+}
+
+.badge-info {
+  background: #DBEAFE;
+  color: var(--brand-blue-dark);
+}
+
+.badge-success {
+  background: #D1FAE5;
+  color: var(--brand-blue-dark);
+}
+
+.badge-danger {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+/* Buttons - Simple Professional Design */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  gap: 0.5rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--brand-blue);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--brand-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #DC2626;
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: var(--brand-blue);
+  color: #FFFFFF;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: var(--brand-blue-dark);
+  transform: translateY(-1px);
+}
+
+.btn-info {
+  background: var(--brand-blue);
+  color: #FFFFFF;
+}
+
+.btn-info:hover:not(:disabled) {
+  background: var(--brand-blue-dark);
+  transform: translateY(-1px);
+}
+
+.btn-neutral {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+}
+
+.btn-neutral:hover:not(:disabled) {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.813rem;
+}
+
+.btn-md {
+  padding: 0.75rem 1.625rem;
+  font-size: 0.938rem;
+}
+
+.btn-base:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #CBD5E1 !important;
+  color: #94A3B8 !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Modal - Professional Design */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 99999 !important;
+  animation: fadeIn 0.2s ease;
+  backdrop-filter: blur(4px);
+  pointer-events: auto !important;
+  overflow: auto;
+}
+
+.modal {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 2px solid #E2E8F0;
+  animation: slideUp 0.3s ease;
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+  margin: auto;
+}
+
+.modal-large {
+  max-width: 1000px;
+}
+
+/* HR Management Page Specific Modal Overrides */
+.hr-management-modal {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.hr-management-modal .modal {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure modal shows above everything */
+body .modal-overlay.hr-management-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 999999 !important;
+}
+
+.modal-header {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+}
+
+.modal-header h2 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.modal-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #64748B;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 0.5rem 0.75rem;
+}
+
+.modal-footer {
+  padding: 0.5rem 0.75rem;
+  border-top: 2px solid #E2E8F0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+}
+
+/* Form - Professional Design */
+.form-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-label {
+  font-size: 0.688rem;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.01em;
+}
+
+.form-input {
+  padding: 0.375rem 0.5rem;
+  border: 2px solid #E2E8F0;
+  border-radius: 6px;
+  font-size: 0.688rem;
+  background-color: #FFFFFF;
+  color: #1E293B;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-input::placeholder {
+  color: #94A3B8;
+}
+
+.form-input:hover {
+  border-color: #CBD5E1;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(13, 43, 102, 0.12);
+}
+
+.form-input:disabled {
+  background-color: #F1F5F9;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-input.error {
+  border-color: #EF4444;
+}
+
+.form-error {
+  font-size: 0.625rem;
+  color: #DC2626;
+  margin-top: 0.125rem;
+  font-weight: 500;
+}
+
+/* Mobile Card View */
+.hr-cards {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    display: none;
+  }
+  
+  .hr-cards {
+    display: flex;
+  }
+}
+
+.hr-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.hr-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-color: #CBD5E1;
+}
+
+.hr-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #F1F5F9;
+}
+
+.hr-card-name {
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+}
+
+.hr-card-username {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin-bottom: 0.25rem;
+}
+
+.hr-card-email {
+  font-size: 0.813rem;
+  color: #94A3B8;
+}
+
+.hr-card-body {
+  margin-bottom: 1rem;
+}
+
+.hr-card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.hr-card-row:last-child {
+  border-bottom: none;
+}
+
+.hr-card-label {
+  font-size: 0.813rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.hr-card-value {
+  font-size: 0.813rem;
+  color: #1E293B;
+  text-align: right;
+  font-weight: 500;
+}
+
+.hr-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #F1F5F9;
+}
+
+/* Pagination */
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid #E2E8F0;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: #F8FAFC;
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: #64748B;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.pagination-btn {
+  padding: 0.5rem 0.875rem;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  text-align: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  background: #EFF6FF;
+}
+
+.pagination-btn.active {
+  background: var(--brand-blue);
+  color: #FFFFFF;
+  border-color: var(--brand-blue);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  padding: 0.5rem;
+  color: #94A3B8;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+  min-height: 400px;
+}
+
+.empty-state p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: #64748B;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2rem);
+  gap: 1rem;
+  min-height: 400px;
+}
+
+.loading-text {
+  font-size: 0.938rem;
+  color: #64748B;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN - STEP BY STEP BREAKPOINTS
+   ============================================================================ */
+
+/* 1400px - Large desktop adjustments */
+@media (max-width: 1400px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+}
+
+/* 1300px - Reduce spacing slightly */
+@media (max-width: 1300px) {
+  .hr-management-page {
+    width: 80%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+  }
+
+  .hr-table-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .table-professional {
+    font-size: 0.625rem;
+  }
+
+  .table-professional th {
+    font-size: 0.625rem;
+  }
+}
+
+/* 1200px - Start compacting */
+@media (max-width: 1200px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+  }
+
+  .hr-table-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .table-professional {
+    font-size: 0.625rem;
+  }
+
+  .btn-md {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.688rem;
+  }
+}
+
+/* 1100px - Further compacting */
+@media (max-width: 1100px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+  }
+
+  .hr-table-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .search-box {
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 0.688rem;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .table-professional {
+    font-size: 0.625rem;
+    min-width: 850px;
+  }
+
+  .table-professional th {
+    font-size: 0.625rem;
+  }
+}
+
+/* 1000px - Tablet preparation */
+@media (max-width: 1000px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+  }
+
+  .hr-table-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .search-box {
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 0.688rem;
+  }
+
+  .table-professional {
+    min-width: 800px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.8rem 1.05rem;
+  }
+
+  .btn-sm {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  .pagination-btn {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.82rem;
+  }
+}
+
+/* 900px - Start responsive layout changes */
+@media (max-width: 900px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hr-management-header {
+    padding: 0.5rem 0.75rem 0.375rem;
+    gap: 0.375rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 0.875rem;
+  }
+
+  .hr-table-header {
+    padding: 0.5rem 0.75rem;
+    gap: 0.375rem;
+  }
+
+  .search-box {
+    min-width: 170px;
+    max-width: 220px;
+  }
+
+  .table-professional {
+    min-width: 750px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.75rem 1rem;
+  }
+
+  .table-professional {
+    font-size: 0.775rem;
+  }
+
+  .table-professional th {
+    font-size: 0.68rem;
+  }
+}
+
+/* 800px - Tablet landscape */
+@media (max-width: 800px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 1rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+
+  .hr-management-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.2rem 1.2rem 1rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hr-table-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.2rem;
+  }
+
+  .hr-table-header-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .search-box {
+    max-width: 100%;
+    width: 100%;
+    min-width: auto;
+  }
+
+  .pagination-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .table-professional {
+    min-width: 700px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.7rem 0.95rem;
+  }
+
+  .table-professional {
+    font-size: 0.75rem;
+  }
+
+  .table-professional th {
+    font-size: 0.66rem;
+  }
+
+  .pagination-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.2rem;
+    gap: 0.875rem;
+  }
+
+  .pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .pagination-info {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
+
+/* 700px - Mobile landscape preparation */
+@media (max-width: 700px) {
+  .hr-management-page {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0.875rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hr-management-header {
+    padding: 1.1rem 1.1rem 0.95rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.25rem;
+  }
+
+  .hr-management-header-content p {
+    font-size: 0.825rem;
+  }
+
+  .hr-table-header {
+    padding: 0.95rem 1.1rem;
+  }
+
+  .table-professional {
+    min-width: 650px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.65rem 0.9rem;
+  }
+
+  .table-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .btn-sm {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    justify-content: center;
+  }
+
+  .btn-md {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 600px - Tablet portrait */
+@media (max-width: 600px) {
+  .hr-management-page {
+    margin-left: 0px;
+    padding: 0.75rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .hr-management-header {
+    padding: 1rem 1rem 0.875rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .hr-table-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .hr-table-title {
+    font-size: 0.95rem;
+  }
+
+  .table-professional {
+    min-width: 600px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .table-professional {
+    font-size: 0.725rem;
+  }
+
+  .table-professional th {
+    font-size: 0.64rem;
+  }
+
+  .pagination-wrapper {
+    padding: 0.95rem 1rem;
+  }
+
+  .pagination-btn {
+    padding: 0.4rem 0.7rem;
+    min-width: 36px;
+    font-size: 0.78rem;
+  }
+
+  .badge-base {
+    padding: 0.325rem 0.65rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* 500px - Mobile landscape */
+@media (max-width: 500px) {
+  .hr-management-page {
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  .hr-management-header {
+    padding: 0.95rem 0.875rem 0.825rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.15rem;
+  }
+
+  .hr-management-header-content p {
+    font-size: 0.8rem;
+  }
+
+  .hr-table-header {
+    padding: 0.85rem 0.875rem;
+  }
+
+  .table-wrapper {
+    padding: 0 0.875rem 0.875rem;
+  }
+
+  .table-professional {
+    min-width: 550px;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.6rem 0.825rem;
+  }
+
+  .pagination-wrapper {
+    padding: 0.875rem 0.875rem;
+    gap: 0.75rem;
+  }
+
+  .pagination-btn {
+    padding: 0.375rem 0.625rem;
+    min-width: 34px;
+    font-size: 0.75rem;
+  }
+
+  .pagination-info {
+    font-size: 0.75rem;
+  }
+
+  .btn-md {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 480px - Mobile portrait */
+@media (max-width: 480px) {
+  .hr-management-page {
+    margin-left: 0px;
+    padding: 0.5rem;
+  }
+
+  .hr-management-container {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+
+  .hr-management-header {
+    padding: 0.875rem 0.75rem 0.75rem;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.1rem;
+  }
+
+  .hr-management-header-content p {
+    font-size: 0.775rem;
+  }
+
+  .hr-table-header {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .hr-table-title {
+    font-size: 0.9rem;
+  }
+
+  .search-box {
+    padding: 0.45rem 0.7rem;
+  }
+
+  .search-box svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .search-input {
+    font-size: 0.8rem;
+  }
+
+  .pagination-controls label {
+    font-size: 0.75rem;
+  }
+
+  .items-per-page-select {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .table-wrapper {
+    padding: 0 0.75rem 0.875rem;
+  }
+
+  .table-professional {
+    min-width: 520px;
+    font-size: 0.7rem;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .table-professional th {
+    font-size: 0.625rem;
+  }
+
+  .badge-base {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.675rem;
+  }
+
+  .pagination-wrapper {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .pagination {
+    gap: 0.375rem;
+  }
+
+  .pagination-btn {
+    padding: 0.35rem 0.55rem;
+    min-width: 32px;
+    font-size: 0.7rem;
+  }
+
+  .pagination-info {
+    font-size: 0.7rem;
+  }
+
+  .pagination-ellipsis {
+    padding: 0.35rem;
+    font-size: 0.7rem;
+  }
+
+  .btn-md {
+    width: 100%;
+    padding: 0.575rem 1.1rem;
+    font-size: 0.85rem;
+  }
+
+  .loading-container,
+  .empty-state {
+    min-height: 300px;
+    padding: 2rem 0.75rem;
+  }
+
+  .empty-state p {
+    font-size: 0.875rem;
+  }
+
+  .modal {
+    width: 95%;
+    max-height: 95vh;
+    border-radius: 8px;
+  }
+
+  .modal-header {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .modal-header h2 {
+    font-size: 0.813rem;
+  }
+
+  .modal-body {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    padding: 0.5rem 0.625rem;
+    gap: 0.375rem;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .form-input {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.875rem;
+  }
+
+  .hr-card-actions {
+    flex-direction: column;
+  }
+
+  .hr-card-actions .btn-sm {
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 0.25rem;
+  }
+
+  .pagination-btn {
+    padding: 0.375rem 0.5rem;
+    min-width: 32px;
+  }
+
+  .pagination-ellipsis {
+    padding: 0.25rem;
+  }
+
+  .loading-container,
+  .empty-state {
+    min-height: 300px;
+    padding: 2rem 1rem;
+  }
+}
+
+/* 400px - Extra small mobile */
+@media (max-width: 400px) {
+  .hr-management-page {
+    margin-left: 0;
+    padding: 0.375rem;
+  }
+
+  .hr-management-container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hr-management-header {
+    padding: 0.85rem 0.65rem 0.725rem;
+  }
+
+  .hr-management-header-content h1 {
+    font-size: 1.075rem;
+  }
+
+  .hr-management-header-content p {
+    font-size: 0.75rem;
+  }
+
+  .hr-table-header {
+    padding: 0.775rem 0.65rem;
+  }
+
+  .hr-table-title {
+    font-size: 0.875rem;
+  }
+
+  .search-box {
+    padding: 0.425rem 0.675rem;
+  }
+
+  .search-input {
+    font-size: 0.775rem;
+  }
+
+  .pagination-controls label {
+    font-size: 0.725rem;
+  }
+
+  .items-per-page-select {
+    font-size: 0.725rem;
+    padding: 0.325rem 0.475rem;
+  }
+
+  .table-wrapper {
+    padding: 0 0.65rem 0.825rem;
+  }
+
+  .table-professional {
+    min-width: 500px;
+    font-size: 0.675rem;
+  }
+
+  .table-professional th,
+  .table-professional td {
+    padding: 0.525rem 0.725rem;
+  }
+
+  .table-professional th {
+    font-size: 0.6rem;
+  }
+
+  .badge-base {
+    padding: 0.275rem 0.575rem;
+    font-size: 0.65rem;
+  }
+
+  .btn-sm {
+    padding: 0.425rem 0.775rem;
+    font-size: 0.75rem;
+  }
+
+  .pagination-wrapper {
+    padding: 0.775rem 0.65rem;
+  }
+
+  .pagination-info {
+    font-size: 0.675rem;
+  }
+
+  .pagination-btn {
+    padding: 0.325rem 0.5rem;
+    min-width: 30px;
+    font-size: 0.675rem;
+  }
+
+  .pagination-ellipsis {
+    padding: 0.225rem;
+    font-size: 0.675rem;
+  }
+
+  .modal {
+    width: 96%;
+    border-radius: 7px;
+  }
+
+  .modal-header {
+    padding: 0.975rem 1.2rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal-body {
+    padding: 1.2rem;
+  }
+
+  .modal-footer {
+    padding: 0.975rem 1.2rem;
+  }
+
+  .form-label {
+    font-size: 0.775rem;
+  }
+
+  .form-input {
+    padding: 0.575rem 0.825rem;
+    font-size: 0.85rem;
+  }
+
+  .loading-container,
+  .empty-state {
+    min-height: 275px;
+    padding: 1.75rem 0.875rem;
+  }
+
+  .empty-state p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 375px) {
+  .hr-management-page {
+    margin-left: 0;
+    padding: 0.25rem;
+  }
+
+  .hr-management-container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hr-management-header {
+    padding: 0.875rem 0.625rem 0.75rem;
+  }
+
+  .hr-table-header {
+    padding: 0.75rem 0.625rem;
+  }
+
+  .pagination-wrapper {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .pagination-btn {
+    min-width: 28px;
+    padding: 0.25rem 0.375rem;
+  }
+
+  .loading-container,
+  .empty-state {
+    min-height: 250px;
+    padding: 1.5rem 0.75rem;
+  }
+}
+
+/* ============================================================================
+   ENTERPRISE HR TABLE DESIGN - RESPONSIVE
+   ============================================================================ */
+
+/* Responsive Table Wrapper */
+.hr-table-responsive {
+  width: 100%;
+  max-width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar for Wrapper */
+.hr-table-responsive::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.hr-table-responsive::-webkit-scrollbar-track {
+  background: #eef2ff;
+  border-radius: 999px;
+}
+
+.hr-table-responsive::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 999px;
+}
+
+.hr-table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
+}
+
+/* Responsive Visibility Controls */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Desktop: Show table, hide cards */
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
+  }
+}
+
+/* Mobile/Tablet: Hide table, show cards */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* Responsive: 90% width from 1400px down to 400px */
+@media (min-width: 400px) and (max-width: 1400px) {
+  .hr-management-container {
+    max-width: 90%;
+    width: 90%;
+  }
+  .hr-table-responsive {
+    max-width: 100%;
+    width: 100%;
+  }
+  .hr-table {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Enterprise HR Table - Full Width */
+.hr-table {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  table-layout: auto;
+}
+
+/* Table Header */
+.hr-table thead {
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.hr-table thead tr th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #0a1f4d;
+}
+
+.hr-table thead tr th.text-center {
+  text-align: center;
+}
+
+/* Table Body - Zebra Striping */
+.hr-table tbody tr {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hr-table tbody tr:nth-child(even) {
+  background-color: #F0F9FF;
+}
+
+.hr-table tbody tr:hover {
+  background-color: #DBEAFE !important;
+  box-shadow: 0 2px 8px rgba(13, 43, 102, 0.1);
+}
+
+/* Table Cells */
+.hr-table tbody tr td {
+  padding: 8px 12px;
+  color: #1E293B;
+  font-size: 0.75rem;
+  vertical-align: middle;
+}
+
+.hr-table tbody tr td.text-center {
+  text-align: center;
+}
+
+/* HR Name Cell */
+.hr-name-cell strong {
+  font-weight: 600;
+  color: #0D2B66;
+  font-size: 0.75rem;
+}
+
+/* Status Badge - Using Unified Table System */
+/* Old .hr-status-badge styles removed - now using .status-badge from unified-table.css */
+/* This ensures consistent badge styling across all pages */
+
+/* Candidate Count Badge */
+.hr-candidate-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  color: #FFFFFF;
+  border-radius: 999px;
+  font-size: 0.688rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.hr-candidate-count:hover {
+  background: linear-gradient(135deg, #1a3d7a 0%, #051a3d 100%);
+  box-shadow: 0 4px 8px rgba(13, 43, 102, 0.3);
+  transform: translateY(-1px);
+}
+
+.hr-no-candidates {
+  color: #94A3B8;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* HR Table Actions - Icon Buttons */
+.hr-table-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon Buttons - Matching Openings Style */
+.hr-table-actions .icon-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-size: 12px 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hr-table-actions .icon-button:focus {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.hr-table-actions .icon-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Edit Icon */
+.icon-edit {
+  background-color: #DBEAFE;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
+}
+
+.icon-edit:hover {
+  background-color: #93C5FD;
+}
+
+/* Deactivate Icon - Pause */
+.icon-deactivate {
+  background-color: #FEF3C7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2392400e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6' y='4' width='4' height='16'/%3E%3Crect x='14' y='4' width='4' height='16'/%3E%3C/svg%3E");
+}
+
+.icon-deactivate:hover {
+  background-color: #FDE68A;
+}
+
+/* Activate Icon - Play */
+.icon-activate {
+  background-color: #D1FAE5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23065f46' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E");
+}
+
+.icon-activate:hover {
+  background-color: #86EFAC;
+}
+
+/* Responsive Column Hiding */
+@media (max-width: 1024px) {
+  .col-lastlogin,
+  .col-created {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-username,
+  .col-phone {
+    display: none;
+  }
+}

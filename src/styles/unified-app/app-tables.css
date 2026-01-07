@@ -1,0 +1,704 @@
+/**
+ * Unified Data Tables
+ * Responsive table styles with zebra stripes, sticky headers, and mobile card stacking
+ * 
+ * Dependencies: design-tokens.css
+ */
+
+/* ========================================
+   TABLE CONTAINER CARD
+   ======================================== */
+
+.app-ui .table-card {
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-md);
+  box-shadow: var(--app-shadow-soft);
+  overflow: hidden;
+  margin-bottom: var(--app-space-lg);
+  transition: box-shadow var(--app-transition-fast);
+}
+
+.app-ui .table-card:hover {
+  box-shadow: var(--app-shadow-hover);
+}
+
+/* ========================================
+   TABLE HEADER (Title + Actions)
+   ======================================== */
+
+.app-ui .table-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--app-muted-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-md);
+  flex-wrap: wrap;
+}
+
+.app-ui .table-title {
+  font-size: var(--app-font-h3);
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-primary);
+  margin: 0;
+  line-height: var(--app-line-height-tight);
+}
+
+.app-ui .table-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-sm);
+}
+
+/* ========================================
+   TABLE WRAPPER (Scrollable)
+   ======================================== */
+
+.app-ui .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar */
+.app-ui .table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.app-ui .table-wrapper::-webkit-scrollbar-track {
+  background: var(--app-table-stripe);
+  border-radius: 4px;
+}
+
+.app-ui .table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--app-muted-border);
+  border-radius: 4px;
+}
+
+.app-ui .table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #C7D2E0;
+}
+
+/* ========================================
+   DATA TABLE
+   ======================================== */
+
+.app-ui .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--app-font-table);
+  table-layout: auto;
+}
+
+/* Table Header */
+.app-ui .data-table thead {
+  background: linear-gradient(135deg, var(--app-primary-gradient-start) 0%, var(--app-primary-gradient-end) 100%);
+  position: sticky;
+  top: 0;
+  z-index: var(--app-z-sticky);
+}
+
+.app-ui .data-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-on-primary);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  line-height: var(--app-line-height-normal);
+  user-select: none;
+}
+
+.app-ui .data-table th.text-center {
+  text-align: center;
+}
+
+.app-ui .data-table th.text-right {
+  text-align: right;
+}
+
+/* Sortable Header */
+.app-ui .data-table th.sortable {
+  cursor: pointer;
+  transition: background var(--app-transition-fast);
+}
+
+.app-ui .data-table th.sortable:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-ui .data-table th.sortable::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: var(--app-space-xs);
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  opacity: 0.4;
+}
+
+.app-ui .data-table th.sortable.asc::after {
+  border-bottom: 6px solid currentColor;
+  opacity: 1;
+}
+
+.app-ui .data-table th.sortable.desc::after {
+  border-top: 6px solid currentColor;
+  opacity: 1;
+}
+
+/* Table Body */
+.app-ui .data-table tbody tr {
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-muted-border);
+  transition: all var(--app-transition-fast);
+}
+
+/* Zebra Stripes */
+.app-ui .data-table tbody tr:nth-child(even) {
+  background: var(--app-table-stripe);
+}
+
+/* Hover Effect */
+.app-ui .data-table tbody tr:hover {
+  background: #EBF3FF;
+  box-shadow: inset 0 0 0 1px rgba(47, 128, 237, 0.15);
+  cursor: pointer;
+}
+
+.app-ui .data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Table Cells */
+.app-ui .data-table td {
+  padding: 10px 14px;
+  color: var(--app-text-primary);
+  line-height: var(--app-line-height-normal);
+  vertical-align: middle;
+}
+
+.app-ui .data-table td.text-center {
+  text-align: center;
+}
+
+.app-ui .data-table td.text-right {
+  text-align: right;
+}
+
+.app-ui .data-table td.text-muted {
+  color: var(--app-text-muted);
+  font-style: italic;
+}
+
+/* ========================================
+   TABLE CELL ACTIONS
+   ======================================== */
+
+.app-ui .table-actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--app-space-xs);
+}
+
+.app-ui .table-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  color: var(--app-text-muted);
+  cursor: pointer;
+  transition: all var(--app-transition-fast);
+  flex-shrink: 0;
+}
+
+.app-ui .table-action-btn:hover {
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: var(--app-text-on-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(47, 128, 237, 0.25);
+}
+
+.app-ui .table-action-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--app-shadow-focus);
+}
+
+.app-ui .table-action-btn.danger:hover {
+  background: var(--app-danger);
+  border-color: var(--app-danger);
+}
+
+.app-ui .table-action-btn svg,
+.app-ui .table-action-btn i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Unified Action Buttons - Horizontal Layout */
+.unified-action-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.unified-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px !important;
+  min-width: 36px;
+  max-width: 36px;
+  height: 36px;
+  padding: 0;
+  background: white;
+  border: 1.5px solid #E6EEF7;
+  border-radius: 6px;
+  color: #637381;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.unified-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.2);
+}
+
+.unified-action-btn.unified-btn-edit:hover {
+  background: #2F80ED;
+  border-color: #2F80ED;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-view:hover {
+  background: #10B981;
+  border-color: #10B981;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-download:hover {
+  background: #8b5cf6;
+  border-color: #8b5cf6;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-email:hover {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-apply:hover {
+  background: #10B981;
+  border-color: #10B981;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-pause:hover {
+  background: #F59E0B;
+  border-color: #F59E0B;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-delete:hover {
+  background: #E05050;
+  border-color: #E05050;
+  color: white;
+}
+
+.unified-action-btn:active {
+  transform: translateY(0);
+}
+
+.unified-action-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.25);
+}
+
+/* Actions column cell styling */
+.unified-table .cell-actions {
+  min-width: 120px;
+  text-align: right;
+  padding-right: 16px;
+}
+
+/* Mobile action buttons */
+@media (max-width: 767px) {
+  .unified-action-btn {
+    width: 40px !important;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+  }
+  
+  .unified-action-buttons {
+    gap: 12px;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   STATUS BADGES
+   ======================================== */
+
+.app-ui .status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px var(--app-space-sm);
+  font-size: var(--app-font-caption);
+  font-weight: var(--app-font-medium);
+  border-radius: var(--app-radius-sm);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.app-ui .status-badge.active {
+  background: #D1FAE5;
+  color: #047857;
+  border: 1px solid #6EE7B7;
+}
+
+.app-ui .status-badge.inactive {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+.app-ui .status-badge.pending {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.app-ui .status-badge.success {
+  background: #D1FAE5;
+  color: #047857;
+  border: 1px solid #6EE7B7;
+}
+
+.app-ui .status-badge.warning {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.app-ui .status-badge.danger {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+.app-ui .status-badge.info {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border: 1px solid #93C5FD;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.app-ui .table-empty {
+  padding: var(--app-space-3xl) var(--app-space-lg);
+  text-align: center;
+}
+
+.app-ui .table-empty-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--app-space-lg);
+  opacity: 0.5;
+}
+
+.app-ui .table-empty-title {
+  font-size: var(--app-font-h3);
+  font-weight: var(--app-font-bold);
+  color: var(--app-text-primary);
+  margin: 0 0 var(--app-space-sm);
+}
+
+.app-ui .table-empty-text {
+  font-size: var(--app-font-input);
+  color: var(--app-text-muted);
+  margin: 0 0 var(--app-space-lg);
+  line-height: var(--app-line-height-normal);
+}
+
+.app-ui .table-empty-action {
+  margin-top: var(--app-space-lg);
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.app-ui .table-pagination {
+  padding: 16px 20px;
+  border-top: 1px solid var(--app-muted-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-md);
+  flex-wrap: wrap;
+}
+
+.app-ui .pagination-info {
+  font-size: var(--app-font-label);
+  color: var(--app-text-muted);
+}
+
+.app-ui .pagination-info strong {
+  color: var(--app-text-primary);
+  font-weight: var(--app-font-medium);
+}
+
+.app-ui .pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-xs);
+}
+
+.app-ui .pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--app-space-sm);
+  background: var(--app-surface);
+  border: 1px solid var(--app-muted-border);
+  border-radius: var(--app-radius-sm);
+  color: var(--app-text-primary);
+  font-size: var(--app-font-label);
+  font-weight: var(--app-font-medium);
+  cursor: pointer;
+  transition: all var(--app-transition-fast);
+}
+
+.app-ui .pagination-btn:hover:not(:disabled) {
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: var(--app-text-on-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(47, 128, 237, 0.25);
+}
+
+.app-ui .pagination-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--app-shadow-focus);
+}
+
+.app-ui .pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.app-ui .pagination-btn.active {
+  background: var(--app-navy);
+  border-color: var(--app-navy);
+  color: var(--app-text-on-primary);
+  pointer-events: none;
+}
+
+.app-ui .pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  color: var(--app-text-muted);
+}
+
+/* ========================================
+   RESPONSIVE TABLE: CARD STACKING (Mobile)
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* Hide default table on mobile for stacking mode */
+  .app-ui .table-card.table-responsive-stack .table-wrapper {
+    display: none;
+  }
+  
+  .app-ui .table-card.table-responsive-stack .table-mobile-cards {
+    display: block;
+    padding: var(--app-space-md);
+  }
+  
+  .app-ui .table-mobile-card {
+    background: var(--app-surface);
+    border: 1px solid var(--app-muted-border);
+    border-radius: var(--app-radius-sm);
+    padding: var(--app-space-md);
+    margin-bottom: var(--app-space-md);
+    box-shadow: 0 2px 6px rgba(6, 30, 69, 0.06);
+    transition: all var(--app-transition-fast);
+  }
+  
+  .app-ui .table-mobile-card:hover {
+    box-shadow: 0 4px 12px rgba(6, 30, 69, 0.12);
+    transform: translateY(-2px);
+  }
+  
+  .app-ui .table-mobile-card:last-child {
+    margin-bottom: 0;
+  }
+  
+  .app-ui .table-mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--app-space-md);
+    padding: var(--app-space-sm) 0;
+    border-bottom: 1px solid var(--app-muted-border);
+  }
+  
+  .app-ui .table-mobile-row:last-child {
+    border-bottom: none;
+  }
+  
+  .app-ui .table-mobile-label {
+    font-size: var(--app-font-caption);
+    font-weight: var(--app-font-medium);
+    color: var(--app-text-muted);
+    flex-shrink: 0;
+    min-width: 100px;
+  }
+  
+  .app-ui .table-mobile-value {
+    font-size: var(--app-font-label);
+    color: var(--app-text-primary);
+    font-weight: var(--app-font-regular);
+    text-align: right;
+    word-break: break-word;
+  }
+  
+  .app-ui .table-mobile-actions {
+    display: flex;
+    gap: var(--app-space-sm);
+    padding-top: var(--app-space-md);
+    margin-top: var(--app-space-sm);
+    border-top: 1px solid var(--app-muted-border);
+  }
+  
+  .app-ui .table-mobile-actions .btn,
+  .app-ui .table-mobile-actions .table-action-btn {
+    flex: 1;
+  }
+}
+
+/* Desktop: Hide mobile cards */
+@media (min-width: 768px) {
+  .app-ui .table-mobile-cards {
+    display: none;
+  }
+}
+
+/* ========================================
+   RESPONSIVE: HORIZONTAL SCROLL FALLBACK
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* For tables that don't use stacking, ensure horizontal scroll */
+  .app-ui .table-card:not(.table-responsive-stack) .data-table {
+    min-width: 600px;
+  }
+  
+  .app-ui .table-header {
+    padding: var(--app-space-md);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .app-ui .table-title {
+    font-size: var(--app-font-h3);
+  }
+  
+  .app-ui .table-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  
+  .app-ui .table-actions .btn {
+    flex: 1;
+  }
+  
+  .app-ui .table-pagination {
+    padding: var(--app-space-md);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--app-space-md);
+  }
+  
+  .app-ui .pagination-info {
+    text-align: center;
+  }
+  
+  .app-ui .pagination-controls {
+    justify-content: center;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 400px) {
+  .app-ui .table-card {
+    border-radius: var(--app-radius-sm);
+  }
+  
+  .app-ui .table-header {
+    padding: var(--app-space-sm);
+  }
+  
+  .app-ui .table-title {
+    font-size: var(--app-font-h3);
+  }
+  
+  .app-ui .data-table th,
+  .app-ui .data-table td {
+    padding: var(--app-space-sm);
+    font-size: var(--app-font-caption);
+  }
+  
+  .app-ui .table-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .app-ui .pagination-btn {
+    min-width: 36px;
+    height: 36px;
+    font-size: var(--app-font-caption);
+  }
+}
+
+/* ========================================
+   HIDE COLUMNS ON MOBILE (Utility)
+   ======================================== */
+
+@media (max-width: 767px) {
+  .app-ui .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-ui .hide-on-tablet {
+    display: none;
+  }
+}

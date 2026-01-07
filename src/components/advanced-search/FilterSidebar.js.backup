@@ -1,0 +1,307 @@
+import React from 'react';
+import { X, RotateCcw } from 'lucide-react';
+import FilterAccordion from './FilterAccordion';
+import MultiSelect from './MultiSelect';
+import RangeSlider from './RangeSlider';
+
+const FilterSidebar = ({ 
+  filters, 
+  onChange, 
+  onReset, 
+  isMobileOpen,
+  onMobileClose 
+}) => {
+  // Get current year dynamically
+  const currentYear = new Date().getFullYear();
+  // Options data
+  const SKILLS_OPTIONS = [
+    { value: 'java', label: 'Java' },
+    { value: 'python', label: 'Python' },
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'react', label: 'React' },
+    { value: 'angular', label: 'Angular' },
+    { value: 'nodejs', label: 'Node.js' },
+    { value: 'springboot', label: 'Spring Boot' },
+    { value: 'aws', label: 'AWS' },
+    { value: 'docker', label: 'Docker' },
+    { value: 'kubernetes', label: 'Kubernetes' },
+  ];
+
+  const LOCATION_OPTIONS = [
+    { value: 'pune', label: 'Pune' },
+    { value: 'bangalore', label: 'Bangalore' },
+    { value: 'mumbai', label: 'Mumbai' },
+    { value: 'delhi', label: 'Delhi' },
+    { value: 'hyderabad', label: 'Hyderabad' },
+    { value: 'chennai', label: 'Chennai' },
+    { value: 'kolkata', label: 'Kolkata' },
+  ];
+
+  const NOTICE_PERIOD_OPTIONS = [
+    { value: 'immediate', label: 'Immediate' },
+    { value: '0-15', label: '0-15 Days' },
+    { value: '15-30', label: '15-30 Days' },
+    { value: '30-60', label: '30-60 Days' },
+    { value: 'serving', label: 'Serving Notice' },
+  ];
+
+  const EMPLOYMENT_TYPE_OPTIONS = [
+    { value: 'fulltime', label: 'Full-Time' },
+    { value: 'contract', label: 'Contract' },
+    { value: 'intern', label: 'Intern' },
+  ];
+
+  const APPLICATION_STATUS_OPTIONS = [
+    { value: 'new', label: 'New' },
+    { value: 'screening', label: 'Screening' },
+    { value: 'shortlisted', label: 'Shortlisted' },
+    { value: 'rejected', label: 'Rejected' },
+    { value: 'offered', label: 'Offered' },
+  ];
+
+  // Count active filters properly - exclude default values
+  const activeFilterCount = (() => {
+    let count = 0;
+    
+    // Array filters
+    if (filters.currentLocations?.length > 0) count++;
+    if (filters.primarySkills?.length > 0) count++;
+    if (filters.secondarySkills?.length > 0) count++;
+    if (filters.employmentTypes?.length > 0) count++;
+    if (filters.applicationStatus?.length > 0) count++;
+    
+    // Range filters (only count if not default)
+    if (filters.minExperience > 0 || filters.maxExperience < 30) count++;
+    if (filters.currentCTC?.[0] > 0 || filters.currentCTC?.[1] < 100) count++;
+    if (filters.expectedCTC?.[0] > 0 || filters.expectedCTC?.[1] < 150) count++;
+    if (filters.passingYearRange?.[0] > 2000 || filters.passingYearRange?.[1] < currentYear) count++;
+    
+    // String filters
+    if (filters.noticePeriod && filters.noticePeriod !== '') count++;
+    if (filters.qualification && filters.qualification !== '') count++;
+    if (filters.specialization && filters.specialization !== '') count++;
+    if (filters.skillMatchType && filters.skillMatchType !== 'ANY') count++;
+    
+    // Boolean filters
+    if (filters.excludeDuplicates) count++;
+    if (filters.excludeBlocked) count++;
+    if (filters.verifiedOnly) count++;
+    
+    return count;
+  })();
+
+  return (
+    <>
+      {isMobileOpen && (
+        <div 
+          className="filter-sidebar-overlay show"
+          onClick={onMobileClose}
+        />
+      )}
+      
+      <div className={`filter-sidebar ${isMobileOpen ? 'mobile-open' : ''}`}>
+        <div className="filter-sidebar-header">
+          <h2 className="filter-sidebar-title">
+            Filters {activeFilterCount > 0 && `(${activeFilterCount})`}
+          </h2>
+          <div className="flex gap-2">
+            <button className="filter-reset-btn" onClick={onReset}>
+              <RotateCcw size={14} />
+              Reset
+            </button>
+            {isMobileOpen && (
+              <button className="modal-close-btn" onClick={onMobileClose}>
+                <X size={20} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* A) Candidate Information */}
+        <FilterAccordion title="Candidate Information" defaultOpen>
+          <div className="filter-group">
+            <label className="filter-label">Current Location</label>
+            <MultiSelect
+              options={LOCATION_OPTIONS}
+              value={filters.currentLocations || []}
+              onChange={(val) => onChange('currentLocations', val)}
+              placeholder="Select locations"
+            />
+          </div>
+
+          <RangeSlider
+            label="Experience (Years)"
+            min={0}
+            max={30}
+            value={[filters.minExperience || 0, filters.maxExperience || 30]}
+            onChange={(val) => {
+              onChange('minExperience', val[0]);
+              onChange('maxExperience', val[1]);
+            }}
+            unit="years"
+          />
+
+          <div className="filter-group">
+            <label className="filter-label">Notice Period</label>
+            <select
+              className="select"
+              value={filters.noticePeriod || ''}
+              onChange={(e) => onChange('noticePeriod', e.target.value)}
+            >
+              <option value="">Select notice period</option>
+              {NOTICE_PERIOD_OPTIONS.map(opt => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <RangeSlider
+            label="Current CTC (LPA)"
+            min={0}
+            max={100}
+            value={filters.currentCTC || [0, 100]}
+            onChange={(val) => onChange('currentCTC', val)}
+            unit="LPA"
+          />
+
+          <RangeSlider
+            label="Expected CTC (LPA)"
+            min={0}
+            max={150}
+            value={filters.expectedCTC || [0, 150]}
+            onChange={(val) => onChange('expectedCTC', val)}
+            unit="LPA"
+          />
+
+          <div className="filter-group">
+            <label className="filter-label">Employment Type</label>
+            <MultiSelect
+              options={EMPLOYMENT_TYPE_OPTIONS}
+              value={filters.employmentTypes || []}
+              onChange={(val) => onChange('employmentTypes', val)}
+              placeholder="Select types"
+            />
+          </div>
+        </FilterAccordion>
+
+        {/* B) Skills & Technology */}
+        <FilterAccordion title="Skills & Technology">
+          <div className="filter-group">
+            <label className="filter-label">Primary Skills</label>
+            <MultiSelect
+              options={SKILLS_OPTIONS}
+              value={filters.primarySkills || []}
+              onChange={(val) => onChange('primarySkills', val)}
+              placeholder="Select skills"
+            />
+          </div>
+
+          <div className="radio-group">
+            <div 
+              className={`radio-option ${filters.skillMatchType === 'ANY' ? 'selected' : ''}`}
+              onClick={() => onChange('skillMatchType', 'ANY')}
+            >
+              <div className="radio-circle" />
+              <span className="radio-label">Match ANY skill</span>
+            </div>
+            <div 
+              className={`radio-option ${filters.skillMatchType === 'ALL' ? 'selected' : ''}`}
+              onClick={() => onChange('skillMatchType', 'ALL')}
+            >
+              <div className="radio-circle" />
+              <span className="radio-label">Match ALL skills</span>
+            </div>
+          </div>
+
+          <div className="filter-group">
+            <label className="filter-label">Secondary Skills</label>
+            <MultiSelect
+              options={SKILLS_OPTIONS}
+              value={filters.secondarySkills || []}
+              onChange={(val) => onChange('secondarySkills', val)}
+              placeholder="Select skills"
+            />
+          </div>
+        </FilterAccordion>
+
+        {/* C) Education */}
+        <FilterAccordion title="Education">
+          <div className="filter-group">
+            <label className="filter-label">Qualification</label>
+            <input
+              type="text"
+              className="input"
+              value={filters.qualification || ''}
+              onChange={(e) => onChange('qualification', e.target.value)}
+              placeholder="e.g. B.Tech, MBA"
+            />
+          </div>
+
+          <div className="filter-group">
+            <label className="filter-label">Specialization</label>
+            <input
+              type="text"
+              className="input"
+              value={filters.specialization || ''}
+              onChange={(e) => onChange('specialization', e.target.value)}
+              placeholder="e.g. Computer Science"
+            />
+          </div>
+
+          <RangeSlider
+            label="Passing Year"
+            min={2000}
+            max={currentYear}
+            value={filters.passingYearRange || [2000, currentYear]}
+            onChange={(val) => onChange('passingYearRange', val)}
+            unit=""
+          />
+        </FilterAccordion>
+
+        {/* D) Job Application */}
+        <FilterAccordion title="Job Application">
+          <div className="filter-group">
+            <label className="filter-label">Application Status</label>
+            <MultiSelect
+              options={APPLICATION_STATUS_OPTIONS}
+              value={filters.applicationStatus || []}
+              onChange={(val) => onChange('applicationStatus', val)}
+              placeholder="Select status"
+            />
+          </div>
+        </FilterAccordion>
+
+        {/* E) Meta Filters */}
+        <FilterAccordion title="Advanced Filters">
+          <div className="checkbox-group">
+            <div 
+              className={`checkbox-option ${filters.excludeDuplicates ? 'checked' : ''}`}
+              onClick={() => onChange('excludeDuplicates', !filters.excludeDuplicates)}
+            >
+              <div className="checkbox-box" />
+              <span className="checkbox-label">Exclude Duplicates</span>
+            </div>
+
+            <div 
+              className={`checkbox-option ${filters.excludeBlocked ? 'checked' : ''}`}
+              onClick={() => onChange('excludeBlocked', !filters.excludeBlocked)}
+            >
+              <div className="checkbox-box" />
+              <span className="checkbox-label">Exclude Blocked</span>
+            </div>
+
+            <div 
+              className={`checkbox-option ${filters.verifiedOnly ? 'checked' : ''}`}
+              onClick={() => onChange('verifiedOnly', !filters.verifiedOnly)}
+            >
+              <div className="checkbox-box" />
+              <span className="checkbox-label">Verified Profiles Only</span>
+            </div>
+          </div>
+        </FilterAccordion>
+      </div>
+    </>
+  );
+};
+
+export default FilterSidebar;

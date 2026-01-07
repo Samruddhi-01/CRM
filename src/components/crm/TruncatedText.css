@@ -1,0 +1,59 @@
+/* TruncatedText Component Styles */
+
+.truncated-text-container {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.truncated-text-preview {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.truncated-text-full {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.truncated-text-expanded {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: block;
+}
+
+.truncated-text-empty {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.truncated-text-toggle {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 0.813rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.truncated-text-toggle:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.truncated-text-toggle:active {
+  color: #1e40af;
+}
+
+.truncated-text-toggle:focus {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

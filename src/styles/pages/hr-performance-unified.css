@@ -1,0 +1,111 @@
+/**
+ * HR Performance Page - Unified Styles & Typography Fixes
+ * Matches Job Openings visual hierarchy
+ */
+
+/* ============================================================================
+   PAGE HEADER TYPOGRAPHY
+   ============================================================================ */
+
+.hr-performance-page.app-ui .page-header-title h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.hr-performance-page.app-ui .page-header-title p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ============================================================================
+   FILTER CARD HEADER
+   ============================================================================ */
+
+.hr-performance-page .filter-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.25rem;
+}
+
+.hr-performance-page .filter-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.hr-performance-page .badge-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+}
+
+/* ============================================================================
+   FORM LABELS - SMALLER & PROFESSIONAL
+   ============================================================================ */
+
+.hr-performance-page .form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.hr-performance-page .form-input,
+.hr-performance-page .form-select {
+  font-size: 0.875rem;
+}
+
+.hr-performance-page .form-input::placeholder {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+/* ============================================================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hr-performance-page.app-ui .page-header-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hr-performance-page.app-ui .page-header-title p {
+    font-size: 0.8125rem;
+  }
+  
+  .hr-performance-page .filter-card-title {
+    font-size: 0.9375rem;
+  }
+  
+  .hr-performance-page .badge-count {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hr-performance-page.app-ui .page-header-title h1 {
+    font-size: 1.25rem;
+  }
+  
+  .hr-performance-page.app-ui .page-header-title p {
+    font-size: 0.75rem;
+  }
+  
+  .hr-performance-page .form-label {
+    font-size: 0.6875rem;
+  }
+}

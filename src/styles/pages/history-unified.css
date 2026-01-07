@@ -1,0 +1,172 @@
+/**
+ * History Page - Unified App UI Integration Styles
+ * Bridges the unified app system with the existing layout structure
+ */
+
+/* Scoped wrapper for unified styles on History page */
+.main-wrapper .content .app-ui {
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* Page Header - Full width with margin */
+.main-wrapper .content .app-ui .page-header {
+  margin: 20px 20px 0 20px;
+  padding: 16px 24px;
+  border-radius: 10px;
+}
+
+/* Filter Card - Full width with margin */
+.main-wrapper .content .app-ui .filter-card {
+  margin: 20px;
+}
+
+/* Table Card - Full width with margin */
+.main-wrapper .content .app-ui .table-card {
+  margin: 20px;
+}
+
+/* Responsive adjustments for existing layout */
+@media (max-width: 1023px) {
+  .main-wrapper .content .app-ui .page-header {
+    margin: 16px 16px 0 16px;
+    padding: 20px 24px;
+  }
+  
+  .main-wrapper .content .app-ui .filter-card,
+  .main-wrapper .content .app-ui .table-card {
+    margin: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-wrapper .content .app-ui .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .main-wrapper .content .app-ui .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .main-wrapper .content .app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-wrapper .content .app-ui .btn-primary-cta {
+    width: 100%;
+  }
+  
+  .main-wrapper .content .app-ui .filter-card,
+  .main-wrapper .content .app-ui .table-card {
+    margin: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-wrapper .content .app-ui .page-header {
+    margin: 8px 8px 0 8px;
+    padding: 12px;
+  }
+  
+  .main-wrapper .content .app-ui .filter-card,
+  .main-wrapper .content .app-ui .table-card {
+    margin: 8px;
+  }
+}
+
+/* Ensure proper spacing for content wrapper */
+.main-wrapper .content {
+  padding-bottom: 24px;
+}
+
+/* Enhanced Action Buttons */
+.unified-action-buttons {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.unified-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px !important;
+  min-width: 36px;
+  max-width: 36px;
+  height: 36px;
+  padding: 0;
+  background: white;
+  border: 1.5px solid #E6EEF7;
+  border-radius: 6px;
+  color: #637381;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.unified-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.2);
+}
+
+.unified-action-btn.unified-btn-edit:hover {
+  background: #2F80ED;
+  border-color: #2F80ED;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-view:hover {
+  background: #10B981;
+  border-color: #10B981;
+  color: white;
+}
+
+.unified-action-btn:active {
+  transform: translateY(0);
+}
+
+.unified-action-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.25);
+}
+
+/* Actions column cell styling */
+.unified-table .cell-actions {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: right;
+  padding-right: 16px;
+}
+
+/* Mobile action buttons */
+@media (max-width: 767px) {
+  .unified-action-btn {
+    width: 40px !important;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+  }
+  
+  .unified-action-buttons {
+    gap: 12px;
+  }
+  
+  .unified-table .cell-actions {
+    width: auto;
+    min-width: auto;
+    max-width: none;
+  }
+}

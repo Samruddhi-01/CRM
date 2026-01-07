@@ -1,0 +1,306 @@
+/**
+ * HR Management Page - Unified App UI Integration Styles
+ * Bridges the unified app system with the HR Management page structure
+ * Matches Job Openings visual design
+ */
+
+/* Scoped wrapper for unified styles on HR Management page */
+.hr-management-page.app-ui {
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* Page Header - Full width with margin */
+.hr-management-page.app-ui .page-header {
+  margin: 20px 20px 0 20px;
+  padding: 16px 24px;
+  border-radius: 10px;
+}
+
+/* Filter Card - Full width with margin */
+.hr-management-page.app-ui .filter-card {
+  margin: 20px;
+}
+
+/* Table Card - Full width with margin */
+.hr-management-page.app-ui .table-card {
+  margin: 20px;
+}
+
+/* Responsive adjustments for existing layout */
+@media (max-width: 1023px) {
+  .hr-management-page.app-ui .page-header {
+    margin: 16px 16px 0 16px;
+    padding: 14px 20px;
+  }
+  
+  .hr-management-page.app-ui .filter-card,
+  .hr-management-page.app-ui .table-card {
+    margin: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hr-management-page.app-ui .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hr-management-page.app-ui .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .hr-management-page.app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hr-management-page.app-ui .btn-primary-cta {
+    width: 100%;
+  }
+  
+  .hr-management-page.app-ui .filter-card,
+  .hr-management-page.app-ui .table-card {
+    margin: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hr-management-page.app-ui .page-header {
+    margin: 8px 8px 0 8px;
+    padding: 12px;
+  }
+  
+  .hr-management-page.app-ui .filter-card,
+  .hr-management-page.app-ui .table-card {
+    margin: 8px;
+  }
+}
+
+/* Ensure proper spacing for content wrapper */
+.hr-management-page.app-ui {
+  padding-bottom: 24px;
+}
+
+/* Enhanced Action Buttons */
+.hr-management-page .unified-action-buttons {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+/* HR Candidate Count Button - Specific to HR Management */
+.hr-management-page .hr-candidate-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 28px;
+  padding: 0 10px;
+  background: #DBEAFE;
+  color: #1E40AF;
+  border: 1.5px solid #93C5FD;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hr-management-page .hr-candidate-count:hover {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.hr-management-page .hr-candidate-count:active {
+  transform: translateY(0);
+}
+
+/* HR Details Modal - Candidate-like View Popup */
+.hr-details-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0.75rem;
+  animation: hrFadeIn 0.2s ease;
+}
+
+@keyframes hrFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hr-details-modal-container {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  max-height: 92vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: hrSlideUp 0.3s ease;
+}
+
+@keyframes hrSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.hr-details-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #0D2B66 0%, #1a3d7a 100%);
+  border-bottom: 2px solid #0D2B66;
+  flex-shrink: 0;
+}
+
+.hr-details-modal-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.hr-details-modal-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hr-details-modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.hr-details-modal-body {
+  padding: 0.75rem 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.hr-details-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hr-details-modal-body::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+.hr-details-modal-body::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.hr-details-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.hr-detail-section {
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.hr-detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.hr-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0D2B66;
+  margin-bottom: 0.625rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 2px solid #0D2B66;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hr-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem 0.875rem;
+}
+
+.hr-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.hr-detail-item:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+}
+
+.hr-detail-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hr-detail-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.25;
+}
+
+.hr-detail-value.empty {
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .hr-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

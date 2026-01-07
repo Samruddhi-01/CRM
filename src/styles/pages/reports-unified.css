@@ -1,0 +1,379 @@
+/**
+ * Reports Page - Unified Styles & Typography
+ * Matches Job Openings visual hierarchy
+ */
+
+/* ============================================================================
+   PAGE HEADER TYPOGRAPHY
+   ============================================================================ */
+
+.reports-page.app-ui .page-header-title h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.reports-page.app-ui .page-header-title p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ============================================================================
+   TABS SECTION
+   ============================================================================ */
+
+.reports-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0 1rem;
+}
+
+.reports-tab {
+  padding: 0.625rem 1rem;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+  bottom: -2px;
+}
+
+.reports-tab:hover {
+  color: #2f80ed;
+  background: rgba(47, 128, 237, 0.05);
+}
+
+.reports-tab.active {
+  color: #2f80ed;
+  border-bottom-color: #2f80ed;
+  background: rgba(47, 128, 237, 0.05);
+}
+
+/* ============================================================================
+   TAB CONTENT
+   ============================================================================ */
+
+.reports-tab-content {
+  padding: 0 1rem 1.5rem;
+}
+
+/* ============================================================================
+   FILTER ACTIONS
+   ============================================================================ */
+
+.filter-actions {
+  display: flex;
+  gap: 0.625rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  justify-content: flex-end;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   FORM LABELS - SMALLER & PROFESSIONAL
+   ============================================================================ */
+
+.reports-page .form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.reports-page .form-input,
+.reports-page .form-select {
+  font-size: 0.875rem;
+}
+
+.reports-page .form-input::placeholder {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+/* ============================================================================
+   SUMMARY CARDS
+   ============================================================================ */
+
+.reports-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.reports-summary-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.reports-summary-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.reports-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.reports-summary-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 1.125rem;
+}
+
+.reports-summary-icon.blue { background: #e0f2fe; }
+.reports-summary-icon.green { background: #dcfce7; }
+.reports-summary-icon.red { background: #fee2e2; }
+.reports-summary-icon.purple { background: #f3e8ff; }
+
+.reports-summary-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.reports-summary-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1;
+}
+
+/* ============================================================================
+   TABLE CONTAINER
+   ============================================================================ */
+
+.reports-table-container {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.reports-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.reports-table-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* ============================================================================
+   LOADING & EMPTY STATES
+   ============================================================================ */
+
+.reports-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.reports-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2f80ed;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.reports-loading-text {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.reports-empty-state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.reports-empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.reports-empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.reports-empty-state p {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ============================================================================
+   ERROR STATE
+   ============================================================================ */
+
+.reports-error {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin: 1rem 1.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+.reports-error-icon {
+  font-size: 1.5rem;
+}
+
+.reports-error-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #991b1b;
+  margin: 0 0 0.25rem 0;
+}
+
+.reports-error-content p {
+  font-size: 0.875rem;
+  color: #dc2626;
+  margin: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .reports-page.app-ui .page-header-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .reports-page.app-ui .page-header-title p {
+    font-size: 0.8125rem;
+  }
+  
+  .reports-tabs {
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 0;
+    border-bottom: none;
+  }
+  
+  .reports-tab {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem;
+  }
+  
+  .reports-tab.active {
+    border-left: 3px solid #2f80ed;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .reports-summary {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .reports-tab-content,
+  .reports-table-container {
+    padding: 0 1rem 2rem;
+  }
+  
+  .filter-actions {
+    flex-direction: column;
+  }
+  
+  .btn-secondary,
+  .btn-primary-cta {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .reports-page.app-ui .page-header-title h1 {
+    font-size: 1.25rem;
+  }
+  
+  .reports-page.app-ui .page-header-title p {
+    font-size: 0.75rem;
+  }
+  
+  .reports-page .form-label {
+    font-size: 0.6875rem;
+  }
+  
+  .reports-summary-value {
+    font-size: 1.5rem;
+  }
+  
+  .reports-table-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+}

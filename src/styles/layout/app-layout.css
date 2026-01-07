@@ -1,0 +1,127 @@
+/* ============================================================================
+   APP LAYOUT - Sidebar + Content Area System
+   Ensures proper layout with fixed sidebar and responsive content area
+   ============================================================================ */
+
+:root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 70px;
+  --header-height: 64px;
+  --content-padding: 0;
+}
+
+/* ============================================================================
+   MAIN LAYOUT STRUCTURE
+   ============================================================================ */
+
+/* Main app container */
+.app-container {
+ 
+  min-height: 100vh;
+  background: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Main content area (next to sidebar) */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  width: calc(100% - var(--sidebar-width));
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Content area when sidebar is collapsed */
+.main-content-collapsed {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* Page container within main content */
+.page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+/* Desktop - Sidebar collapsed (≤ 1200px) */
+@media (max-width: 1200px) {
+  .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+    width: calc(100% - var(--sidebar-collapsed-width));
+  }
+}
+
+/* Tablet (≤ 768px) - Sidebar becomes overlay */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .main-content-collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .page-container {
+    padding: 0;
+  }
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .page-container {
+    padding: 0;
+  }
+}
+
+/* ============================================================================
+   CONTENT SECTIONS
+   ============================================================================ */
+
+/* Page header section */
+.page-header {
+  flex-shrink: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Page content section (scrollable) */
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.scroll-y-only {
+  overflow-x: hidden;
+  overflow-y: auto;
+}

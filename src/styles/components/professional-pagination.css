@@ -1,0 +1,400 @@
+/* ============================================================================
+   PROFESSIONAL PAGINATION - SHARED STYLES
+   Used across all pages with tables for consistent UX
+   ============================================================================ */
+
+/* Table Header Section (Show Entries on Right) */
+.table-header-section {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 1.25rem;
+}
+
+.table-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.results-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.results-count {
+  font-size: 0.813rem !important;
+  color: #64748b;
+  margin: 0;
+}
+
+.show-entries-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.show-entries-label {
+  font-size: 0.813rem !important;
+  font-weight: 500;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.show-entries-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 12px;
+  font-size: 0.813rem !important;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.show-entries-select:hover {
+  border-color: #3b82f6;
+  background-color: #f8fafc;
+}
+
+.show-entries-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ============================================================================
+   CENTERED PAGINATION
+   ============================================================================ */
+
+.pagination-wrapper-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #475569;
+  font-size: 0.813rem !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 38px;
+}
+
+.pagination-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #3b82f6;
+  color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #f8fafc;
+}
+
+.pagination-btn.pagination-number {
+  min-width: 38px;
+  padding: 0.5rem 0.625rem;
+}
+
+.pagination-btn.pagination-number.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+.pagination-btn.pagination-number.active:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: none;
+}
+
+.pagination-btn-prev,
+.pagination-btn-next {
+  font-weight: 500;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.25rem;
+  color: #94a3b8;
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  user-select: none;
+}
+
+.pagination-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.813rem !important;
+  color: #64748b;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+  width: 100%;
+  justify-content: center;
+}
+
+.pagination-info strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.pagination-separator {
+  color: #cbd5e1;
+  font-weight: 400;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .pagination-btn span {
+    display: none;
+  }
+  
+  .pagination-btn {
+    padding: 0.5rem 0.625rem;
+    min-width: 38px;
+  }
+  
+  .pagination-btn svg {
+    margin: 0;
+  }
+  
+  .table-header-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .show-entries-wrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .pagination-info {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ============================================================================
+   PROFESSIONAL TABLE ENHANCEMENTS
+   ============================================================================ */
+
+.professional-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.professional-table thead tr {
+  background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.professional-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #475569 !important;
+  font-size: 0.688rem !important;
+  padding: 0.875rem 0.75rem !important;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.professional-table tbody tr {
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.professional-table tbody tr:hover {
+  background-color: #f8fafc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+}
+
+.professional-table tbody td {
+  padding: 0.875rem 0.75rem !important;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.75rem !important;
+  color: #334155;
+}
+
+/* Professional Status Badges */
+.status-badge-professional {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.688rem !important;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.status-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.status-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.status-info {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+.status-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.status-neutral {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* Professional Action Buttons */
+.action-buttons-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn-professional {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1.5px solid;
+  border-radius: 6px;
+  font-size: 0.75rem !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  min-width: 38px;
+  height: 38px;
+  background: #ffffff;
+}
+
+.action-btn-professional svg {
+  flex-shrink: 0;
+}
+
+.action-btn-edit {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.action-btn-edit:hover {
+  background-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+
+.action-btn-view {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.action-btn-view:hover {
+  background-color: #10b981;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+}
+
+.action-btn-delete {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.action-btn-delete:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+}
+
+.action-btn-info {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.action-btn-info:hover {
+  background-color: #f59e0b;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.2);
+}
