@@ -194,7 +194,7 @@ const CandidateCard = ({ candidate, onViewProfile, onDownloadResume }) => {
           <div className="candidate-info-label">Current CTC</div>
           <div className="candidate-info-value">
             <IndianRupee className="candidate-info-icon" />
-            {currentPackage ? `₹${currentPackage} LPA` : 'Not disclosed'}
+            {currentPackage ? `${currentPackage} LPA` : 'Not disclosed'}
           </div>
         </div>
 
@@ -202,7 +202,7 @@ const CandidateCard = ({ candidate, onViewProfile, onDownloadResume }) => {
           <div className="candidate-info-label">Expected CTC</div>
           <div className="candidate-info-value info-highlight">
             <IndianRupee className="candidate-info-icon" />
-            {expectedCTC ? `₹${expectedCTC} LPA` : 'Not disclosed'}
+            {expectedCTC ? `${expectedCTC} LPA` : 'Not disclosed'}
           </div>
         </div>
 
@@ -285,7 +285,7 @@ const CandidateCard = ({ candidate, onViewProfile, onDownloadResume }) => {
             View Profile
           </button>
           <button
-            className="card-action-btn"
+            className="card-action-btn download"
             onClick={() => onDownloadResume(candidate)}
           >
             <Download className="card-action-icon" />

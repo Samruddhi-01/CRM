@@ -1,135 +1,94 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
-import '../../styles/advanced-search/pagination.css';
+import React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../../styles/advanced-search/pagination.css";
 
-const Pagination = ({ 
-  currentPage, 
-  totalPages, 
-  totalResults, 
-  itemsPerPage, 
-  onPageChange, 
-  onItemsPerPageChange 
+const Pagination = ({
+  currentPage = 1,
+  totalPages = 0,
+  totalResults = 0,
+  itemsPerPage = 10,
+  onPageChange,
 }) => {
-  // Debug logging
-  React.useEffect(() => {
-    console.log('📟 Pagination Props:', { 
-      currentPage, 
-      totalPages, 
-      totalResults, 
-      itemsPerPage 
-    });
-  }, [currentPage, totalPages, totalResults, itemsPerPage]);
+  // 🚫 Do not show pagination if no data
+  if (!totalResults || totalPages <= 1) return null;
 
-  // Calculate showing range
+  const safePageChange = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    onPageChange(page); // 🔥 parent will call API
+  };
+
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalResults);
 
-  // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
-    const maxVisible = 5; // Maximum page numbers to show
-    
+    const maxVisible = 5;
+
     if (totalPages <= maxVisible) {
-      // Show all pages if total is small
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
-      // Smart pagination with ellipsis
-      let startPage = Math.max(1, currentPage - 2);
-      let endPage = Math.min(totalPages, currentPage + 2);
-      
-      // Adjust if we're near the start
-      if (currentPage <= 3) {
-        endPage = 5;
-      }
-      
-      // Adjust if we're near the end
-      if (currentPage >= totalPages - 2) {
-        startPage = totalPages - 4;
-      }
-      
-      // Add first page
-      if (startPage > 1) {
+      let start = Math.max(1, currentPage - 2);
+      let end = Math.min(totalPages, currentPage + 2);
+
+      if (currentPage <= 3) end = 5;
+      if (currentPage >= totalPages - 2) start = totalPages - 4;
+
+      if (start > 1) {
         pages.push(1);
-        if (startPage > 2) {
-          pages.push('ellipsis-start');
-        }
+        if (start > 2) pages.push("ellipsis-start");
       }
-      
-      // Add middle pages
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(i);
-      }
-      
-      // Add last page
-      if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-          pages.push('ellipsis-end');
-        }
+
+      for (let i = start; i <= end; i++) pages.push(i);
+
+      if (end < totalPages) {
+        if (end < totalPages - 1) pages.push("ellipsis-end");
         pages.push(totalPages);
       }
     }
-    
     return pages;
   };
 
-  const pageNumbers = getPageNumbers();
-
   return (
     <div className="pagination-wrapper">
-      {/* Pagination Controls - Single Row */}
+      <div className="pagination-info">
+        Showing <strong>{startItem}</strong> to <strong>{endItem}</strong> of{" "}
+        <strong>{totalResults}</strong> results
+      </div>
+
       <div className="pagination-controls-section">
-        {/* Previous Page Button */}
         <button
-          className="pagination-btn pagination-btn-nav pagination-btn-prev"
-          onClick={() => onPageChange(currentPage - 1)}
+          className="pagination-btn pagination-btn-nav"
+          onClick={() => safePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          title="Previous Page"
-          aria-label="Go to previous page"
         >
           <ChevronLeft size={16} />
-          <span className="pagination-btn-text">Previous</span>
+          Previous
         </button>
-        
-        {/* Page Numbers */}
+
         <div className="pagination-numbers">
-          {pageNumbers.map((pageNum, index) => {
-            if (typeof pageNum === 'string') {
-              // Render ellipsis
-              return (
-                <span key={pageNum} className="pagination-ellipsis">
-                  •••
-                </span>
-              );
-            }
-            
-            // Render page number button
-            return (
+          {getPageNumbers().map((p) =>
+            typeof p === "string" ? (
+              <span key={p} className="pagination-ellipsis">•••</span>
+            ) : (
               <button
-                key={pageNum}
+                key={p}
                 className={`pagination-btn pagination-btn-number ${
-                  currentPage === pageNum ? 'active' : ''
+                  currentPage === p ? "active" : ""
                 }`}
-                onClick={() => onPageChange(pageNum)}
-                aria-label={`Go to page ${pageNum}`}
-                aria-current={currentPage === pageNum ? 'page' : undefined}
+                onClick={() => safePageChange(p)}
               >
-                {pageNum}
+                {p}
               </button>
-            );
-          })}
+            )
+          )}
         </div>
-        
-        {/* Next Page Button */}
+
         <button
-          className="pagination-btn pagination-btn-nav pagination-btn-next"
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages}
-          title="Next Page"
-          aria-label="Go to next page"
+          className="pagination-btn pagination-btn-nav"
+          onClick={() => safePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
         >
-          <span className="pagination-btn-text">Next</span>
+          Next
           <ChevronRight size={16} />
         </button>
       </div>

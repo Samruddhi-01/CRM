@@ -108,7 +108,7 @@ const FilterSidebar = ({
   const DEGREE_OPTIONS = [
     { value: 'BCA', label: 'BCA' },
     { value: 'MCA', label: 'MCA' },
-    { value: 'BE Computer', label: 'BE Computer' },
+    { value: 'BE Computer', label: 'BE' },
     { value: 'BTech', label: 'BTech' },
     { value: 'MTech', label: 'MTech' },
     { value: 'BSc', label: 'BSc' },

@@ -164,6 +164,12 @@ export const checkAuth = createAsyncThunk(
   }
 );
 
+updateUser: (state, action) => {
+  state.user = action.payload;
+}
+
+
+
 // Update Profile
 export const updateProfile = createAsyncThunk(
   'auth/updateProfile',
@@ -187,19 +193,23 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // Clear error
+
     clearError: (state) => {
       state.error = null;
     },
-    
-    // Set user
+
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = !!action.payload;
     },
+
+    // 🔥 ADD THIS
+    updateUser: (state, action) => {
+      state.user = action.payload;
+    }
   },
+
   extraReducers: (builder) => {
-    // Login
     builder
       .addCase(login.pending, (state) => {
         state.loading = true;
@@ -211,100 +221,22 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
-        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.isAuthenticated = false;
-        state.user = null;
-        state.token = null;
-        state.refreshToken = null;
         state.error = action.payload;
-      });
-    
-    // Register
-    builder
-      .addCase(register.pending, (state) => {
-        state.loading = true;
-        state.error = null;
       })
-      .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
-        state.error = null;
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-    
-    // Logout
-    builder
-      .addCase(logout.fulfilled, (state) => {
-        state.user = null;
-        state.token = null;
-        state.refreshToken = null;
-        state.isAuthenticated = false;
-        state.loading = false;
-        state.error = null;
-      });
-    
-    // Check Auth
-    builder
-      .addCase(checkAuth.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(checkAuth.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
-        state.error = null;
-      })
-      .addCase(checkAuth.rejected, (state, action) => {
-        state.loading = false;
-        
-        // Check if it's a network error - if so, maintain session
-        const errorMessage = action.payload || '';
-        const isNetworkError = errorMessage.includes('Network') || 
-                               errorMessage.includes('Failed to fetch') ||
-                               errorMessage.includes('ERR_NETWORK');
-        
-        // Only clear auth state for actual authentication failures, not network errors
-        if (!isNetworkError) {
-          state.isAuthenticated = false;
-          state.user = null;
-          state.token = null;
-          state.refreshToken = null;
-        } else {
-          console.warn('⚠️ Network error in auth check - maintaining authenticated state');
-        }
-      });
-    
-    // Update Profile
-    builder
-      .addCase(updateProfile.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(updateProfile.fulfilled, (state, action) => {
-        state.loading = false;
         state.user = action.payload;
-        state.error = null;
-      })
-      .addCase(updateProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
       });
-  },
+  }
 });
 
+
 // Actions
-export const { clearError, setUser } = authSlice.actions;
+export const { clearError, setUser, updateUser  } = authSlice.actions;
 
 // Selectors
 export const selectAuth = (state) => state.auth;
@@ -313,5 +245,4 @@ export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export const selectAuthLoading = (state) => state.auth.loading;
 export const selectAuthError = (state) => state.auth.error;
 export const selectUserRole = (state) => state.auth.user?.role;
-
 export default authSlice.reducer;

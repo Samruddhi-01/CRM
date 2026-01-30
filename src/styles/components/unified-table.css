@@ -52,7 +52,8 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.688rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   table-layout: fixed; /* Fixed layout for controlled widths */
 }
 
@@ -82,61 +83,167 @@
   text-overflow: ellipsis;
 }
 
+/* Column widths for Advance Search */
+.advance-search-table th:nth-child(1)  { width: 180px; } /* Name */
+.advance-search-table th:nth-child(2)  { width: 220px; } /* Contact */
+.advance-search-table th:nth-child(3)  { width: 160px; } /* Profile */
+.advance-search-table th:nth-child(4)  { width: 160px; } /* Company */
+.advance-search-table th:nth-child(5)  { width: 140px; } /* Exp Level */
+.advance-search-table th:nth-child(6)  { width: 120px; } /* Current CTC */
+.advance-search-table th:nth-child(7)  { width: 130px; } /* Expected CTC */
+.advance-search-table th:nth-child(8)  { width: 120px; } /* Notice */
+.advance-search-table th:nth-child(9)  { width: 130px; } /* Location */
+.advance-search-table th:nth-child(10) { width: 240px; } /* Skills */
+.advance-search-table th:nth-child(11) { width: 130px; } /* Degree */
+.advance-search-table th:nth-child(12) { width: 110px; } /* Passing Yr */
+.advance-search-table th:nth-child(13) { width: 100px; } /* Gap */
+.advance-search-table th:nth-child(14) { width: 140px; } /* Status */
+.advance-search-table th:nth-child(15) { width: 140px; } /* Updated */
+.advance-search-table th:nth-child(16) { width: 180px; } /* Actions */
+
 /* Compact column widths to fit all in one view - DEFAULT (11 columns for History.js) */
-.unified-table th:nth-child(1) { width: 8%; }   /* NAME */
-.unified-table th:nth-child(2) { width: 10%; }  /* EMAIL */
-.unified-table th:nth-child(3) { width: 8%; }   /* PHONE */
-.unified-table th:nth-child(4) { width: 13%; }  /* STATUS - Wider to prevent overlap */
-.unified-table th:nth-child(5) { width: 10%; }  /* COMPANY */
-.unified-table th:nth-child(6) { width: 15%; }  /* PROFILE */
-.unified-table th:nth-child(7) { width: 8%; }   /* LOCATION */
-.unified-table th:nth-child(8) { width: 7%; }   /* EXPERIENCE */
-.unified-table th:nth-child(9) { width: 27%; }   /* EXPECTED CTC */
-.unified-table th:nth-child(10) { width: 9%; }  /* CREATED */
-.unified-table th:nth-child(11) { width: 15%; }  /* ACTIONS */
+.history .unified-table th:nth-child(1) {
+  width: 13%;
+} /* NAME */
+.history .unified-table th:nth-child(2) {
+  width: 12%;
+} /* EMAIL */
+.history .unified-table th:nth-child(3) {
+  width: 10%;
+} /* PHONE */
+.history .unified-table th:nth-child(4) {
+  width: 11%;
+} /* STATUS - Wider to prevent overlap */
+.history .unified-table th:nth-child(5) {
+  width: 14%;
+} /* COMPANY */
+.history .unified-table th:nth-child(6) {
+  width: 15%;
+} /* PROFILE */
+.history .unified-table th:nth-child(7) {
+  width: 10%;
+} /* LOCATION */
+.history .unified-table th:nth-child(8) {
+  width: 10%;
+} /* EXPERIENCE */
+.history .unified-table th:nth-child(9) {
+  width: 13%;
+} /* EXPECTED CTC */
+.history .unified-table th:nth-child(10) {
+  width: 11%;
+} /* CREATED */
+.history .unified-table th:nth-child(11) {
+  width: 13%;
+} /* ACTIONS */
 
 /* Openings page - 9 columns with 5 action buttons (needs wider actions column) */
-.openings-page-container .unified-table th:nth-child(1) { width: 15%; }  /* JOB TITLE */
-.openings-page-container .unified-table th:nth-child(2) { width: 10%; }  /* DEPARTMENT */
-.openings-page-container .unified-table th:nth-child(3) { width: 10%; }  /* LOCATION */
-.openings-page-container .unified-table th:nth-child(4) { width: 8%; }   /* POSITIONS */
-.openings-page-container .unified-table th:nth-child(5) { width: 12%; }  /* EXPERIENCE */
-.openings-page-container .unified-table th:nth-child(6) { width: 10%; }  /* APPLICATIONS */
-.openings-page-container .unified-table th:nth-child(7) { width: 10%; }  /* STATUS */
-.openings-page-container .unified-table th:nth-child(8) { width: 10%; }  /* CREATED */
-.openings-page-container .unified-table th:nth-child(9) { width: 24%; }  /* ACTIONS - Wider for 5 buttons */
+.openings-page-container .unified-table th:nth-child(1) {
+  width: 15%;
+} /* JOB TITLE */
+.openings-page-container .unified-table th:nth-child(2) {
+  width: 10%;
+} /* DEPARTMENT */
+.openings-page-container .unified-table th:nth-child(3) {
+  width: 10%;
+} /* LOCATION */
+.openings-page-container .unified-table th:nth-child(4) {
+  width: 8%;
+} /* POSITIONS */
+.openings-page-container .unified-table th:nth-child(5) {
+  width: 12%;
+} /* EXPERIENCE */
+.openings-page-container .unified-table th:nth-child(6) {
+  width: 10%;
+} /* APPLICATIONS */
+.openings-page-container .unified-table th:nth-child(7) {
+  width: 10%;
+} /* STATUS */
+.openings-page-container .unified-table th:nth-child(8) {
+  width: 10%;
+} /* CREATED */
+.openings-page-container .unified-table th:nth-child(9) {
+  width: 24%;
+} /* ACTIONS - Wider for 5 buttons */
 
 /* Candidates page - 6 columns */
-.candidates-page-container .unified-table th:nth-child(1) { width: 15%; }  /* NAME */
-.candidates-page-container .unified-table th:nth-child(2) { width: 20%; }  /* EMAIL */
-.candidates-page-container .unified-table th:nth-child(3) { width: 12%; }  /* PHONE */
-.candidates-page-container .unified-table th:nth-child(4) { width: 20%; }  /* REMARKS */
-.candidates-page-container .unified-table th:nth-child(5) { width: 15%; }  /* STATUS */
-.candidates-page-container .unified-table th:nth-child(6) { width: 18%; }  /* ACTIONS */
+.candidates-page-container .unified-table th:nth-child(1) {
+  width: 15%;
+} /* NAME */
+.candidates-page-container .unified-table th:nth-child(2) {
+  width: 20%;
+} /* EMAIL */
+.candidates-page-container .unified-table th:nth-child(3) {
+  width: 12%;
+} /* PHONE */
+.candidates-page-container .unified-table th:nth-child(4) {
+  width: 20%;
+} /* REMARKS */
+.candidates-page-container .unified-table th:nth-child(5) {
+  width: 15%;
+} /* STATUS */
+.candidates-page-container .unified-table th:nth-child(6) {
+  width: 18%;
+} /* ACTIONS */
 
 /* HRManagement page - 9 columns (Fixed layout, no scrollbar, ellipsis truncation) */
-.hr-management-page .unified-table th:nth-child(1) { width: 12%; }  /* NAME */
-.hr-management-page .unified-table th:nth-child(2) { width: 10%; }  /* USERNAME */
-.hr-management-page .unified-table th:nth-child(3) { width: 15%; }  /* EMAIL */
-.hr-management-page .unified-table th:nth-child(4) { width: 11%; }  /* PHONE */
-.hr-management-page .unified-table th:nth-child(5) { width: 9%; }   /* CANDIDATES */
-.hr-management-page .unified-table th:nth-child(6) { width: 9%; }   /* STATUS */
-.hr-management-page .unified-table th:nth-child(7) { width: 11%; }  /* LAST LOGIN */
-.hr-management-page .unified-table th:nth-child(8) { width: 10%; }  /* CREATED */
-.hr-management-page .unified-table th:nth-child(9) { width: 21%; }  /* ACTIONS */
+.hr-management-page .unified-table th:nth-child(1) {
+  width: 12%;
+} /* NAME */
+.hr-management-page .unified-table th:nth-child(2) {
+  width: 10%;
+} /* USERNAME */
+.hr-management-page .unified-table th:nth-child(3) {
+  width: 15%;
+} /* EMAIL */
+.hr-management-page .unified-table th:nth-child(4) {
+  width: 11%;
+} /* PHONE */
+.hr-management-page .unified-table th:nth-child(5) {
+  width: 9%;
+} /* CANDIDATES */
+.hr-management-page .unified-table th:nth-child(6) {
+  width: 9%;
+} /* STATUS */
+.hr-management-page .unified-table th:nth-child(7) {
+  width: 11%;
+} /* LAST LOGIN */
+.hr-management-page .unified-table th:nth-child(8) {
+  width: 10%;
+} /* CREATED */
+.hr-management-page .unified-table th:nth-child(9) {
+  width: 21%;
+} /* ACTIONS */
 
 /* History page - 11 columns (keep default widths but increase actions) */
-.history-page-container .unified-table th:nth-child(11) { width: 10%; }  /* ACTIONS - Wider for 2 buttons */
+.history-page-container .unified-table th:nth-child(11) {
+  width: 10%;
+} /* ACTIONS - Wider for 2 buttons */
 
 /* HRPerformance page - 8 columns with inline editing */
-.hr-performance-page .unified-table th:nth-child(1) { width: 12%; }  /* CANDIDATE */
-.hr-performance-page .unified-table th:nth-child(2) { width: 14%; }  /* CONTACT */
-.hr-performance-page .unified-table th:nth-child(3) { width: 12%; }  /* PROFILE */
-.hr-performance-page .unified-table th:nth-child(4) { width: 13%; }  /* APPLIED TO */
-.hr-performance-page .unified-table th:nth-child(5) { width: 13%; }  /* STATUS (wider for inline edit) */
-.hr-performance-page .unified-table th:nth-child(6) { width: 12%; }  /* HR REMARK */
-.hr-performance-page .unified-table th:nth-child(7) { width: 14%; }  /* ADMIN REMARK (wider for inline edit) */
-.hr-performance-page .unified-table th:nth-child(8) { width: 10%; }  /* CREATED */
+.hr-performance-page .unified-table th:nth-child(1) {
+  width: 12%;
+} /* CANDIDATE */
+.hr-performance-page .unified-table th:nth-child(2) {
+  width: 14%;
+} /* CONTACT */
+.hr-performance-page .unified-table th:nth-child(3) {
+  width: 12%;
+} /* PROFILE */
+.hr-performance-page .unified-table th:nth-child(4) {
+  width: 13%;
+} /* APPLIED TO */
+.hr-performance-page .unified-table th:nth-child(5) {
+  width: 13%;
+} /* STATUS (wider for inline edit) */
+.hr-performance-page .unified-table th:nth-child(6) {
+  width: 12%;
+} /* HR REMARK */
+.hr-performance-page .unified-table th:nth-child(7) {
+  width: 14%;
+} /* ADMIN REMARK (wider for inline edit) */
+.hr-performance-page .unified-table th:nth-child(8) {
+  width: 10%;
+} /* CREATED */
 
 .unified-table th.text-center {
   text-align: center;
@@ -202,7 +309,7 @@
 
 /* Phone cell */
 .unified-table .cell-phone {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   color: #475569;
   white-space: nowrap;
 }
@@ -217,7 +324,7 @@
 /* Number cell */
 .unified-table .cell-number {
   text-align: right;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 /* Actions cell */
@@ -254,17 +361,17 @@
 /* Active/Open - Green */
 .status-active,
 .status-open {
-  background-color: #D1FAE5;
-  color: #065F46;
-  border-color: #10B981;
+  background-color: #2bff92;
+  color: #065f46;
+  border-color: #10b981;
 }
 
 /* Closed/Rejected - Red */
 .status-closed,
 .status-rejected {
-  background-color: #FEE2E2;
-  color: #991B1B;
-  border-color: #EF4444;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
 }
 
 /* On Hold/Tell Later - Yellow */
@@ -272,53 +379,59 @@
 .status-on_hold,
 .status-tell-later,
 .status-tell {
-  background-color: #FEF3C7;
-  color: #92400E;
-  border-color: #F59E0B;
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #f59e0b;
 }
 
 /* Draft/Inactive - Gray */
 .status-draft,
 .status-inactive,
 .status-default {
-  background-color: #E2E8F0;
-  color: #334155;
-  border-color: #64748B;
+  background-color: #ff8f8f;
+  color: #a42727;
+  border-color: rgb(142, 2, 2);
+}
+
+.status-inactive:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ff8f8f;
 }
 
 /* Pending - Yellow */
 .status-pending {
-  background-color: #FEF3C7;
-  color: #78350F;
-  border-color: #F59E0B;
+  background-color: #fef3c7;
+  color: #78350f;
+  border-color: #f59e0b;
 }
 
 /* Contacted - Blue */
 .status-contacted {
-  background-color: #DBEAFE;
-  color: #1E40AF;
-  border-color: #3B82F6;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #3b82f6;
 }
 
 /* Interested/Shortlisted - Green */
 .status-interested,
 .status-shortlisted {
-  background-color: #D1FAE5;
-  color: #065F46;
-  border-color: #10B981;
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #10b981;
 }
 
 /* Offered/Scheduled - Purple */
 .status-offered,
 .status-scheduled {
-  background-color: #E0E7FF;
-  color: #4338CA;
-  border-color: #6366F1;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  border-color: #6366f1;
 }
 
 /* Hired - Dark Green */
 .status-hired {
-  background-color: #D1FAE5;
+  background-color: #d1fae5;
   color: #047857;
   border-color: #059669;
 }
@@ -347,7 +460,7 @@
   max-width: 36px;
   height: 36px;
   border-radius: 6px;
-  border: 1.5px solid #E6EEF7;
+  border: 1.5px solid #e6eef7;
   background: #ffffff;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -371,20 +484,20 @@
 
 /* Button variants with specific hover colors */
 .unified-btn-edit:hover {
-  background: #2F80ED;
-  border-color: #2F80ED;
+  background: #2f80ed;
+  border-color: #2f80ed;
   color: white;
 }
 
 .unified-btn-view:hover {
-  background: #10B981;
-  border-color: #10B981;
+  background: #10b981;
+  border-color: #10b981;
   color: white;
 }
 
 .unified-btn-download:hover {
   background: #8b5cf6;
-  border-color: #8b5cf6;
+  border-color: #6532fd;
   color: white;
 }
 
@@ -395,38 +508,38 @@
 }
 
 .unified-btn-apply:hover {
-  background: #10B981;
-  border-color: #10B981;
+  background: #10b981;
+  border-color: #10b981;
   color: white;
 }
 
 .unified-btn-pause:hover {
-  background: #F59E0B;
-  border-color: #F59E0B;
+  background: #f59e0b;
+  border-color: #f59e0b;
   color: white;
 }
 
 .unified-btn-lock:hover {
-  background: #6366F1;
-  border-color: #6366F1;
+  background: #6366f1;
+  border-color: #6366f1;
   color: white;
 }
 
 .unified-btn-delete:hover {
-  background: #E05050;
-  border-color: #E05050;
+  background: #e05050;
+  border-color: #e05050;
   color: white;
 }
 
 .unified-btn-warning:hover {
-  background: #F59E0B;
-  border-color: #F59E0B;
+  background: #f59e0b;
+  border-color: #f59e0b;
   color: white;
 }
 
 .unified-btn-success:hover {
-  background: #10B981;
-  border-color: #10B981;
+  background: #10b981;
+  border-color: #10b981;
   color: white;
 }
 
@@ -438,20 +551,20 @@
 
 /* WhatsApp button - Light green theme */
 .whatsapp-btn {
-  background: #EAFAF0;
+  background: #eafaf0;
   border-color: rgba(37, 211, 102, 0.2);
-  color: #25D366;
+  color: #25d366;
 }
 
 .whatsapp-btn .whatsapp-icon {
-  color: #25D366;
-  fill: #25D366;
+  color: #25d366;
+  fill: #25d366;
   transition: color 0.15s, fill 0.15s;
 }
 
 .whatsapp-btn:hover {
-  background: #25D366 !important;
-  border-color: #25D366 !important;
+  background: #25d366 !important;
+  border-color: #25d366 !important;
   color: #ffffff !important;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
   transform: translateY(-1px);
@@ -463,11 +576,10 @@
   fill: #ffffff !important;
 }
 
-
 .whatsapp-btn:disabled {
-  background: #F3F4F6;
-  border-color: #E5E7EB;
-  color: #9CA3AF;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -475,9 +587,9 @@
 .whatsapp-btn:disabled:hover {
   transform: none;
   box-shadow: none;
-  background: #F3F4F6;
-  border-color: #E5E7EB;
-  color: #9CA3AF;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
 }
 
 .whatsapp-icon {
@@ -666,13 +778,13 @@
   .unified-table-wrapper {
     display: none !important;
   }
-  
+
   /* Show card view on mobile */
   .unified-mobile-cards {
     display: block;
     padding: 0.75rem;
   }
-  
+
   .unified-mobile-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -681,11 +793,11 @@
     margin-bottom: 0.75rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
-  
+
   .unified-mobile-card:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .unified-card-header {
     display: flex;
     justify-content: space-between;
@@ -693,29 +805,29 @@
     margin-bottom: 0.75rem;
     gap: 0.75rem;
   }
-  
+
   .unified-card-title {
     flex: 1;
   }
-  
+
   .unified-card-name {
     font-weight: 600;
     color: #0f172a;
     font-size: 0.875rem;
     margin-bottom: 0.25rem;
   }
-  
+
   .unified-card-subtitle {
     font-size: 0.75rem;
     color: #64748b;
   }
-  
+
   .unified-card-body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .unified-card-row {
     display: flex;
     justify-content: space-between;
@@ -724,21 +836,21 @@
     border-bottom: 1px solid #f1f5f9;
     font-size: 0.75rem;
   }
-  
+
   .unified-card-row:last-child {
     border-bottom: none;
   }
-  
+
   .unified-card-label {
     font-weight: 600;
     color: #64748b;
   }
-  
+
   .unified-card-value {
     color: #1e293b;
     text-align: right;
   }
-  
+
   .unified-card-footer {
     display: flex;
     justify-content: flex-end;
@@ -777,21 +889,21 @@
     padding: 0.5rem 0.625rem;
     font-size: 0.65rem;
   }
-  
+
   .unified-table td {
     max-width: 200px;
   }
-  
+
   .unified-status-badge {
     padding: 0.188rem 0.5rem;
     font-size: 0.563rem;
   }
-  
+
   .unified-action-btn {
     width: 26px;
     height: 26px;
   }
-  
+
   .unified-action-btn svg {
     width: 13px;
     height: 13px;
@@ -805,31 +917,31 @@
     padding: 0.5rem 0.625rem;
     font-size: 0.625rem;
   }
-  
+
   .unified-table td {
     max-width: 180px;
   }
-  
+
   .unified-table th.hide-tablet,
   .unified-table td.hide-tablet {
     display: none;
   }
-  
+
   .unified-status-badge {
     padding: 0.188rem 0.5rem;
     font-size: 0.563rem;
   }
-  
+
   .unified-action-btn {
     width: 24px;
     height: 24px;
   }
-  
+
   .unified-action-btn svg {
     width: 12px;
     height: 12px;
   }
-  
+
   .unified-action-buttons {
     gap: 0.25rem;
   }
@@ -842,7 +954,7 @@
     height: 32px;
     font-size: 0.875rem;
   }
-  
+
   .unified-action-btn svg {
     width: 16px;
     height: 16px;
@@ -860,7 +972,7 @@
 }
 
 .unified-table-loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -887,16 +999,16 @@
   .unified-action-buttons {
     display: none !important;
   }
-  
+
   .unified-table tbody tr:hover {
     background-color: inherit !important;
     box-shadow: none !important;
   }
-  
+
   .unified-table-wrapper {
     overflow: visible !important;
   }
-  
+
   .unified-table {
     font-size: 10pt !important;
   }
@@ -922,11 +1034,11 @@
   .unified-table th {
     border: 2px solid currentColor;
   }
-  
+
   .unified-table td {
     border: 1px solid currentColor;
   }
-  
+
   .unified-status-badge {
     border-width: 2px;
   }
@@ -939,8 +1051,10 @@
   .unified-status-badge {
     transition: none;
   }
-  
+
   .unified-action-btn:hover {
     transform: none;
   }
 }
+
+

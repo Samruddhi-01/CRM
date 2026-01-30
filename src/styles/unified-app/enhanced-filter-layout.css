@@ -4,27 +4,50 @@
  * Professional styling with proper fonts and spacing
  */
 
+
 /* ========================================
    MAIN FILTER LAYOUT CONTAINER
    ======================================== */
 
 .app-ui .filter-layout-container {
   display: flex;
+  flex-direction: column; /* filters on top */
   gap: 20px;
-  min-height: calc(100vh - 120px);
 }
 
-/* Left Sidebar Filter */
+/* Each filter box */
+.app-ui .filter-sidebar .filter-group {
+  flex: 1 1 220px; /* width control */
+  max-width: 240px;
+  min-width: 200px;
+}
+
+.app-ui .filter-sidebar input,
+.app-ui .filter-sidebar select,
+.app-ui .filter-sidebar .multi-select__control {
+  height: 42px;
+  border-radius: 6px;
+}
+
+
+
 .app-ui .filter-sidebar {
-  width: 320px;
+  width: 100%;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 20px;
-  height: fit-content;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  flex-shrink: 0;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
+
+
+
 
 /* Main Content Area */
 .app-ui .filter-main-content {
@@ -99,6 +122,8 @@
   box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
 }
 
+
+
 /* Sort Section */
 .app-ui .sort-section {
   display: flex;
@@ -126,6 +151,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+
 
 /* ========================================
    FILTER SECTIONS IN SIDEBAR
@@ -413,3 +440,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+

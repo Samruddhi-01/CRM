@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/pages/profile.css';
 import { selectUser } from '../redux/slices/authSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import { updateProfile } from '../services/api';
+import { updateUser } from '../redux/slices/authSlice';
+
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -82,38 +85,39 @@ const Profile = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      toast.error('Please fix the errors in the form');
-      return;
-    }
+  e.preventDefault();
 
-    setLoading(true);
-    
-    try {
-      // TODO: Implement API call to update profile
-      // const response = await apiService.put('/auth/profile', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success('Profile updated successfully');
-      setIsEditing(false);
-      
-      // Reset password fields
-      setFormData(prev => ({
-        ...prev,
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      }));
-    } catch (error) {
-      toast.error(error.message || 'Failed to update profile');
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (!validateForm()) {
+    toast.error("Fix form errors");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await updateProfile(formData);
+
+    const updatedUser =
+      res.data?.data?.user ||
+      res.data?.data ||
+      res.data?.user ||
+      res.data;
+
+    dispatch(updateUser(updatedUser));
+
+    toast.success("Profile updated!");
+    console.log("Update API response:", res.data);
+    setIsEditing(false);
+
+  } catch (err) {
+    console.log("Update error:", err);
+    toast.error(err.message || "Update failed!");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   const handleCancel = () => {
     setIsEditing(false);

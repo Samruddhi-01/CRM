@@ -24,6 +24,10 @@ if (process.env.NODE_ENV === 'development') {
   );
 }
 
+export const updateProfile = (data) => {
+  return api.put('/api/auth/profile', data);
+};
+
 // Request Interceptor - Attach JWT token
 api.interceptors.request.use(
   (config) => {
@@ -136,6 +140,10 @@ const apiService = {
       },
     });
   },
+
+  //profile update
+
+  
   
   // File download
   download: (url, filename) => {
