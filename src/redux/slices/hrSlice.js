@@ -21,7 +21,7 @@ export const fetchHRUsers = createAsyncThunk(
   'hr/fetchHRUsers',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/hr');
+      const response = await apiService.get('/api/admin/hr');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch HR users');
@@ -34,7 +34,7 @@ export const fetchHRUsersPaginated = createAsyncThunk(
   'hr/fetchHRUsersPaginated',
   async ({ page = 0, size = 10 }, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/hr/paginated', {
+      const response = await apiService.get('/api/admin/hr/paginated', {
         params: { page, size }
       });
       return response.data.data || response.data;
@@ -62,7 +62,7 @@ export const createHRUser = createAsyncThunk(
   'hr/createHRUser',
   async (hrData, { rejectWithValue }) => {
     try {
-      const response = await apiService.post('/admin/hr', hrData);
+      const response = await apiService.post('/api/admin/hr', hrData);
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message || 'Failed to create HR user');

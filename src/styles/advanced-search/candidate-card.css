@@ -565,6 +565,18 @@
   margin-right: 6px;
 }
 
+.percentage-badge {
+  display: inline-block;
+  background-color: #F0FDF4;
+  color: #166534;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 6px;
+  border: 1px solid #BBF7D0;
+}
+
 .specialization-text {
   font-size: 0.813rem;
   color: #475569;

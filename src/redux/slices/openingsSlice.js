@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../services/api';
+import apiService from '../../services/api';
 import { logout } from './authSlice';
 
 // Async thunks
@@ -19,11 +19,15 @@ export const fetchOpenings = createAsyncThunk(
       
       console.log('🔍 Fetching openings with params:', Object.fromEntries(params));
       
-      const response = await api.get(`/hr/openings?${params}`);
+      const response = await apiService.get(`/api/hr/openings?${params}`);
       console.log('✅ Openings fetched:', response.data.data);
       return response.data.data;
     } catch (error) {
       console.error('❌ Failed to fetch openings:', error);
+      console.error('❌ Error response:', error.response);
+      console.error('❌ Error status:', error.response?.status);
+      console.error('❌ Error data:', error.response?.data);
+      console.error('❌ Error message:', error.response?.data?.message || error.message);
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch openings');
     }
   }
@@ -33,7 +37,7 @@ export const fetchOpeningById = createAsyncThunk(
   'openings/fetchById',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/hr/openings/${id}`);
+      const response = await apiService.get(`/api/hr/openings/${id}`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch opening');
@@ -45,7 +49,7 @@ export const createOpening = createAsyncThunk(
   'openings/create',
   async (openingData, { rejectWithValue }) => {
     try {
-      const response = await api.post('/hr/openings', openingData);
+      const response = await apiService.post('/api/hr/openings', openingData);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to create opening');
@@ -57,9 +61,14 @@ export const updateOpening = createAsyncThunk(
   'openings/update',
   async ({ id, ...updateData }, { rejectWithValue }) => {
     try {
-      const response = await api.put(`/hr/openings/${id}`, updateData);
+      const response = await apiService.put(`/api/hr/openings/${id}`, updateData);
       return response.data.data;
     } catch (error) {
+      console.error('❌ Failed to update opening:', error);
+      console.error('❌ Error response:', error.response);
+      console.error('❌ Error status:', error.response?.status);
+      console.error('❌ Error data:', error.response?.data);
+      console.error('❌ Error message:', error.response?.data?.message || error.message);
       return rejectWithValue(error.response?.data?.message || 'Failed to update opening');
     }
   }
@@ -69,9 +78,55 @@ export const deleteOpening = createAsyncThunk(
   'openings/delete',
   async (id, { rejectWithValue }) => {
     try {
-      await api.delete(`/hr/openings/${id}`);
-      return id;
+      console.log('🗑️ Deleting opening with ID:', id);
+      
+      // Try to delete the opening directly first
+      try {
+        const response = await apiService.delete(`/api/hr/openings/${id}`);
+        console.log('✅ Opening deleted successfully:', response);
+        return id;
+      } catch (deleteError) {
+        // If it fails due to foreign key constraint, try to handle applications
+        if (deleteError.message && deleteError.message.includes('foreign key constraint')) {
+          console.log('⚠️ Foreign key constraint detected, trying to remove applications first...');
+          
+          // Fetch applications
+          try {
+            const applicationsResponse = await apiService.get(`/api/hr/openings/${id}/applications?size=100`);
+            const applications = applicationsResponse.data?.data?.content || [];
+            console.log('📋 Found applications:', applications.length);
+            
+            // Delete each application individually
+            for (const application of applications) {
+              try {
+                console.log('🗑️ Removing application for candidate:', application.candidateId);
+                await apiService.delete(`/api/hr/openings/${id}/candidates/${application.candidateId}`);
+                console.log('✅ Application removed successfully');
+              } catch (appError) {
+                console.warn('⚠️ Could not remove application:', appError.message);
+              }
+            }
+            
+            // Try deleting the opening again
+            console.log('🔄 Retrying opening deletion...');
+            const response = await apiService.delete(`/api/hr/openings/${id}`);
+            console.log('✅ Opening deleted successfully on retry:', response);
+            return id;
+            
+          } catch (fetchError) {
+            console.error('❌ Could not handle applications:', fetchError);
+            throw deleteError; // Throw the original error
+          }
+        } else {
+          throw deleteError; // Re-throw if it's not a foreign key error
+        }
+      }
     } catch (error) {
+      console.error('❌ Failed to delete opening:', error);
+      console.error('❌ Error response:', error.response);
+      console.error('❌ Error status:', error.response?.status);
+      console.error('❌ Error data:', error.response?.data);
+      console.error('❌ Error message:', error.response?.data?.message || error.message);
       return rejectWithValue(error.response?.data?.message || 'Failed to delete opening');
     }
   }
@@ -81,7 +136,7 @@ export const updateOpeningStatus = createAsyncThunk(
   'openings/updateStatus',
   async ({ id, status }, { rejectWithValue }) => {
     try {
-      const response = await api.patch(`/hr/openings/${id}/status?status=${status}`);
+      const response = await apiService.patch(`/api/hr/openings/${id}/status?status=${status}`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to update status');
@@ -93,7 +148,7 @@ export const applyToOpening = createAsyncThunk(
   'openings/apply',
   async ({ openingId, candidateId, notes = '', status = 'APPLIED' }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`/hr/openings/${openingId}/apply`, {
+      const response = await apiService.post(`/api/hr/openings/${openingId}/apply`, {
         candidateId,
         notes,
         applicationStatus: status
@@ -115,7 +170,7 @@ export const fetchOpeningApplications = createAsyncThunk(
         sortBy,
         sortDir
       });
-      const response = await api.get(`/hr/openings/${openingId}/applications?${params}`);
+      const response = await apiService.get(`/api/hr/openings/${openingId}/applications?${params}`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch applications');
@@ -127,7 +182,7 @@ export const updateApplicationStatus = createAsyncThunk(
   'openings/updateApplicationStatus',
   async ({ openingId, candidateId, status }, { rejectWithValue }) => {
     try {
-      const response = await api.patch(`/hr/openings/${openingId}/candidates/${candidateId}/status?status=${status}`);
+      const response = await apiService.patch(`/api/hr/openings/${openingId}/candidates/${candidateId}/status?status=${status}`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to update application status');
@@ -139,7 +194,7 @@ export const removeApplication = createAsyncThunk(
   'openings/removeApplication',
   async ({ openingId, candidateId }, { rejectWithValue }) => {
     try {
-      await api.delete(`/hr/openings/${openingId}/candidates/${candidateId}`);
+      await apiService.delete(`/api/hr/openings/${openingId}/candidates/${candidateId}`);
       return { openingId, candidateId };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to remove application');

@@ -27,7 +27,7 @@ import com.startica.privateapp.candidate.service.CandidateService;
 
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {

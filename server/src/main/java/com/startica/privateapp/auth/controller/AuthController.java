@@ -42,5 +42,13 @@ public class AuthController {
         authService.logout(user.getId());
         return ResponseEntity.ok(ApiResponse.success("Logout successful", null));
     }
+    @PutMapping("/email")
+    public ResponseEntity<ApiResponse<User>> updateEmail(
+            @RequestParam String email
+    ) {
+        User updatedUser = authService.updateEmail(email);
+        return ResponseEntity.ok(ApiResponse.success("Email updated successfully", updatedUser));
+    }
+
 }
 

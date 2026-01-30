@@ -25,6 +25,10 @@ public class CandidateSearchRequest {
     private String minExpectedCTC;
     private String maxExpectedCTC;
     
+    // Education Percentage Range
+    private Integer minPercentage;
+    private Integer maxPercentage;
+    
     // Location
     private List<String> locations;
     

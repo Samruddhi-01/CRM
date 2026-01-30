@@ -71,6 +71,27 @@
   }
 }
 
+/* Openings Page Form Inputs - Blue Border by Default */
+.openings-page .form-input,
+.openings-page .form-select {
+  border: 1px solid #3B82F6 !important;
+  background-color: #FFFFFF;
+  color: #1E293B;
+}
+
+.openings-page .form-input:focus,
+.openings-page .form-select:focus {
+  outline: none;
+  border-color: #2563EB !important;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.openings-page .form-input:hover,
+.openings-page .form-select:hover {
+  border-color: #2563EB !important;
+}
+
 @media (max-width: 400px) {
   .openings-page.app-ui .page-header {
     margin: 8px 8px 0 8px;

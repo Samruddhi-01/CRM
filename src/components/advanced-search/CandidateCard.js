@@ -35,6 +35,7 @@ const CandidateCard = ({ candidate, onViewProfile, onDownloadResume }) => {
     specialization = '',
     passingYear = null,
     educationGap = '',
+    percentage = null,
     status = '',
     isVerified = false,
     updatedAt = null,
@@ -226,12 +227,13 @@ const CandidateCard = ({ candidate, onViewProfile, onDownloadResume }) => {
           </div>
         )}
 
-        {(degree || specialization) && (
+        {(degree || specialization || percentage) && (
           <div className="candidate-info-item">
             <div className="candidate-info-label">Education</div>
             <div className="candidate-info-value">
               {degree && <span className="education-badge">{degree}</span>}
               {specialization && <span className="specialization-text">{specialization}</span>}
+              {percentage && <span className="percentage-badge">{percentage}%</span>}
               {passingYear && <span className="passing-year-text">'{String(passingYear).slice(-2)}</span>}
             </div>
           </div>

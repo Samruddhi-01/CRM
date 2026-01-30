@@ -13,6 +13,9 @@ const api = axios.create({
   timeout: 30000,
 });
 
+// Debug: Log the actual API URL being used
+console.log('🔗 API Base URL:', API_BASE_URL);
+
 // Add request logging in development
 if (process.env.NODE_ENV === 'development') {
   api.interceptors.request.use(

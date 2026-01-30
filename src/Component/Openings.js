@@ -467,21 +467,20 @@ const Openings = () => {
               
               <div className="filter-actions">
                 <button 
-                  className="btn btn-secondary" 
+                  className="btn btn-danger" 
                   onClick={() => {
                     console.log('🗑️ Clearing all filters');
                     setSearchTerm('');
                     setStatusFilter('');
                     setDepartmentFilter('');
-                    dispatch(setFilters({ search: '', status: '', department: '' }));
-                    dispatch(setPage(0));
-                    dispatch(fetchOpenings({ 
-                      search: '', 
-                      status: '', 
+                    setItemsPerPage(10);
+                    dispatch(setFilters({
+                      search: '',
+                      status: '',
                       department: '',
-                      page: 0,
-                      size: itemsPerPage
+                      itemsPerPage: 10
                     }));
+                    dispatch(setPage(0));
                   }}
                 >
                   Clear Filters

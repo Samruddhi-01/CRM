@@ -45,7 +45,7 @@ export const fetchMetrics = createAsyncThunk(
   'admin/fetchMetrics',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/overview');
+      const response = await apiService.get('/api/admin/metrics/overview');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch metrics');
@@ -58,7 +58,7 @@ export const fetchMonthlyData = createAsyncThunk(
   'admin/fetchMonthlyData',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/monthly');
+      const response = await apiService.get('/api/admin/metrics/monthly');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch monthly data');
@@ -71,7 +71,7 @@ export const fetchWeeklyData = createAsyncThunk(
   'admin/fetchWeeklyData',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/weekly');
+      const response = await apiService.get('/api/admin/metrics/weekly');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch weekly data');
@@ -84,7 +84,7 @@ export const fetchUserStats = createAsyncThunk(
   'admin/fetchUserStats',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/stats');
+      const response = await apiService.get('/api/admin/stats');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch user stats');
@@ -97,7 +97,7 @@ export const fetchAllUsers = createAsyncThunk(
   'admin/fetchAllUsers',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/users');
+      const response = await apiService.get('/api/admin/users');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch users');
@@ -110,7 +110,7 @@ export const fetchDashboardSummary = createAsyncThunk(
   'admin/fetchDashboardSummary',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/dashboard');
+      const response = await apiService.get('/api/admin/dashboard');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.data?.error || error.message || 'Failed to fetch dashboard');
@@ -137,7 +137,7 @@ export const fetchHRs = createAsyncThunk(
   async ({ page, pageSize, search }, { rejectWithValue }) => {
     try {
       const params = { page, size: pageSize, search };
-      const response = await apiService.get('/admin/hr', { params });
+      const response = await apiService.get('/api/admin/hr', { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to fetch HRs');
@@ -150,7 +150,7 @@ export const createHR = createAsyncThunk(
   'admin/createHR',
   async (hrData, { rejectWithValue }) => {
     try {
-      const response = await apiService.post('/admin/hr', hrData);
+      const response = await apiService.post('/api/admin/hr', hrData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to create HR');
@@ -163,7 +163,7 @@ export const updateHR = createAsyncThunk(
   'admin/updateHR',
   async ({ id, data }, { rejectWithValue }) => {
     try {
-      const response = await apiService.put(`/admin/hr/${id}`, data);
+      const response = await apiService.put(`/api/admin/hr/${id}`, data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to update HR');
@@ -176,7 +176,7 @@ export const toggleHRStatus = createAsyncThunk(
   'admin/toggleHRStatus',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await apiService.patch(`/admin/hr/${id}/toggle-status`);
+      const response = await apiService.patch(`/api/admin/hr/${id}/toggle-status`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to toggle HR status');
@@ -190,7 +190,7 @@ export const fetchAuditLogs = createAsyncThunk(
   async ({ page, pageSize, filters }, { rejectWithValue }) => {
     try {
       const params = { page, size: pageSize, ...filters };
-      const response = await apiService.get('/admin/audit', { params });
+      const response = await apiService.get('/api/admin/audit', { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to fetch audit logs');
@@ -204,7 +204,7 @@ export const exportCandidates = createAsyncThunk(
   async ({ format, filters }, { rejectWithValue }) => {
     try {
       const filename = `candidates_export_${Date.now()}.${format}`;
-      await apiService.download(`/admin/export?format=${format}`, filename);
+      await apiService.download(`/api/admin/export?format=${format}`, filename);
       return { success: true };
     } catch (error) {
       return rejectWithValue(error.message || 'Export failed');

@@ -35,6 +35,7 @@ const AdvancedSearchNew = () => {
     specialization: '',
     passingYearRange: [2000, currentYear],
     educationGap: [],
+    percentage: [0, 100],
     status: [],
     company: '',
     profile: '',
@@ -97,6 +98,12 @@ const AdvancedSearchNew = () => {
       
       // Education Gap - send as array
       if (filters.educationGap?.length > 0) cleanFilters.educationGap = filters.educationGap;
+      
+      // Percentage - send as min/max
+      if (filters.percentage && (filters.percentage[0] > 0 || filters.percentage[1] < 100)) {
+        cleanFilters.minPercentage = filters.percentage[0];
+        cleanFilters.maxPercentage = filters.percentage[1];
+      }
       
       // Status - map to applicationStatus for backend
       if (filters.status?.length > 0) cleanFilters.applicationStatus = filters.status;
@@ -295,6 +302,7 @@ const AdvancedSearchNew = () => {
       specialization: '',
       passingYearRange: [2000, currentYear],
       educationGap: [],
+      percentage: [0, 100],
       status: [],
       company: '',
       profile: '',
@@ -405,6 +413,15 @@ const AdvancedSearchNew = () => {
         key: 'degree',
         category: 'Degree',
         value: filters.degree.join(', ')
+      });
+    }
+
+    // Percentage
+    if (filters.percentage && (filters.percentage[0] > 0 || filters.percentage[1] < 100)) {
+      active.push({
+        key: 'percentage',
+        category: 'Percentage',
+        value: `${filters.percentage[0]}% - ${filters.percentage[1]}%`
       });
     }
 

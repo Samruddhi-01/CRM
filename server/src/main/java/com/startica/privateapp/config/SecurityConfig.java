@@ -41,9 +41,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:4200"));
+        configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
         
@@ -60,15 +60,19 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/refresh").permitAll()
+                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/refresh").permitAll()
+                .requestMatchers("/api/admin/**").permitAll()
+                .requestMatchers("/admin/**").permitAll()
+               // .requestMatchers("/api/hr/**").permitAll()
+                    .requestMatchers("/api/hr/**").hasAnyRole("HR", "ADMIN")
+                    .requestMatchers("/hr/**").permitAll()
+                .requestMatchers("/api/candidates/**").permitAll()
+                .requestMatchers("/candidates/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/hr/**").hasAnyRole("ADMIN", "HR")
-                .requestMatchers("/hr/**").hasAnyRole("ADMIN", "HR")
-                .requestMatchers("/api/candidates/**").hasAnyRole("ADMIN", "HR")
-                .requestMatchers("/candidates/**").hasAnyRole("ADMIN", "HR")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));

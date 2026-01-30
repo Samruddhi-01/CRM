@@ -279,9 +279,12 @@ public class GlobalSearchService {
             System.out.println("🔍 Advanced Search - Query: " + query + ", Filters: " + filters.keySet());
             
             // Build specifications based on filters
-            org.springframework.data.jpa.domain.Specification<Candidate> spec = 
-                org.springframework.data.jpa.domain.Specification.where(null);
-            
+//            org.springframework.data.jpa.domain.Specification<Candidate> spec =
+//                org.springframework.data.jpa.domain.Specification.where(null);
+//
+            org.springframework.data.jpa.domain.Specification<Candidate> spec =
+                    (root, queryObj, cb) -> cb.conjunction();
+
             // Apply HR filter for non-admin users
             if (currentUser != null && currentUser.getRole() == com.startica.privateapp.model.Role.HR) {
                 spec = spec.and((root, criteriaQuery, criteriaBuilder) -> 
@@ -524,6 +527,26 @@ public class GlobalSearchService {
                 }
             }
             
+            // ============ PERCENTAGE FILTER ============
+            if (filters.containsKey("minPercentage") || filters.containsKey("maxPercentage")) {
+                Integer minPercentage = filters.containsKey("minPercentage") ? 
+                    ((Number) filters.get("minPercentage")).intValue() : null;
+                Integer maxPercentage = filters.containsKey("maxPercentage") ? 
+                    ((Number) filters.get("maxPercentage")).intValue() : null;
+                
+                if (minPercentage != null || maxPercentage != null) {
+                    spec = spec.and((root, criteriaQuery, criteriaBuilder) -> {
+                        if (minPercentage != null && maxPercentage != null) {
+                            return criteriaBuilder.between(root.get("percentage"), minPercentage, maxPercentage);
+                        } else if (minPercentage != null) {
+                            return criteriaBuilder.greaterThanOrEqualTo(root.get("percentage"), minPercentage);
+                        } else {
+                            return criteriaBuilder.lessThanOrEqualTo(root.get("percentage"), maxPercentage);
+                        }
+                    });
+                }
+            }
+            
             // ============ EXTRACT IN-MEMORY FILTER PARAMETERS ============
             // Experience filter - will be applied in-memory due to string storage
             Double targetExp = null;
@@ -537,6 +560,8 @@ public class GlobalSearchService {
             Integer maxCurrentCTC = null;
             Integer minExpectedCTC = null;
             Integer maxExpectedCTC = null;
+            Integer minPercentage = null;
+            Integer maxPercentage = null;
             
             if (filters.containsKey("minCurrentCTC")) {
                 minCurrentCTC = ((Number) filters.get("minCurrentCTC")).intValue();
@@ -550,7 +575,15 @@ public class GlobalSearchService {
             if (filters.containsKey("maxExpectedCTC")) {
                 maxExpectedCTC = ((Number) filters.get("maxExpectedCTC")).intValue();
             }
-            
+            if (filters.containsKey("minPercentage")) {
+                minPercentage = ((Number) filters.get("minPercentage")).intValue();
+            }
+            if (filters.containsKey("maxPercentage")) {
+                maxPercentage = ((Number) filters.get("maxPercentage")).intValue();
+            }
+
+            final Integer finalMinPercentage = minPercentage;
+            final Integer finalMaxPercentage = maxPercentage;
             final Integer finalMinCurrentCTC = minCurrentCTC;
             final Integer finalMaxCurrentCTC = maxCurrentCTC;
             final Integer finalMinExpectedCTC = minExpectedCTC;
@@ -628,7 +661,20 @@ public class GlobalSearchService {
                             }
                         }
                     }
-                    
+                    // Percentage filter
+//                    if (finalMinPercentage != null || finalMaxPercentage != null) {
+//                        String pctStr = candidate.getPercentage();
+//                        if (pctStr != null && !pctStr.trim().isEmpty()) {
+//                            try {
+//                                double pct = Double.parseDouble(pctStr.replaceAll("[^0-9.]", ""));
+//                                if (finalMinPercentage != null && pct < finalMinPercentage) return false;
+//                                if (finalMaxPercentage != null && pct > finalMaxPercentage) return false;
+//                            } catch (Exception e) {
+//                                // ignore parsing errors
+//                            }
+//                        }
+//                    }
+
                     // Expected CTC filter
                     if (finalMinExpectedCTC != null || finalMaxExpectedCTC != null) {
                         String expectedStr = candidate.getExpectedCTC();
@@ -728,6 +774,7 @@ public class GlobalSearchService {
         map.put("status", candidate.getStatus() != null ? candidate.getStatus().toString() : "PENDING");
         map.put("isVerified", false); // Field doesn't exist in Candidate model
         map.put("updatedAt", candidate.getUpdatedAt());
+        map.put("percentage", candidate.getPercentage());
         return map;
     }
 }

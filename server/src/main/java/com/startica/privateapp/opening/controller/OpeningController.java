@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hr/openings")
+@RequestMapping("/api/hr/openings")
 @RequiredArgsConstructor
 @Slf4j
 @PreAuthorize("hasAnyRole('ADMIN', 'HR')")
