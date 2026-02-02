@@ -477,8 +477,7 @@
   font-size: 0.75rem;
 }
 
-.contact-cell,
-.profile-cell {
+.contact-cell {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;

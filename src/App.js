@@ -35,6 +35,8 @@ import Profile from "./Component/Profile";
 import Analytics from "./Component/Analytics";
 import AdminReports from "./Component/AdminReports";
 import AdvancedSearch from "./Component/AdvancedSearch";
+import Appointment from "./Component/Appointment";
+import AppointmentForm from "./Component/AppointmentForm";
 import AdvancedSearchNew from "./Component/AdvancedSearchNew";
 import SearchDebugger from "./Component/SearchDebugger";
 import HRPerformance from "./Component/HRPerformance";
@@ -229,6 +231,29 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            /><Route
+              path="/appointments"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <Appointment />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appointments/new"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <AppointmentForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appointments/:id"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <AppointmentForm />
                 </ProtectedRoute>
               }
             />
