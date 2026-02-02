@@ -46,7 +46,7 @@ public class SecurityConfig {
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -72,7 +72,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/candidates/**").permitAll()
                 .requestMatchers("/candidates/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .anyRequest().permitAll()
+                    .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+                    .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+                    .anyRequest().permitAll()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));

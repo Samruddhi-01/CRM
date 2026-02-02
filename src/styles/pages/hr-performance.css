@@ -427,11 +427,11 @@
 }
 
 .contact-cell,
-.profile-cell {
+/* .profile-cell {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-}
+} */
 
 .text-muted {
   color: #94a3b8;

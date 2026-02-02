@@ -594,7 +594,7 @@ const Candidates = () => {
     <div className="app-ui candidates-page">
       <Toaster />
       
-      {/* Debug: Show export popup state
+      Debug: Show export popup state
       {showExportPopup && (
         <div style={{
           position: 'fixed',
@@ -607,7 +607,7 @@ const Candidates = () => {
         }}>
           Popup is OPEN!
         </div>
-      )} */}
+      )}
       
       {/* Page Header */}
       <div className="page-header">

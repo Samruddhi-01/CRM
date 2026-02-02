@@ -19,6 +19,8 @@ import ZerlakLoginPage from "./Component/ZerlakLoginPage";
 import RegistrationForm from "./Component/RegistrationForm";
 import Dashboard from './Component/Dashboard';
 import Candidates from './Component/Candidates';
+import Appointments from './Component/Appointments';
+import AppointmentForm from './Component/AppointmentForm';
 import CandidateForm from './Component/CandidateForm';
 import History from './Component/History';
 import HRManagement from './Component/HRManagement';
@@ -189,6 +191,30 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appointments"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <Appointments />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appointments/new"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <AppointmentForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appointments/:id"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.HR]}>
+                  <AppointmentForm />
                 </ProtectedRoute>
               }
             />
