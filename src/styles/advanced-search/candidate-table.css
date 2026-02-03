@@ -1,0 +1,58 @@
+/* ================= ADVANCE SEARCH TABLE CONTAINER ================= */
+
+.advance-table-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* SCROLL AREA */
+.advance-table-scroll {
+  max-height: 70vh;          /* Vertical scroll area */
+  overflow: auto;            /* Both horizontal & vertical scroll */
+  position: relative;
+}
+
+/* Smooth scrollbars */
+.advance-table-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.advance-table-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.advance-table-scroll::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 6px;
+}
+.advance-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* TABLE LAYOUT FOR LARGE DATA */
+.advance-search-table {
+  min-width: 1800px;      /* Forces horizontal scroll */
+  table-layout: fixed;    /* Keeps column widths stable */
+}
+
+.advance-search-table thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #0d2b66 0%, #1a3d7a 100%);
+  color: white;
+  z-index: 20;
+}
+
+
+
+.advance-search-table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Allow wrapping only in Contact column */
+.advance-search-table td:nth-child(2) {
+  white-space: normal;
+}

@@ -10,7 +10,7 @@
 @import './search-bar.css';
 @import './filter-sidebar.css';
 @import './experience-range-filter.css';
-@import './candidate-card.css';
+@import './candidate-table.css';
 @import './results-layout.css';
 @import './saved-search-modal.css';
 @import './pagination.css';
@@ -217,7 +217,7 @@
 .advanced-search-container .active-filters-bar,
 .advanced-search-container .active-filters-bar *,
 .advanced-search-container .results-container,
-.advanced-search-container .results-container * {
+.advanced-search-container .results-container  {
   color: #111111 !important;
 }
 
@@ -251,8 +251,8 @@
 }
 
 /* Icons - subtle gray for visual hierarchy */
-.advanced-search-container svg,
+/* .advanced-search-container svg,
 .advanced-search-container .lucide,
 .advanced-search-container .icon {
-  color: #616161 !important;
-}
+  color: #616161;
+} */

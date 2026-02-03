@@ -1,60 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { Search, X, Save, FolderOpen, HelpCircle } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Search, X, Save, FolderOpen, HelpCircle } from "lucide-react";
 
-const SearchBar = ({ 
-  value, 
-  onChange, 
-  onSearch, 
-  onClear, 
-  onSaveSearch, 
+const SearchBar = ({
+  value = "",              // ✅ prevent uncontrolled warning
+  onChange,
+  onSearch,
+  onClear,
+  onSaveSearch,
   onLoadSearch,
   isLoading = false,
-  savedSearches = []
+  savedSearches = [],
 }) => {
   const [showOperators, setShowOperators] = useState(false);
-  const [localValue, setLocalValue] = useState(value);
+  const [localValue, setLocalValue] = useState(value || "");
 
+  // Sync with parent value
   useEffect(() => {
-    setLocalValue(value);
+    setLocalValue(value || "");
   }, [value]);
 
   const handleChange = (e) => {
-    setLocalValue(e.target.value);
-    onChange(e.target.value);
+    const val = e.target.value;
+    setLocalValue(val);
+    onChange(val); // only updates state, does NOT auto search
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      onSearch();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSearch(); // 🔥 search ONLY on Enter
     }
   };
 
   const handleClear = () => {
-    setLocalValue('');
-    onClear();
+    setLocalValue("");
+    onClear();   // parent clears state
   };
 
   return (
     <div className="search-bar-container">
       <div className="search-bar-wrapper">
-        {/* Main Search Input */}
+
+        {/* 🔍 Main Search Input */}
         <div className="search-bar-main">
           <div className="search-input-wrapper">
             <Search className="search-icon" />
+
             <input
               type="text"
               className="search-input-large"
-              placeholder="Search by name, skills, designation, college, company... supports AND / OR / exact match / -exclude"
+              placeholder="Search by name, skills, designation, college, company..."
               value={localValue}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
+
             {localValue && (
-              <X
-                className="search-clear-icon"
-                onClick={handleClear}
-              />
+              <X className="search-button search-clear-icon" onClick={handleClear} />
             )}
+
             {isLoading && (
               <div className="search-loading">
                 <div className="spinner" />
@@ -62,30 +66,34 @@ const SearchBar = ({
             )}
           </div>
 
+          {/* 🎯 Action Buttons */}
           <div className="search-actions">
             <button
               className="btn-search-primary"
               onClick={onSearch}
               disabled={isLoading}
             >
-              {isLoading ? 'Searching...' : 'Search'}
+              {isLoading ? "Searching..." : "Search"}
             </button>
+
             <button
               className="btn-search-secondary"
               onClick={handleClear}
             >
-              Clear Search
+              Clear
             </button>
+
             <button
-              className="btn btn-ghost btn-search-secondary"
+              className="btn-ghost btn-search-secondary"
               onClick={onSaveSearch}
               title="Save Current Search"
             >
               <Save size={18} />
             </button>
+
             <button
-              className="btn btn-ghost btn-search-secondary"
-              onClick={onLoadSearch}
+              className="btn-ghost btn-search-secondary"
+              onClick={() => onLoadSearch && onLoadSearch()}
               title="Load Saved Search"
             >
               <FolderOpen size={18} />
@@ -93,8 +101,8 @@ const SearchBar = ({
           </div>
         </div>
 
-        {/* Boolean Operators Help */}
-        {showOperators && (
+        {/* ❓ Boolean Help */}
+        {showOperators ? (
           <div className="search-operators-help">
             <div className="operator-help-item">
               <span className="operator-code">AND</span>
@@ -116,6 +124,7 @@ const SearchBar = ({
               <span>Exact phrase</span>
               <span className="operator-example">"Full Stack Developer"</span>
             </div>
+
             <button
               className="toggle-operators-help"
               onClick={() => setShowOperators(false)}
@@ -123,11 +132,9 @@ const SearchBar = ({
               Hide Help
             </button>
           </div>
-        )}
-
-        {!showOperators && (
+        ) : (
           <button
-            className="flex items-center gap-2 text-sm text-blue mt-2 cursor-pointer"
+            className="flex items-center gap-2 text-sm text-blue mt-2 cursor-pointer boolean-help-btn"
             onClick={() => setShowOperators(true)}
           >
             <HelpCircle size={16} />
@@ -135,15 +142,15 @@ const SearchBar = ({
           </button>
         )}
 
-        {/* Saved Searches Bar */}
+        {/* 💾 Saved Searches */}
         {savedSearches.length > 0 && (
           <div className="saved-searches-bar">
             <div className="saved-searches-label">Recent Searches:</div>
             <div className="saved-searches-list">
-              {savedSearches.slice(0, 5).map((search, index) => (
+              {savedSearches.slice(0, 5).map((search) => (
                 <button
-                  key={index}
-                  className={`saved-search-chip ${search.active ? 'active' : ''}`}
+                  key={search.id}
+                  className="saved-search-chip"
                   onClick={() => onLoadSearch(search)}
                 >
                   {search.isFavorite && (

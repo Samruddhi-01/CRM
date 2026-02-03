@@ -307,7 +307,7 @@ const HRPerformance = () => {
                     <span className="last-activity">
                       Last Activity: {formatDate(hr.lastActivity)}
                     </span>
-                    <button className="btn btn-sm btn-primary">View Candidates →</button>
+                    <button className="btn-view btn-sm btn-primary">View Candidates →</button>
                   </div>
                 </div>
               ))}

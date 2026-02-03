@@ -78,6 +78,27 @@
   min-width: 150px;
 }
 
+.modal-overlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  z-index: 10000;
+  position: relative;
+}
+
+
+
 .hr-table-header-right {
   display: flex;
   align-items: center;
