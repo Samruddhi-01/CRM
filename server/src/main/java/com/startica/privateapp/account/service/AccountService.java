@@ -10,6 +10,8 @@ import com.startica.privateapp.model.Role;
 import com.startica.privateapp.model.User;
 import com.startica.privateapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,8 +25,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AccountService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+	@Autowired
+    private UserRepository userRepository;
+    
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
     @Transactional
     public HRResponse createHR(CreateHRRequest request) {
@@ -130,5 +135,24 @@ public class AccountService {
                 .updatedAt(user.getUpdatedAt())
                 .build();
     }
+
+    @Transactional
+    public void deleteHR(Long id) {
+
+        User hrUser = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
+        if (hrUser.getRole() != Role.HR) {
+            throw new BusinessException("User is not an HR");
+        }
+
+        // Optional safety check
+        if (hrUser.getActive()) {
+            throw new BusinessException("Deactivate HR before deleting");
+        }
+
+        userRepository.deleteById(id);
+    }
+
 }
 

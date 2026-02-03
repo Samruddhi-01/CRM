@@ -13,6 +13,8 @@ import com.startica.privateapp.common.response.ApiResponse;
 import com.startica.privateapp.common.response.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,9 +34,12 @@ import com.startica.privateapp.candidate.service.CandidateService;
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
-    private final AccountService accountService;
-    private final AnalyticsService analyticsService;
-    private final AuditService auditService;
+	@Autowired
+    private AccountService accountService;
+	@Autowired
+    private AnalyticsService analyticsService;
+    @Autowired
+	private  AuditService auditService;
 
     // HR Management Endpoints
 
@@ -81,6 +86,13 @@ public class AdminController {
         String message = active ? "HR user activated successfully" : "HR user deactivated successfully";
         return ResponseEntity.ok(ApiResponse.success(message, null));
     }
+
+    @DeleteMapping("/hr/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteHR(@PathVariable Long id) {
+        accountService.deleteHR(id);
+        return ResponseEntity.ok(ApiResponse.success("HR deleted successfully", null));
+    }
+
 
     // Analytics Endpoints
 
