@@ -351,7 +351,7 @@ const History = () => {
             </div>
             
             {/* Table Section */}
-            <div className="table-card">
+            <div className="table-card history">
               <div className="table-header">
                 <div className="table-title">
                   {(localFilters.search || localFilters.status || localFilters.dateRange) && (

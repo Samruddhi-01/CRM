@@ -4,17 +4,15 @@
    ======================================== */
 
 .filter-sidebar {
-  width: 300px;
-  height: calc(100vh - 60px);
-  background-color: #FFFFFF;
-  border-right: 1px solid #E5E7EB;
-  overflow-y: auto;
-  overflow-x: hidden;
-  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+
   display: flex;
-  flex-direction: column;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
 }
+
 
 .filter-sidebar::-webkit-scrollbar {
   width: 6px;

@@ -1,0 +1,307 @@
+/**
+ * Appointments Page - Unified App UI Integration Styles
+ * Matches the Candidates page styling exactly with same design tokens
+ */
+
+/* Scoped wrapper for unified styles on Appointments page */
+.appointments-page.app-ui {
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* Page Header - Full width with margin */
+.appointments-page.app-ui .page-header {
+  margin: 20px 20px 0 20px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.appointments-page.app-ui .page-header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  flex: 1;
+}
+
+.appointments-page.app-ui .page-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.appointments-page.app-ui .btn-primary-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.appointments-page.app-ui .btn-primary-cta:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Filter Card - Full width with margin */
+.appointments-page.app-ui .filter-card {
+  margin: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.appointments-page.app-ui .filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.appointments-page.app-ui .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.appointments-page.app-ui .form-label {
+      font-size: var(--app-font-label);
+    font-weight: var(--app-font-bold);
+    color: var(--app-text-primary);
+    line-height: var(--app-line-height-normal);
+    margin: 0;
+}
+
+.appointments-page.app-ui .form-input,
+.appointments-page.app-ui .form-select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
+
+.appointments-page.app-ui .form-input:hover,
+.appointments-page.app-ui .form-select:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+}
+
+.appointments-page.app-ui .form-input:focus,
+.appointments-page.app-ui .form-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.appointments-page.app-ui .search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.appointments-page.app-ui .search-input-icon {
+  position: absolute;
+  left: 12px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.appointments-page.app-ui .form-input[type="text"] {
+  padding-left: 36px;
+}
+
+.appointments-page.app-ui .filter-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.appointments-page.app-ui .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.appointments-page.app-ui .btn-secondary {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.appointments-page.app-ui .btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.appointments-page.app-ui .btn-accent {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.appointments-page.app-ui .btn-accent:hover {
+  background-color: #2563eb;
+}
+
+/* Table Card - Full width with margin */
+.appointments-page.app-ui .appointments-table-card {
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.info {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Ensure proper spacing for content wrapper */
+.appointments-page.app-ui {
+  padding-bottom: 24px;
+}
+
+/* Appointment Table Column Widths */
+.appointments-page-container .unified-table th:nth-child(1) {
+  width: 20%;
+} /* NAME */
+.appointments-page-container .unified-table th:nth-child(2) {
+  width: 15%;
+} /* DATE */
+.appointments-page-container .unified-table th:nth-child(3) {
+  width: 18%;
+} /* COMPANY */
+.appointments-page-container .unified-table th:nth-child(4) {
+  width: 18%;
+} /* PROFILE */
+.appointments-page-container .unified-table th:nth-child(5) {
+  width: 12%;
+} /* REFERENCE (admin only) */
+.appointments-page-container .unified-table th:nth-child(6) {
+  width: 17%;
+} /* ACTIONS */
+
+/* Enhanced Action Buttons */
+.appointments-page .unified-action-buttons {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: fit-content;
+}
+
+/* Responsive adjustments for existing layout */
+@media (max-width: 1023px) {
+  .appointments-page.app-ui .page-header {
+    margin: 16px 16px 0 16px;
+    padding: 14px 20px;
+  }
+  
+  .appointments-page.app-ui .filter-card,
+  .appointments-page.app-ui .appointments-table-card {
+    margin: 16px;
+  }
+
+  .appointments-page.app-ui .filter-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .appointments-page.app-ui .page-header {
+    margin: 12px 12px 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .appointments-page.app-ui .page-header-title {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .appointments-page.app-ui .page-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .appointments-page.app-ui .btn-primary-cta {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .appointments-page.app-ui .filter-card,
+  .appointments-page.app-ui .appointments-table-card {
+    margin: 12px;
+  }
+
+  .appointments-page.app-ui .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .appointments-page.app-ui .filter-actions {
+    flex-direction: column;
+  }
+
+  .appointments-page.app-ui .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .appointments-page.app-ui .page-header {
+    margin: 8px 8px 0 8px;
+    padding: 12px;
+  }
+  
+  .appointments-page.app-ui .filter-card,
+  .appointments-page.app-ui .appointments-table-card {
+    margin: 8px;
+  }
+
+  .appointments-page.app-ui .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appointments-page.app-ui .page-header-title {
+    font-size: 22px;
+  }
+}

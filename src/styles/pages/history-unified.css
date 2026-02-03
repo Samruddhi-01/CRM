@@ -33,7 +33,7 @@
     margin: 16px 16px 0 16px;
     padding: 20px 24px;
   }
-  
+
   .main-wrapper .content .app-ui .filter-card,
   .main-wrapper .content .app-ui .table-card {
     margin: 16px;
@@ -47,21 +47,21 @@
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .main-wrapper .content .app-ui .page-header-title {
     text-align: center;
     margin-bottom: 12px;
   }
-  
+
   .main-wrapper .content .app-ui .page-header-actions {
     width: 100%;
     justify-content: center;
   }
-  
+
   .main-wrapper .content .app-ui .btn-primary-cta {
     width: 100%;
   }
-  
+
   .main-wrapper .content .app-ui .filter-card,
   .main-wrapper .content .app-ui .table-card {
     margin: 12px;
@@ -73,7 +73,7 @@
     margin: 8px 8px 0 8px;
     padding: 12px;
   }
-  
+
   .main-wrapper .content .app-ui .filter-card,
   .main-wrapper .content .app-ui .table-card {
     margin: 8px;
@@ -107,7 +107,7 @@
   height: 36px;
   padding: 0;
   background: white;
-  border: 1.5px solid #E6EEF7;
+  border: 1.5px solid #e6eef7;
   border-radius: 6px;
   color: #637381;
   cursor: pointer;
@@ -121,15 +121,27 @@
   box-shadow: 0 4px 12px rgba(47, 128, 237, 0.2);
 }
 
+.unified-action-btn.unified-btn-edit {
+  background: #0b65da;
+  border-color: #0458c7;
+  color: white;
+}
+
 .unified-action-btn.unified-btn-edit:hover {
-  background: #2F80ED;
-  border-color: #2F80ED;
+  background: #0b65da;
+  border-color: #0458c7;
+  color: white;
+}
+
+.unified-action-btn.unified-btn-view {
+  background: #18d372;
+  border-color: #007a51;
   color: white;
 }
 
 .unified-action-btn.unified-btn-view:hover {
-  background: #10B981;
-  border-color: #10B981;
+  background: #18d372;
+  border-color: #007a51;
   color: white;
 }
 
@@ -159,11 +171,11 @@
     max-width: 40px;
     height: 40px;
   }
-  
+
   .unified-action-buttons {
     gap: 12px;
   }
-  
+
   .unified-table .cell-actions {
     width: auto;
     min-width: auto;

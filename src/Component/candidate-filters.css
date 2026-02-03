@@ -1,0 +1,197 @@
+/* ========================================
+   CANDIDATE FILTERS — MODERN UI
+   Clean • Structured • Fully Responsive
+   ======================================== */
+
+.filter-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+/* ===== Top Bar ===== */
+.filter-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.filter-top h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ===== Reset Button ===== */
+.reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+}
+
+/* ===== Shared Field Styles ===== */
+.filter-wrapper input,
+.filter-wrapper select {
+  flex: 1 1 220px;
+  height: 44px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.filter-wrapper input::placeholder {
+  color: #94a3b8;
+}
+
+.filter-wrapper select {
+  cursor: pointer;
+}
+
+.filter-wrapper input:hover,
+.filter-wrapper select:hover {
+  border-color: #94a3b8;
+}
+
+.filter-wrapper input:focus,
+.filter-wrapper select:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+/* ===== Range Group ===== */
+.range-group {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.range-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin: auto;
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-inputs input {
+  flex: 1;
+  text-align: center;
+}
+
+.range-inputs span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Large Screens */
+@media (min-width: 1400px) {
+  .filter-wrapper {
+    gap: 18px;
+  }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+  .filter-wrapper input,
+  .filter-wrapper select {
+    flex: 1 1 200px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .filter-wrapper {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .filter-wrapper input,
+  .filter-wrapper select {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .range-group {
+    flex: 1 1 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .filter-wrapper {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .filter-wrapper input,
+  .filter-wrapper select {
+    width: 100%;
+    flex: unset;
+  }
+
+  .filter-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .reset-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .range-inputs {
+    flex-direction: row;
+  }
+}
+
+/* Very Small Phones */
+@media (max-width: 380px) {
+  .filter-wrapper input,
+  .filter-wrapper select {
+    font-size: 13px;
+    height: 42px;
+  }
+
+  .filter-top h3 {
+    font-size: 14px;
+  }
+}
