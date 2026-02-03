@@ -64,10 +64,24 @@ public class CandidateSpecification {
                 predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("expectedCTC"), request.getMaxExpectedCTC()));
             }
 
-            // Locations
+            // Locations (case-insensitive, partial match)
             if (request.getLocations() != null && !request.getLocations().isEmpty()) {
-                predicates.add(root.get("location").in(request.getLocations()));
+                List<Predicate> locationPredicates = new ArrayList<>();
+
+                for (String loc : request.getLocations()) {
+                    locationPredicates.add(
+                            criteriaBuilder.equal(
+                                    criteriaBuilder.lower(root.get("location")),
+                                    loc.toLowerCase()
+                            )
+
+                    );
+                }
+
+                predicates.add(criteriaBuilder.or(locationPredicates.toArray(new Predicate[0])));
             }
+
+
 
             // Statuses
             if (request.getStatuses() != null && !request.getStatuses().isEmpty()) {
@@ -83,6 +97,8 @@ public class CandidateSpecification {
                     predicates.add(root.get("status").in(statusEnums));
                 }
             }
+
+
 
             // Date Range
             if (request.getCreatedFrom() != null) {

@@ -7,10 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = {
-    "com.startica.privateapp.repository",
-    "com.startica.privateapp.opening.repository"
+    "com.startica.privateapp"
 })
-@ComponentScan(basePackages = "com.startica.privateapp")
 public class PrivateAppApplication {
 
     public static void main(String[] args) {
