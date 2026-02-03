@@ -159,6 +159,7 @@ const FilterSidebar = ({
     if (filters.noticePeriod?.length > 0) count++;
     if (filters.degree?.length > 0) count++;
     if (filters.educationGap?.length > 0) count++;
+    if (filters.percentage && (filters.percentage[0] > 0 || filters.percentage[1] < 100)) count++;
     if (filters.status?.length > 0) count++;
     if (filters.primarySkills?.length > 0) count++;
     if (filters.secondarySkills?.length > 0) count++;
@@ -388,6 +389,26 @@ const FilterSidebar = ({
               onChange={(val) => onChange('educationGap', val)}
               placeholder="Select education gap"
             />
+          </div>
+
+          <div className="filter-group">
+            <label className="filter-label">Education Percentage (%)</label>
+            <div className="percentage-options">
+              {[
+                { range: [35, 50], label: '35-50%' },
+                { range: [50, 70], label: '50-70%' },
+                { range: [70, 100], label: '70-100%' }
+              ].map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  className={`percentage-option ${filters.percentage && filters.percentage[0] === option.range[0] && filters.percentage[1] === option.range[1] ? 'selected' : ''}`}
+                  onClick={() => onChange('percentage', option.range)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <RangeSlider

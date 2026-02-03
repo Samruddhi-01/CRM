@@ -9,10 +9,11 @@ import { createCandidate, updateCandidate, fetchCandidateById, selectCurrentCand
 import { CANDIDATE_STATUS } from '../utils/constants';
 import Sidebar from '../components/common/Sidebar';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import apiService from '../services/api';
 
 // Predefined degrees list for validation
 const PREDEFINED_DEGREES = [
-  'BCA', 'MCA', 'BE Computer', 'BTech', 'MTech', 'BSc', 'MSc', 'Diploma', '12th', '10th'
+  'BCA', 'MCA', 'BE', 'BTech', 'MTech', 'BSc', 'MSc', 'Diploma', '12th', '10th'
 ];
 
 // Helper function to check if degree is custom
@@ -72,6 +73,8 @@ const CandidateForm = () => {
   const [fieldErrors, setFieldErrors] = useState({});
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorDetails, setErrorDetails] = useState(null);
+  const [duplicateCheck, setDuplicateCheck] = useState({ email: null, phone: null });
+  const [checkingDuplicate, setCheckingDuplicate] = useState(false);
 
   // Validation patterns
   const VALIDATION_RULES = {
@@ -111,6 +114,40 @@ const CandidateForm = () => {
     { value: 'Lead (10+ years)', label: 'Lead (10+ years)', icon: '⭐', years: '10+' },
     { value: 'Expert (15+ years)', label: 'Expert (15+ years)', icon: '👑', years: '15+' }
   ];
+
+  // Real-time duplicate validation
+  const checkDuplicate = async (field, value) => {
+    if (!value || value.length < 3) {
+      setDuplicateCheck(prev => ({ ...prev, [field]: null }));
+      return;
+    }
+
+    setCheckingDuplicate(true);
+    try {
+      const response = await apiService.get(`/api/candidates/check-duplicate?${field}=${encodeURIComponent(value)}`);
+      setDuplicateCheck(prev => ({ ...prev, [field]: response.data.exists }));
+      
+      if (response.data.exists) {
+        setFieldErrors(prev => ({
+          ...prev,
+          [field]: `This ${field} is already registered in the system`
+        }));
+        toast.error(`${field === 'email' ? 'Email' : 'Phone number'} already exists!`, {
+          duration: 3000,
+          position: 'top-center'
+        });
+      } else {
+        setFieldErrors(prev => {
+          const { [field]: removed, ...rest } = prev;
+          return rest;
+        });
+      }
+    } catch (error) {
+      console.error('Duplicate check failed:', error);
+    } finally {
+      setCheckingDuplicate(false);
+    }
+  };
 
   // Validation Functions
   const validateField = (name, value) => {
@@ -443,6 +480,7 @@ const CandidateForm = () => {
         return; // Don't allow more than 10 digits
       }
       
+      
       // Real-time validation
       const error = validateField(name, cleanPhone);
       if (error) {
@@ -450,6 +488,28 @@ const CandidateForm = () => {
       }
       
       setFormData(prev => ({ ...prev, [name]: cleanPhone }));
+      
+      // Check for duplicate phone when 10 digits are entered
+      if (cleanPhone.length === 10) {
+        checkDuplicate('phone', cleanPhone);
+      }
+      return;
+    }
+
+    // Check for duplicate email when valid format is entered
+    if (name === 'email') {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      
+      // Real-time validation
+      const error = validateField(name, value);
+      if (error) {
+        setFieldErrors(prev => ({ ...prev, [name]: error }));
+      }
+      
+      // Check for duplicate email when valid format is entered
+      if (VALIDATION_RULES.email.pattern.test(value)) {
+        checkDuplicate('email', value);
+      }
       return;
     }
 
@@ -870,6 +930,99 @@ const CandidateForm = () => {
                     </div>
                   )}
 
+                  {/* Contact Information Section */}
+                  <div className="candidate-form-section">
+                    <h2 className="candidate-form-section-title">Contact Information</h2>
+                    
+                    <div className="candidate-form-grid">
+                      <div className="candidate-form-group half-width">
+                        <label className="candidate-form-label">
+                          Phone Number <span className="required">*</span>
+                        </label>
+                        <input 
+                          type="tel" 
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="10 digit number"
+                          className={`candidate-form-input ${
+                            fieldErrors.phone ? 'input-error' : 
+                            duplicateCheck.phone === true ? 'input-duplicate' :
+                            formData.phone.length === 10 && !fieldErrors.phone ? 'input-success' : ''
+                          }`}
+                          maxLength="10"
+                          required
+                        />
+                        {fieldErrors.phone ? (
+                          <span className="field-error-message">
+                            <span className="error-icon">⚠️</span>
+                            {fieldErrors.phone}
+                          </span>
+                        ) : duplicateCheck.phone === true ? (
+                          <span className="field-error-message">
+                            <span className="error-icon">🚫</span>
+                            Phone number already exists
+                          </span>
+                        ) : (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span className="candidate-form-helper">
+                              {checkingDuplicate.phone ? 'Checking...' : 'Must start with 6-9'}
+                            </span>
+                            <span className={`field-char-counter ${formData.phone.length > 0 && formData.phone.length < 10 ? 'warning' : ''}`}>
+                              {formData.phone.length}/10
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="candidate-form-group half-width">
+                        <label className="candidate-form-label">
+                          Email <span className="required">*</span>
+                        </label>
+                        <input 
+                          type="email" 
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="Enter email address"
+                          className={`candidate-form-input ${
+                            fieldErrors.email ? 'input-error' : 
+                            duplicateCheck.email === true ? 'input-duplicate' : ''
+                          }`}
+                          required
+                        />
+                        {fieldErrors.email ? (
+                          <span className="field-error-message">
+                            <span className="error-icon">⚠️</span>
+                            {fieldErrors.email}
+                          </span>
+                        ) : duplicateCheck.email === true ? (
+                          <span className="field-error-message">
+                            <span className="error-icon">🚫</span>
+                            Email already exists
+                          </span>
+                        ) : checkingDuplicate.email ? (
+                          <span className="field-info-message">
+                            <span className="info-icon">🔍</span>
+                            Checking email...
+                          </span>
+                        ) : null}
+                      </div>
+                      
+                      <div className="candidate-form-group half-width">
+                        <label className="candidate-form-label">Location</label>
+                        <input 
+                          type="text" 
+                          name="location"
+                          value={formData.location}
+                          onChange={handleChange}
+                          placeholder="City, State"
+                          className="candidate-form-input"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Basic Information Section */}
                   <div className="candidate-form-section">
                     <h2 className="candidate-form-section-title">Basic Information</h2>
@@ -999,80 +1152,6 @@ const CandidateForm = () => {
                             {fieldErrors.lastName}
                           </span>
                         )}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Contact Information Section */}
-                  <div className="candidate-form-section">
-                    <h2 className="candidate-form-section-title">Contact Information</h2>
-                    
-                    <div className="candidate-form-grid">
-                      <div className="candidate-form-group half-width">
-                        <label className="candidate-form-label">
-                          Phone Number <span className="required">*</span>
-                        </label>
-                        <input 
-                          type="tel" 
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="10 digit number"
-                          className={`candidate-form-input ${
-                            fieldErrors.phone ? 'input-error' : 
-                            formData.phone.length === 10 && !fieldErrors.phone ? 'input-success' : ''
-                          }`}
-                          maxLength="10"
-                          required
-                        />
-                        {fieldErrors.phone ? (
-                          <span className="field-error-message">
-                            <span className="error-icon">⚠️</span>
-                            {fieldErrors.phone}
-                          </span>
-                        ) : (
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span className="candidate-form-helper">
-                              Must start with 6-9
-                            </span>
-                            <span className={`field-char-counter ${formData.phone.length > 0 && formData.phone.length < 10 ? 'warning' : ''}`}>
-                              {formData.phone.length}/10
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      
-                      <div className="candidate-form-group half-width">
-                        <label className="candidate-form-label">
-                          Email <span className="required">*</span>
-                        </label>
-                        <input 
-                          type="email" 
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="Enter email address"
-                          className={`candidate-form-input ${fieldErrors.email ? 'input-error' : ''}`}
-                          required
-                        />
-                        {fieldErrors.email && (
-                          <span className="field-error-message">
-                            <span className="error-icon">⚠️</span>
-                            {fieldErrors.email}
-                          </span>
-                        )}
-                      </div>
-                      
-                      <div className="candidate-form-group half-width">
-                        <label className="candidate-form-label">Location</label>
-                        <input 
-                          type="text" 
-                          name="location"
-                          value={formData.location}
-                          onChange={handleChange}
-                          placeholder="City, State"
-                          className="candidate-form-input"
-                        />
                       </div>
                     </div>
                   </div>
@@ -1347,7 +1426,7 @@ const CandidateForm = () => {
                               <option value="">Select Degree</option>
                               <option value="BCA">BCA</option>
                               <option value="MCA">MCA</option>
-                              <option value="BE Computer">BE Computer</option>
+                              <option value="BE">BE</option>
                               <option value="BTech">BTech</option>
                               <option value="MTech">MTech</option>
                               <option value="BSc">BSc</option>

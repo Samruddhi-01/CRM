@@ -1,17 +1,14 @@
 package com.startica.privateapp.auth.controller;
 
-import com.startica.privateapp.auth.service.AccountService;
-import com.startica.privateapp.auth.dto.*;
+import com.startica.privateapp.auth.dto.LoginRequest;
+import com.startica.privateapp.auth.dto.LoginResponse;
+import com.startica.privateapp.auth.dto.RefreshTokenRequest;
 import com.startica.privateapp.auth.service.AuthService;
 import com.startica.privateapp.common.response.ApiResponse;
 import com.startica.privateapp.model.User;
-import com.startica.privateapp.auth.dto.UpdateProfileRequest;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-    private final AccountService accountService;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<LoginResponse>> login(@Valid @RequestBody LoginRequest request) {
@@ -46,14 +42,13 @@ public class AuthController {
         authService.logout(user.getId());
         return ResponseEntity.ok(ApiResponse.success("Logout successful", null));
     }
-
-    @PutMapping("/profile")
-    public ResponseEntity<?> updateProfile(
-            @RequestBody UpdateProfileRequest request,
-            Authentication auth
+    @PutMapping("/email")
+    public ResponseEntity<ApiResponse<User>> updateEmail(
+            @RequestParam String email
     ) {
-        return ResponseEntity.ok(
-                accountService.updateMyProfile(auth.getName(), request)
-        );
+        User updatedUser = authService.updateEmail(email);
+        return ResponseEntity.ok(ApiResponse.success("Email updated successfully", updatedUser));
     }
+
 }
+

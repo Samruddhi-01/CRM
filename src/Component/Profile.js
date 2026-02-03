@@ -2,18 +2,28 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../styles/pages/profile.css';
-import { selectUser } from '../redux/slices/authSlice';
+//import { selectUser } from '../redux/slices/authSlice';
 import toast, { Toaster } from 'react-hot-toast';
-import { updateProfile } from '../services/api';
-import { updateUser } from '../redux/slices/authSlice';
+import api from '../services/api'; // Use the correct API service
+import { selectUser, setUser, selectIsAuthenticated } from '../redux/slices/authSlice';
+
 
 
 const Profile = () => {
   const user = useSelector(selectUser);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Redirect if not authenticated
+  React.useEffect(() => {
+    if (!isAuthenticated || !user) {
+      navigate('/login');
+      return;
+    }
+  }, [isAuthenticated, user, navigate]);
 
   // Debug: Log user data to see what's available
   React.useEffect(() => {
@@ -84,39 +94,90 @@ const Profile = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+    
+  //   if (!validateForm()) {
+  //     toast.error('Please fix the errors in the form');
+  //     return;
+  //   }
+
+  //   setLoading(true);
+    
+  //   try {
+  //     // TODO: Implement API call to update profile
+  //     // const response = await apiService.put('/api/auth/profile', formData);
+      
+  //     // Simulate API call
+  //     //await new Promise(resolve => setTimeout(resolve, 1000));
+  //     await api.put(`/auth/email?email=${formData.email}`);
+
+      
+  //     toast.success('Profile updated successfully');
+  //     setIsEditing(false);
+      
+  //     // Reset password fields
+  //     setFormData(prev => ({
+  //       ...prev,
+  //       currentPassword: '',
+  //       newPassword: '',
+  //       confirmPassword: ''
+  //     }));
+  //   } catch (error) {
+  //     toast.error(error.message || 'Failed to update profile');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   if (!validateForm()) return;
+
+//   setLoading(true);
+
+//   try {
+//     const res = await api.put(`/auth/email?email=${formData.email}`);
+
+//     dispatch(updateUser(res.data.data));
+
+//     toast.success('Email updated successfully');
+//     setIsEditing(false);
+
+//   } catch (error) {
+//     toast.error(error.response?.data?.message || 'Failed to update email');
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!validateForm()) {
-    toast.error("Fix form errors");
-    return;
-  }
+  if (!validateForm()) return;
 
   setLoading(true);
 
   try {
-    const res = await updateProfile(formData);
+    // const res = await api.put('/auth/email', null, {
+    //   params: { email: formData.email }
+    // });
+    const res = await api.put('/auth/email', null, {
+      params: { email: formData.email }
+    });
 
-    const updatedUser =
-      res.data?.data?.user ||
-      res.data?.data ||
-      res.data?.user ||
-      res.data;
 
-    dispatch(updateUser(updatedUser));
+    dispatch(setUser(res.data.data));
 
-    toast.success("Profile updated!");
-    console.log("Update API response:", res.data);
+    toast.success('Email updated successfully');
     setIsEditing(false);
 
-  } catch (err) {
-    console.log("Update error:", err);
-    toast.error(err.message || "Update failed!");
+  } catch (error) {
+    console.error(error);
+    toast.error(error.response?.data?.message || 'Failed to update email');
   } finally {
     setLoading(false);
   }
 };
-
 
 
   const handleCancel = () => {

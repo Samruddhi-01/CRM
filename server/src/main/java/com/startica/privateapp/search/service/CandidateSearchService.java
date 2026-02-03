@@ -68,6 +68,9 @@ public class CandidateSearchService {
                 return Sort.by(direction, "expectedCTC");
             case "status":
                 return Sort.by(direction, "status");
+            case "percentage":
+                return Sort.by("createdAt").descending(); // dummy DB sort
+
             case "createdAt":
             default:
                 return Sort.by(direction, "createdAt");

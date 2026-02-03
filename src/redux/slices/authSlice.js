@@ -33,15 +33,20 @@ export const login = createAsyncThunk(
       
       return { token, refreshToken, user };
     } catch (error) {
-      console.log('Login error:', error);
+      console.log('Login error details:', {
+        message: error.message,
+        data: error.data,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       
       // Handle specific error messages - check multiple possible locations
       const errorMessage = 
-        error.message || 
-        error.data?.message || 
-        error.data?.error || 
         error.response?.data?.message || 
-        error.response?.data?.error ||
+        error.response?.data?.error || 
+        error.data?.message || 
+        error.data?.error ||
+        error.message || 
         'Login failed';
       
       console.log('Extracted error message:', errorMessage);
@@ -175,7 +180,7 @@ export const updateProfile = createAsyncThunk(
   'auth/updateProfile',
   async (profileData, { rejectWithValue }) => {
     try {
-      const response = await apiService.put('/auth/profile', profileData);
+      const response = await apiService.put('/api/auth/profile', profileData);
       const user = response.data;
       
       // Update localStorage

@@ -154,5 +154,24 @@ public class AuthService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
     }
+    @Transactional
+    public User updateEmail(String email) {
+
+        User user = getCurrentUser();
+
+        // Optional: avoid unnecessary DB update
+        if (email.equalsIgnoreCase(user.getEmail())) {
+            return user;
+        }
+
+        // Optional but recommended
+        if (userRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("Email already exists");
+        }
+
+        user.setEmail(email);
+        return userRepository.save(user);
+    }
+
 }
 

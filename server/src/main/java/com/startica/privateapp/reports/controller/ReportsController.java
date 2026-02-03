@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
  * Only accessible by users with ADMIN role
  */
 @RestController
-@RequestMapping("/admin/reports")
+@RequestMapping("/api/admin/reports")
 @RequiredArgsConstructor
 @Slf4j
 @PreAuthorize("hasRole('ADMIN')")

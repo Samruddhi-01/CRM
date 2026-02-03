@@ -23,6 +23,7 @@ public class CandidateResponse {
     private String profile;
     private String degree;
     private Integer passingYear;
+    private Float percentage;
     private String experience;
     private String currentPackage;
     private String expectedCTC;

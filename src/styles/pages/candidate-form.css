@@ -283,66 +283,142 @@
 
 .candidate-status-select {
   font-weight: 600;
-  font-size: 0.563rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.25rem 0.5rem;
-  border-radius: 10px;
-  min-height: 24px;
+  letter-spacing: 0.5px;
+  background-color: #FFFFFF;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Status Colors - Matching Unified Table System */
+.candidate-status-select:hover {
+  border-color: #3B82F6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.candidate-status-select:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Enhanced Status Colors - Modern Design */
 .candidate-status-select[value="PENDING"],
 .candidate-status-select option[value="PENDING"] {
   background-color: #FEF3C7;
   color: #78350F;
+  border-color: #F59E0B;
 }
 
 .candidate-status-select[value="CONTACTED"],
 .candidate-status-select option[value="CONTACTED"] {
   background-color: #DBEAFE;
   color: #1E40AF;
+  border-color: #3B82F6;
 }
 
 .candidate-status-select[value="INTERESTED"],
 .candidate-status-select option[value="INTERESTED"] {
   background-color: #D1FAE5;
   color: #065F46;
+  border-color: #10B981;
 }
 
 .candidate-status-select[value="SHORTLISTED"],
 .candidate-status-select option[value="SHORTLISTED"] {
-  background-color: #D1FAE5;
-  color: #065F46;
+  background-color: #E0E7FF;
+  color: #3730A3;
+  border-color: #6366F1;
 }
 
 .candidate-status-select[value="OFFERED"],
 .candidate-status-select option[value="OFFERED"] {
   background-color: #E0E7FF;
   color: #4338CA;
+  border-color: #6366F1;
 }
 
 .candidate-status-select[value="REJECTED"],
 .candidate-status-select option[value="REJECTED"] {
   background-color: #FEE2E2;
   color: #991B1B;
+  border-color: #EF4444;
 }
 
 .candidate-status-select[value="HIRED"],
 .candidate-status-select option[value="HIRED"] {
   background-color: #D1FAE5;
   color: #047857;
+  border-color: #10B981;
 }
 
 .candidate-status-select[value="TELL_LATER"],
 .candidate-status-select option[value="TELL_LATER"] {
   background-color: #F1F5F9;
   color: #475569;
+  border-color: #64748B;
 }
 
-.candidate-status-select:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+/* Option styling for better visual hierarchy */
+.candidate-status-select option {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  background-color: #FFFFFF;
+  color: #374151;
+}
+
+.candidate-status-select option[value="PENDING"] {
+  background-color: #FEF3C7;
+  color: #78350F;
+}
+
+.candidate-status-select option[value="CONTACTED"] {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+}
+
+.candidate-status-select option[value="INTERESTED"] {
+  background-color: #D1FAE5;
+  color: #065F46;
+}
+
+.candidate-status-select option[value="SHORTLISTED"] {
+  background-color: #E0E7FF;
+  color: #3730A3;
+}
+
+.candidate-status-select option[value="OFFERED"] {
+  background-color: #E0E7FF;
+  color: #4338CA;
+}
+
+.candidate-status-select option[value="REJECTED"] {
+  background-color: #FEE2E2;
+  color: #991B1B;
+}
+
+.candidate-status-select option[value="HIRED"] {
+  background-color: #D1FAE5;
+  color: #047857;
+}
+
+.candidate-status-select option[value="TELL_LATER"] {
+  background-color: #F1F5F9;
+  color: #475569;
 }
 
 /* Form Actions - Professional Buttons */
@@ -825,6 +901,19 @@
   outline: none;
 }
 
+/* Field Duplicate Styling */
+.candidate-form-input.input-duplicate {
+  border: 2px solid #F59E0B !important;
+  background: #FEF3C7;
+  animation: shakeError 0.3s ease;
+}
+
+.candidate-form-input.input-duplicate:focus {
+  border-color: #D97706 !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  outline: none;
+}
+
 /* Character Counter */
 .field-char-counter {
   display: block;
@@ -913,8 +1002,19 @@
   align-items: center;
   gap: 0.375rem;
   margin-top: 0.375rem;
-  font-size: 0.688rem;
-  color: #DC2626;
+  font-size: 0.75rem;
+  color: #991B1B;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+.field-info-message {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.375rem;
+  font-size: 0.75rem;
+  color: #3B82F6;
   font-weight: 500;
   animation: slideDown 0.3s ease;
 }

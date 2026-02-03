@@ -60,6 +60,7 @@ public class CandidateService {
         candidate.setGap(request.getGap());
         candidate.setSkills(request.getSkills());
         candidate.setResumeUrl(request.getResumeUrl());
+        candidate.setPercentage(candidate.getPercentage());
         candidate.setNotes(request.getNotes());
         candidate.setEmploymentHistory(request.getEmploymentHistory());
         candidate.setEducation(request.getEducation());
@@ -343,5 +344,14 @@ public class CandidateService {
                 .updatedAt(candidate.getUpdatedAt())
                 .build();
     }
+    @Transactional
+    public void populatePercentagesForAllCandidates() {
+        List<Candidate> candidates = candidateRepository.findAll();
+        for (Candidate candidate : candidates) {
+            candidate.updatePercentageFromEducation(); // extract from education JSON
+        }
+        candidateRepository.saveAll(candidates);
+    }
+
 }
 

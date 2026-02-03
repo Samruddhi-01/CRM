@@ -33,6 +33,9 @@ public class CandidateSearchRequest extends BaseSearchRequest {
     // Experience Range
     private BigDecimal minExperience;
     private BigDecimal maxExperience;
+    // Education Percentage Range
+    private Integer minPercentage;
+    private Integer maxPercentage;
     
     // CTC Range
     private BigDecimal currentCtcMin;

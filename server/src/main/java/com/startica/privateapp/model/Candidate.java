@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject; // add this import
+
 
 @Entity
 @Table(name = "candidates", indexes = {
@@ -53,6 +55,10 @@ public class Candidate {
 
     @Column(name = "passing_year")
     private Integer passingYear;
+
+    @Column(name = "percentage")
+    private Float percentage;
+
 
     @Column(length = 50)
     private String experience;
@@ -110,18 +116,39 @@ public class Candidate {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-        if (status == null) {
-            status = CandidateStatus.PENDING;
-        }
+//    @PrePersist
+//    protected void onCreate() {
+//        createdAt = LocalDateTime.now();
+//        updatedAt = LocalDateTime.now();
+//        if (status == null) {
+//            status = CandidateStatus.PENDING;
+//        }
+//        updatePercentageFromEducation();
+//
+//    }
+//
+//    @PreUpdate
+//    protected void onUpdate() {
+//        updatedAt = LocalDateTime.now();
+//        updatePercentageFromEducation(); // call helper
+//
+//    }
+@PrePersist
+protected void onCreate() {
+    createdAt = LocalDateTime.now();
+    updatedAt = LocalDateTime.now();
+
+    if (status == null) {
+        status = CandidateStatus.PENDING;
     }
+
+    updatePercentageFromEducation();   // 🔥
+}
 
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+        updatePercentageFromEducation();   // 🔥
     }
 
     public enum CandidateStatus {
@@ -133,5 +160,53 @@ public class Candidate {
         OFFERED,
         HIRED
     }
+    // Helper method to extract percentage from education JSON
+//    public void updatePercentageFromEducation() {
+//        if (education != null && !education.isEmpty()) {
+//            try {
+//                JSONObject eduJson = new JSONObject(education);
+//                if (eduJson.has("percentage") && !eduJson.isNull("percentage")) {
+//                    this.percentage = eduJson.getInt("percentage");
+//                }
+//            } catch (Exception e) {
+//                // fallback if JSON is invalid
+//                this.percentage = null;
+//            }
+//        }
+//    }
+//    public void updatePercentageFromEducation() {
+//        if (education == null || education.trim().isEmpty()) {
+//            this.percentage = null;
+//            return;
+//        }
+//
+//        try {
+//            JSONObject eduJson = new JSONObject(education);
+//
+//            if (eduJson.has("percentage") && !eduJson.isNull("percentage")) {
+//                this.percentage = (float) eduJson.getDouble("percentage");   // ✅ correct
+//            }
+//        } catch (Exception e) {
+//            // If education is not JSON, do NOT destroy existing percentage
+//            // Just keep whatever was already set
+//        }
+//    }
+    public void updatePercentageFromEducation() {
+        if (education == null || education.trim().isEmpty()) {
+            return;
+        }
+
+        try {
+            JSONObject eduJson = new JSONObject(education);
+
+            if (eduJson.has("percentage") && !eduJson.isNull("percentage")) {
+                this.percentage = (float) eduJson.getDouble("percentage");
+            }
+        } catch (Exception e) {
+            // Invalid JSON – ignore
+        }
+    }
+
+
 }
 

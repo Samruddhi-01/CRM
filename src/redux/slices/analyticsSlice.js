@@ -19,7 +19,7 @@ export const fetchOverviewMetrics = createAsyncThunk(
   'analytics/fetchOverviewMetrics',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/overview');
+      const response = await apiService.get('/api/admin/metrics/overview');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch overview metrics');
@@ -32,7 +32,7 @@ export const fetchMonthlyStatistics = createAsyncThunk(
   'analytics/fetchMonthlyStatistics',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/monthly');
+      const response = await apiService.get('/api/admin/metrics/monthly');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch monthly statistics');
@@ -45,7 +45,7 @@ export const fetchHRPerformance = createAsyncThunk(
   'analytics/fetchHRPerformance',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get('/admin/metrics/hr-performance');
+      const response = await apiService.get('/api/admin/metrics/hr-performance');
       return response.data.data || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch HR performance');

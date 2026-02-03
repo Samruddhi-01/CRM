@@ -1,7 +1,7 @@
 // HR Slice - HR Management State (Admin Only)
 
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import apiService from "../../services/api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import apiService from '../../services/api';
 
 // Initial State
 const initialState = {
@@ -18,128 +18,89 @@ const initialState = {
 
 // Fetch All HR Users
 export const fetchHRUsers = createAsyncThunk(
-  "hr/fetchHRUsers",
+  'hr/fetchHRUsers',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiService.get("/admin/hr");
+      const response = await apiService.get('/api/admin/hr');
       return response.data.data || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error ||
-          error.message ||
-          "Failed to fetch HR users"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch HR users');
     }
   }
 );
 
 // Fetch HR Users Paginated
 export const fetchHRUsersPaginated = createAsyncThunk(
-  "hr/fetchHRUsersPaginated",
+  'hr/fetchHRUsersPaginated',
   async ({ page = 0, size = 10 }, { rejectWithValue }) => {
     try {
-      const response = await apiService.get("/admin/hr/paginated", {
-        params: { page, size },
+      const response = await apiService.get('/api/admin/hr/paginated', {
+        params: { page, size }
       });
       return response.data.data || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error ||
-          error.message ||
-          "Failed to fetch HR users"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch HR users');
     }
   }
 );
 
 // Fetch Single HR
 export const fetchHRById = createAsyncThunk(
-  "hr/fetchHRById",
+  'hr/fetchHRById',
   async (id, { rejectWithValue }) => {
     try {
       const response = await apiService.get(`/admin/hr/${id}`);
       return response.data.data || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error ||
-          error.message ||
-          "Failed to fetch HR user"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to fetch HR user');
     }
   }
 );
 
 // Create HR User
 export const createHRUser = createAsyncThunk(
-  "hr/createHRUser",
+  'hr/createHRUser',
   async (hrData, { rejectWithValue }) => {
     try {
-      const response = await apiService.post("/admin/hr", hrData);
+      const response = await apiService.post('/api/admin/hr', hrData);
       return response.data.data || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error ||
-          error.message ||
-          "Failed to create HR user"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to create HR user');
     }
   }
 );
 
 // Update HR User
 export const updateHRUser = createAsyncThunk(
-  "hr/updateHRUser",
+  'hr/updateHRUser',
   async ({ id, data }, { rejectWithValue }) => {
     try {
       const response = await apiService.put(`/admin/hr/${id}`, data);
       return response.data.data || response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error ||
-          error.message ||
-          "Failed to update HR user"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to update HR user');
     }
   }
 );
 
 // Update HR Status (Activate/Deactivate)
 export const updateHRStatus = createAsyncThunk(
-  "hr/updateStatus",
+  'hr/updateHRStatus',
   async ({ id, active }, { rejectWithValue }) => {
     try {
-      await apiService.patch(`/admin/hr/${id}/status?active=${active}`);
-
-      // IMPORTANT: return our own payload
+      await apiService.patch(`/admin/hr/${id}/status`, null, {
+        params: { active }
+      });
       return { id, active };
-    } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Status update failed"
-      );
-    }
-  }
-);
-
-
-
-export const deleteHRUser = createAsyncThunk(
-  "hr/deleteHRUser",
-  async (id, { rejectWithValue }) => {
-    try {
-      await apiService.delete(`/admin/hr/${id}`);
-      return id;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.error || error.message || "Failed to delete HR"
-      );
+      return rejectWithValue(error.response?.data?.error || error.message || 'Failed to update HR status');
     }
   }
 );
 
-// HR Slice
 // HR Slice
 const hrSlice = createSlice({
-  name: "hr",
+  name: 'hr',
   initialState,
   reducers: {
     clearError: (state) => {
@@ -152,40 +113,7 @@ const hrSlice = createSlice({
       state.page = action.payload;
     },
   },
-
   extraReducers: (builder) => {
-    // Delete HR
-    builder
-      .addCase(deleteHRUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteHRUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.hrUsers = state.hrUsers.filter(
-          (hr) => hr.id !== action.payload
-        );
-        state.total -= 1;
-      })
-      .addCase(deleteHRUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-
-    // Update HR Status
-    builder.addCase(updateHRStatus.fulfilled, (state, action) => {
-      const { id, active } = action.payload;
-
-      const hr = state.hrUsers.find((hr) => hr.id === id);
-      if (hr) {
-        hr.active = active;
-      }
-
-      if (state.currentHR?.id === id) {
-        state.currentHR.active = active;
-      }
-    });
-
     // Fetch HR Users
     builder
       .addCase(fetchHRUsers.pending, (state) => {
@@ -211,12 +139,8 @@ const hrSlice = createSlice({
       })
       .addCase(fetchHRUsersPaginated.fulfilled, (state, action) => {
         state.loading = false;
-        state.hrUsers =
-          action.payload.content || action.payload.data || [];
-        state.total =
-          action.payload.totalElements ||
-          action.payload.total ||
-          0;
+        state.hrUsers = action.payload.content || action.payload.data || [];
+        state.total = action.payload.totalElements || action.payload.total || 0;
         state.error = null;
       })
       .addCase(fetchHRUsersPaginated.rejected, (state, action) => {
@@ -240,7 +164,7 @@ const hrSlice = createSlice({
         state.error = action.payload;
       });
 
-    // Create HR
+    // Create HR User
     builder
       .addCase(createHRUser.pending, (state) => {
         state.loading = true;
@@ -265,27 +189,34 @@ const hrSlice = createSlice({
       })
       .addCase(updateHRUser.fulfilled, (state, action) => {
         state.loading = false;
-
-        const index = state.hrUsers.findIndex(
-          (hr) => hr.id === action.payload.id
-        );
+        const index = state.hrUsers.findIndex(hr => hr.id === action.payload.id);
         if (index !== -1) {
           state.hrUsers[index] = action.payload;
         }
-
         if (state.currentHR?.id === action.payload.id) {
           state.currentHR = action.payload;
         }
-
         state.error = null;
       })
       .addCase(updateHRUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
+
+    // Update HR Status
+    builder
+      .addCase(updateHRStatus.fulfilled, (state, action) => {
+        const { id, active } = action.payload;
+        const hr = state.hrUsers.find(hr => hr.id === id);
+        if (hr) {
+          hr.active = active;
+        }
+        if (state.currentHR?.id === id) {
+          state.currentHR.active = active;
+        }
+      });
   },
 });
-
 
 // Actions
 export const { clearError, clearCurrentHR, setPage } = hrSlice.actions;
@@ -298,5 +229,5 @@ export const selectHRPage = (state) => state.hr.page;
 export const selectHRPageSize = (state) => state.hr.pageSize;
 export const selectHRLoading = (state) => state.hr.loading;
 export const selectHRError = (state) => state.hr.error;
-    
+
 export default hrSlice.reducer;

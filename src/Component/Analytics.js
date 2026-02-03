@@ -246,7 +246,7 @@ const Analytics = () => {
           }
           .summary-card {
             background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-            border: 2px solid #E2E8F0;
+            border: 2px solid #10B981;
             border-radius: 12px;
             padding: 20px;
             text-align: center;

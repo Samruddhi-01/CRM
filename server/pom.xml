@@ -68,6 +68,13 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+
+
         <!-- MySQL Database -->
         <dependency>
             <groupId>com.mysql</groupId>

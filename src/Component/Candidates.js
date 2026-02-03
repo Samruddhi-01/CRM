@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { Edit2, Eye, Trash2 } from 'lucide-react';
+import { Edit2, Eye, Trash2, Upload, X } from 'lucide-react';
+import * as XLSX from 'xlsx';
+import apiService from '../services/api';
 import '../styles/unified-app/design-tokens.css';
 import '../styles/unified-app/app-shell.css';
 import '../styles/unified-app/app-filters.css';
@@ -80,11 +82,17 @@ const Candidates = () => {
   const [remarkValue, setRemarkValue] = useState('');
   const [showRemarkPopup, setShowRemarkPopup] = useState(false);
   const [popupRemarkText, setPopupRemarkText] = useState('');
+  const [showExportPopup, setShowExportPopup] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   
   useEffect(() => {
     console.log('Remark Popup State Changed:', showRemarkPopup);
     console.log('Popup Text:', popupRemarkText);
   }, [showRemarkPopup, popupRemarkText]);
+  
+  useEffect(() => {
+    console.log('Export Popup State Changed:', showExportPopup);
+  }, [showExportPopup]);
   
   useEffect(() => {
     loadCandidates();
@@ -135,60 +143,89 @@ const Candidates = () => {
 
   const handleRemarkSave = async (candidateId) => {
     try {
-      // Get token from correct storage key
-      const token = localStorage.getItem('auth_token');
-      
-      console.log('🔧 Updating admin remark for candidate:', candidateId);
+      console.log('🔧 Starting remark update for candidate:', candidateId);
       console.log('📝 Remark value:', remarkValue);
+      console.log('🔑 Checking auth token...');
+      
+      const token = localStorage.getItem('auth_token');
       console.log('🔑 Token exists:', !!token);
       
-      if (!token) {
-        throw new Error('No authentication token found. Please login again.');
-      }
+      console.log('📤 Making API call to:', `/api/admin/hr-performance/candidates/${candidateId}/admin-remark`);
+      console.log('📤 Request body:', { adminRemark: remarkValue });
       
-      const response = await fetch(`https://crmapi.zerlak.com/api/hr/candidates/${candidateId}/admin-remark`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        credentials: 'include',
-        body: JSON.stringify({ adminRemark: remarkValue })
+      const response = await apiService.put(`/api/admin/hr-performance/candidates/${candidateId}/admin-remark`, {
+        adminRemark: remarkValue
       });
-
+      
+      console.log('📡 Raw response:', JSON.stringify(response, null, 2));
       console.log('📡 Response status:', response.status);
-      console.log('📡 Response headers:', response.headers);
+      console.log('📡 Response data:', JSON.stringify(response.data, null, 2));
+      console.log('📡 Response data keys:', Object.keys(response.data || {}));
       
-      // Get response text first
-      const responseText = await response.text();
-      console.log('📦 Response text:', responseText);
+      // Check if response.data has the expected structure
+      if (response.data) {
+        console.log('📡 response.data.success:', response.data.success);
+        console.log('📡 response.data.data:', response.data.data);
+        console.log('📡 response.data.message:', response.data.message);
+        console.log('📡 response.data type:', typeof response.data);
+      }
       
-      // Try to parse as JSON
-      let data = null;
-      if (responseText) {
-        try {
-          data = JSON.parse(responseText);
-          console.log('📦 Parsed data:', data);
-        } catch (parseError) {
-          console.error('❌ JSON parse error:', parseError);
-          console.error('Response was:', responseText);
-        }
+      // Check different possible response structures
+      let success = false;
+      let message = 'Update completed';
+      
+      if (response.data?.success === true) {
+        success = true;
+        message = 'Update successful (success flag)';
+      } else if (response.data?.data) {
+        success = true;
+        message = 'Update successful (data present)';
+      } else if (response.status === 200 || response.status === 201) {
+        success = true;
+        message = `Update successful (HTTP ${response.status})`;
+      } else if (response.data?.message) {
+        message = response.data.message;
       }
-
-      if (!response.ok) {
-        const errorMessage = data?.message || `Server error: ${response.status} ${response.statusText}`;
-        throw new Error(errorMessage);
+      
+      console.log('✅ Success check:', success, 'Message:', message);
+      
+      if (success) {
+        toast.success('Remark updated successfully!', {
+          duration: 3000,
+          position: 'top-center',
+        });
+        setEditingRemarkId(null);
+        
+        // Force a complete refresh
+        console.log('🔄 Refreshing candidates list...');
+        loadCandidates();
+        
+        // Also try to update the local state immediately for better UX
+        setTimeout(() => {
+          console.log('🔄 Force refreshing candidates after delay...');
+          loadCandidates();
+        }, 500);
+      } else {
+        throw new Error(message || 'Failed to update remark');
       }
-
-      toast.success('Remark updated successfully!', {
-        duration: 3000,
-        position: 'top-center',
-      });
-      setEditingRemarkId(null);
-      loadCandidates();
     } catch (error) {
       console.error('❌ Error updating remark:', error);
-      toast.error(error.message || 'Failed to update remark', {
+      console.error('❌ Error type:', typeof error);
+      console.error('❌ Error message:', error.message);
+      console.error('❌ Error response:', error.response);
+      console.error('❌ Error details:', JSON.stringify(error, null, 2));
+      
+      let errorMessage = 'Failed to update remark';
+      if (error.response) {
+        console.error('❌ Response error:', error.response.data);
+        console.error('❌ Response status:', error.response.status);
+        console.error('❌ Response headers:', error.response.headers);
+        errorMessage = error.response.data?.message || `Server error: ${error.response.status}`;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      toast.error(errorMessage, {
         duration: 3000,
         position: 'top-center',
       });
@@ -274,6 +311,272 @@ const Candidates = () => {
     setSelectedCandidate(null);
   };
   
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+  
+  const checkForDuplicates = async (candidatesToCheck) => {
+    const duplicates = [];
+    
+    for (let i = 0; i < candidatesToCheck.length; i++) {
+      const candidate = candidatesToCheck[i];
+      const fullName = `${candidate.firstName} ${candidate.lastName || ''}`.trim();
+      
+      try {
+        // Check for existing candidate by email and name
+        const response = await apiService.get('/api/candidates/check-duplicate', {
+          params: {
+            email: candidate.email,
+            firstName: candidate.firstName,
+            lastName: candidate.lastName || ''
+          }
+        });
+        
+        if (response.data.exists) {
+          duplicates.push({
+            row: i + 2, // +2 because Excel rows start at 1 and we skip header
+            name: fullName,
+            email: candidate.email,
+            existingId: response.data.candidateId
+          });
+        }
+      } catch (error) {
+        console.error('Error checking duplicate for candidate:', fullName, error);
+      }
+    }
+    
+    return duplicates;
+  };
+
+  const handleFileUpload = async () => {
+    if (!selectedFile) {
+      toast.error('Please select a file first');
+      return;
+    }
+    
+    try {
+      const reader = new FileReader();
+      
+      reader.onload = async (e) => {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+          
+          if (jsonData.length < 2) {
+            toast.error('File must contain at least a header row and one data row');
+            return;
+          }
+          
+          const headers = jsonData[0];
+          const rows = jsonData.slice(1);
+          
+          // Map Excel columns to candidate fields
+          const candidates = rows.map(row => {
+            const candidate = {};
+            headers.forEach((header, index) => {
+              const normalizedHeader = header.toString().toLowerCase().replace(/\s+/g, '');
+              const value = row[index];
+              
+              if (normalizedHeader.includes('firstname') || normalizedHeader === 'firstname') {
+                candidate.firstName = value;
+              } else if (normalizedHeader.includes('lastname') || normalizedHeader === 'lastname') {
+                candidate.lastName = value;
+              } else if (normalizedHeader.includes('email')) {
+                candidate.email = value;
+              } else if (normalizedHeader.includes('phone') || normalizedHeader.includes('mobile')) {
+                candidate.phone = value;
+              } else if (normalizedHeader.includes('profile') || normalizedHeader.includes('designation')) {
+                candidate.profile = value;
+              } else if (normalizedHeader.includes('experience') || normalizedHeader.includes('exp')) {
+                candidate.experienceLevel = value;
+              } else if (normalizedHeader.includes('company')) {
+                candidate.company = value;
+              } else if (normalizedHeader.includes('current') && normalizedHeader.includes('package')) {
+                candidate.currentPackage = value;
+              } else if (normalizedHeader.includes('expected') && (normalizedHeader.includes('ctc') || normalizedHeader.includes('salary'))) {
+                candidate.expectedCTC = value;
+              } else if (normalizedHeader.includes('notice')) {
+                candidate.noticePeriod = value;
+              } else if (normalizedHeader.includes('passing') || normalizedHeader.includes('year')) {
+                candidate.passingYear = value;
+              } else if (normalizedHeader.includes('remark') || normalizedHeader.includes('comment')) {
+                candidate.adminRemark = value;
+              } else if (normalizedHeader.includes('status')) {
+                candidate.status = value;
+              }
+            });
+            
+            // Set default status if not provided
+            if (!candidate.status) {
+              candidate.status = 'PENDING';
+            } else {
+              // Convert status to uppercase to match backend enum
+              candidate.status = candidate.status.toString().toUpperCase();
+            }
+            
+            return candidate;
+          }).filter(candidate => candidate.firstName && candidate.email); // Require at least first name and email
+          
+          if (candidates.length === 0) {
+            toast.error('No valid candidate data found in file');
+            return;
+          }
+          
+          // Check for duplicates before importing
+          toast.loading('Checking for duplicate candidates...', { id: 'duplicate-check' });
+          const duplicates = await checkForDuplicates(candidates);
+          toast.dismiss('duplicate-check');
+          
+          if (duplicates.length > 0) {
+            // Show duplicate notification with candidate names
+            const duplicateNames = duplicates.map(d => `${d.name} (Row ${d.row})`).join(', ');
+            toast.error(`Candidates already exist: ${duplicateNames}`, {
+              duration: 6000,
+              style: {
+                maxWidth: '600px',
+                fontSize: '14px'
+              }
+            });
+            
+            // Ask user if they want to continue with non-duplicate candidates
+            const nonDuplicateCandidates = candidates.filter((candidate, index) => {
+              const fullName = `${candidate.firstName} ${candidate.lastName || ''}`.trim();
+              return !duplicates.some(d => d.row === index + 2);
+            });
+            
+            if (nonDuplicateCandidates.length === 0) {
+              toast.error('All candidates are duplicates. No new candidates to import.');
+              setShowExportPopup(false);
+              setSelectedFile(null);
+              return;
+            }
+            
+            const continueImport = window.confirm(
+              `${duplicates.length} duplicate(s) found. ${nonDuplicateCandidates.length} new candidate(s) will be imported. Continue?`
+            );
+            
+            if (!continueImport) {
+              setShowExportPopup(false);
+              setSelectedFile(null);
+              return;
+            }
+            
+            // Update candidates list to only include non-duplicates
+            candidates.length = 0;
+            candidates.push(...nonDuplicateCandidates);
+          }
+          
+          // Create candidates one by one using the proper API service
+          let successCount = 0;
+          let errorCount = 0;
+          const errors = [];
+          
+          for (let i = 0; i < candidates.length; i++) {
+            try {
+              console.log(`Sending candidate data for row ${i + 2}:`, candidates[i]);
+              const response = await apiService.post('/api/hr/candidates', candidates[i]);
+              console.log(`Response for row ${i + 2}:`, response.data);
+              
+              if (response.data.success) {
+                successCount++;
+              } else {
+                errorCount++;
+                const candidateName = `${candidates[i].firstName} ${candidates[i].lastName || ''}`.trim();
+                errors.push(`Row ${i + 2}: ${candidateName} - ${response.data.message || 'Unknown error'}`);
+              }
+            } catch (error) {
+              errorCount++;
+              console.error(`Error importing candidate at row ${i + 2}:`, error);
+              const candidateName = `${candidates[i].firstName} ${candidates[i].lastName || ''}`.trim();
+              
+              // Log detailed error information
+              let errorMessage = 'Unknown error';
+              if (error.response) {
+                console.error('Response data:', error.response.data);
+                console.error('Response status:', error.response.status);
+                console.error('Response headers:', error.response.headers);
+                
+                // Check if it's a duplicate error
+                const errorMsg = error.response.data?.message || error.response.data?.error || '';
+                if (errorMsg.toLowerCase().includes('already exist') || 
+                    errorMsg.toLowerCase().includes('duplicate') ||
+                    error.response.status === 409) {
+                  errorMessage = `${candidateName} already exists`;
+                } else {
+                  errorMessage = `${candidateName} - ${errorMsg || `Server error: ${error.response.status}`}`;
+                }
+              } else if (error.request) {
+                console.error('Request made but no response received:', error.request);
+                errorMessage = `${candidateName} - No response from server`;
+              } else {
+                console.error('Error setting up request:', error.message);
+                errorMessage = `${candidateName} - ${error.message}`;
+              }
+              
+              errors.push(`Row ${i + 2}: ${errorMessage}`);
+            }
+          }
+          
+          // Show results
+          if (successCount > 0) {
+            toast.success(`${successCount} candidates imported successfully!`);
+          }
+          
+          if (errorCount > 0) {
+            // Extract candidate names from error messages for better display
+            const duplicateErrors = errors.filter(error => 
+              error.toLowerCase().includes('already exist') || 
+              error.toLowerCase().includes('duplicate')
+            );
+            
+            if (duplicateErrors.length > 0) {
+              const duplicateNames = duplicateErrors.map(error => {
+                const match = error.match(/^Row \d+: (.+?) already exist/);
+                return match ? match[1] : error;
+              }).join(', ');
+              
+              toast.error(`Candidates already exist: ${duplicateNames}`, {
+                duration: 6000,
+                style: {
+                  maxWidth: '600px',
+                  fontSize: '14px'
+                }
+              });
+            } else {
+              toast.error(`${errorCount} candidates failed to import. Check console for details.`);
+            }
+            
+            console.error('Import errors:', errors);
+          }
+          
+          setShowExportPopup(false);
+          setSelectedFile(null);
+          loadCandidates(); // Refresh the candidates list
+          
+        } catch (parseError) {
+          console.error('Error parsing file:', parseError);
+          toast.error('Failed to parse file. Please ensure it\'s a valid Excel/CSV file.');
+        }
+      };
+      
+      reader.onerror = () => {
+        toast.error('Failed to read file');
+      };
+      
+      reader.readAsArrayBuffer(selectedFile);
+      
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast.error('Failed to upload candidates. Please try again.');
+    }
+  };
+  
   const getStatusBadgeVariant = (status) => {
     const variants = {
       [CANDIDATE_STATUS.INTERESTED]: 'success',
@@ -290,6 +593,21 @@ const Candidates = () => {
   return (
     <div className="app-ui candidates-page">
       <Toaster />
+      
+      Debug: Show export popup state
+      {showExportPopup && (
+        <div style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          background: 'blue',
+          color: 'white',
+          padding: '10px',
+          zIndex: 9999
+        }}>
+          Popup is OPEN!
+        </div>
+      )}
       
       {/* Page Header */}
       <div className="page-header">
@@ -314,6 +632,28 @@ const Candidates = () => {
             </svg>
             Add New Candidate
           </button>
+          <button
+            className="btn-secondary"
+            onClick={() => {
+              console.log('Export button clicked');
+              setShowExportPopup(true);
+            }}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: '2px solid #E2E8F0',
+              backgroundColor: '#88ed49ff',
+              color: '#64748B',
+              borderRadius: '6px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              fontSize: '0.875rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
+            <Upload size={16} />
+            Import          </button>
         </div>
       </div>
 
@@ -322,7 +662,7 @@ const Candidates = () => {
         <form onSubmit={handleSearch}>
           <div className="filter-grid">
             <div className="form-group col-1">
-              <label className="form-label">Search</label>
+              <label className="form-label"><strong>Search</strong></label>
               <div className="search-input-wrapper">
                 <svg className="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"></circle>
@@ -339,7 +679,7 @@ const Candidates = () => {
             </div>
 
             <div className="form-group col-1">
-              <label className="form-label">Status</label>
+              <label className="form-label"><strong>Status</strong></label>
               <select
                 value={filters.status}
                 onChange={(e) => setFilters({ ...filters, status: e.target.value })}
@@ -357,7 +697,7 @@ const Candidates = () => {
             </div>
 
             <div className="form-group col-1">
-              <label className="form-label">Sort By</label>
+              <label className="form-label"><strong>Sort By</strong></label>
               <select
                 value={filters.sortBy}
                 onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
@@ -370,7 +710,7 @@ const Candidates = () => {
             </div>
 
             <div className="form-group col-1">
-              <label className="form-label">Order</label>
+              <label className="form-label"><strong>Order</strong></label>
               <select
                 value={filters.sortDir}
                 onChange={(e) => setFilters({ ...filters, sortDir: e.target.value })}
@@ -386,7 +726,7 @@ const Candidates = () => {
             {(filters.search || filters.status) && (
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-danger"
                 onClick={() => {
                   setFilters({
                     search: '',
@@ -462,8 +802,8 @@ const Candidates = () => {
                   <thead>
                     <tr>
                       <th>NAME</th>
-                      <th>EMAIL</th>
-                      <th>PHONE</th>
+                      <th>PROFILE</th>
+                      <th>PASSING YEAR</th>
                       <th>REMARKS</th>
                       <th>STATUS</th>
                       <th>ACTIONS</th>
@@ -475,8 +815,8 @@ const Candidates = () => {
                         <td className="cell-name">
                           {candidate.firstName} {candidate.lastName}
                         </td>
-                        <td className="cell-email">{candidate.email}</td>
-                        <td className="cell-phone">{candidate.phone}</td>
+                        <td className="cell-profile">{candidate.profile || '-'}</td>
+                        <td className="cell-passing-year">{candidate.passingYear || '-'}</td>
                         <td className="remarks-cell">
                         {editingRemarkId === candidate.id ? (
                           <div className="remark-edit-container">
@@ -607,13 +947,13 @@ const Candidates = () => {
                   </div>
                   
                   <div className="table-mobile-row">
-                    <span className="table-mobile-label">Email</span>
-                    <span className="table-mobile-value">{candidate.email}</span>
+                    <span className="table-mobile-label">Profile</span>
+                    <span className="table-mobile-value">{candidate.profile || '-'}</span>
                   </div>
                   
                   <div className="table-mobile-row">
-                    <span className="table-mobile-label">Phone</span>
-                    <span className="table-mobile-value">{candidate.phone || '-'}</span>
+                    <span className="table-mobile-label">Passing Year</span>
+                    <span className="table-mobile-value">{candidate.passingYear || '-'}</span>
                   </div>
                   
                   <div className="table-mobile-row">
@@ -1098,6 +1438,161 @@ const Candidates = () => {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Export Popup Modal - Simplified */}
+      {showExportPopup && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999
+          }}
+          onClick={() => setShowExportPopup(false)}
+        >
+          <div 
+            style={{
+              background: '#FFFFFF',
+              borderRadius: '12px',
+              padding: '2rem',
+              maxWidth: '500px',
+              width: '90%',
+              boxShadow: '0 20px 25px rgba(0, 0, 0, 0.15)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700', color: '#1E293B' }}>
+                Add New Candidates
+              </h3>
+              <button 
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#64748B',
+                  cursor: 'pointer',
+                  padding: '0.5rem',
+                  borderRadius: '6px'
+                }}
+                onClick={() => setShowExportPopup(false)}
+              >
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Select CSV/Excel file with candidate data:
+              </label>
+              <div style={{ position: 'relative' }}>
+                <input
+                  type="file"
+                  accept=".csv,.xlsx,.xls"
+                  onChange={handleFileSelect}
+                  style={{ display: 'none' }}
+                  id="candidate-file-input"
+                />
+                <label 
+                  htmlFor="candidate-file-input" 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.75rem',
+                    padding: '2rem',
+                    border: '2px dashed #CBD5E1',
+                    borderRadius: '8px',
+                    backgroundColor: '#F9FAFB',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    color: '#64748B',
+                    fontSize: '0.875rem',
+                    fontWeight: '500'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.borderColor = '#3B82F6';
+                    e.target.style.backgroundColor = '#EFF6FF';
+                    e.target.style.color = '#1E40AF';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.borderColor = '#CBD5E1';
+                    e.target.style.backgroundColor = '#F9FAFB';
+                    e.target.style.color = '#64748B';
+                  }}
+                >
+                  <Upload size={24} />
+                  <span>
+                    {selectedFile ? selectedFile.name : 'Choose file or drag it here'}
+                  </span>
+                </label>
+              </div>
+              {selectedFile && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.75rem',
+                  backgroundColor: '#F0F9FF',
+                  borderRadius: '6px',
+                  border: '1px solid #DBEAFE',
+                  marginTop: '1rem'
+                }}>
+                  <span style={{ fontWeight: '600', color: '#1E293B', fontSize: '0.813rem' }}>
+                    {selectedFile.name}
+                  </span>
+                  <span style={{ color: '#64748B', fontSize: '0.75rem' }}>
+                    ({(selectedFile.size / 1024).toFixed(2)} KB)
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+              <button
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  border: '2px solid #E2E8F0',
+                  backgroundColor: '#FFFFFF',
+                  color: '#64748B',
+                  borderRadius: '6px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem'
+                }}
+                onClick={() => {
+                  setShowExportPopup(false);
+                  setSelectedFile(null);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  border: 'none',
+                  backgroundColor: selectedFile ? '#3B82F6' : '#9CA3AF',
+                  color: '#FFFFFF',
+                  borderRadius: '6px',
+                  fontWeight: '600',
+                  cursor: selectedFile ? 'pointer' : 'not-allowed',
+                  fontSize: '0.875rem',
+                  opacity: selectedFile ? 1 : 0.6
+                }}
+                onClick={selectedFile ? handleFileUpload : null}
+                disabled={!selectedFile}
+              >
+                {selectedFile ? 'Upload Candidates' : 'Select a file first'}
+              </button>
             </div>
           </div>
         </div>

@@ -40,6 +40,7 @@ const OpeningForm = () => {
     description: '',
     responsibilities: '',
     requirements: '',
+    companyName: '',
     status: 'ACTIVE'
   });
 
@@ -90,6 +91,7 @@ const OpeningForm = () => {
         description: currentOpening.description || '',
         responsibilities: currentOpening.responsibilities || '',
         requirements: currentOpening.requirements || '',
+        companyName: currentOpening.companyName || '',
         status: currentOpening.status || 'ACTIVE'
       });
     }
@@ -124,6 +126,7 @@ const OpeningForm = () => {
     if (!formData.department.trim()) newErrors.department = 'Department is required';
     if (!formData.location.trim()) newErrors.location = 'Location is required';
     if (!formData.experience.trim()) newErrors.experience = 'Experience is required';
+    if (!formData.companyName.trim()) newErrors.companyName = 'Company name is required';
     if (formData.positions < 1) newErrors.positions = 'Positions must be at least 1';
 
     setErrors(newErrors);
@@ -263,7 +266,7 @@ const OpeningForm = () => {
                         </select>
                       </div>
 
-                      <div className="opening-form-group half-width">
+                      <div className="opening-form-group">
                         <label className="opening-form-label">
                           Job Title <span className="required">*</span>
                         </label>
@@ -279,7 +282,23 @@ const OpeningForm = () => {
                         {errors.title && <span className="opening-form-error-text">{errors.title}</span>}
                       </div>
 
-                      <div className="opening-form-group half-width">
+                      <div className="opening-form-group">
+                        <label className="opening-form-label">
+                          Company Name <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="companyName"
+                          value={formData.companyName}
+                          onChange={handleInputChange}
+                          className={`opening-form-input ${errors.companyName ? 'error' : ''}`}
+                          placeholder="e.g., Tech Corp Inc."
+                          required
+                        />
+                        {errors.companyName && <span className="opening-form-error-text">{errors.companyName}</span>}
+                      </div>
+
+                      <div className="opening-form-group">
                         <label className="opening-form-label">
                           Location <span className="required">*</span>
                         </label>
